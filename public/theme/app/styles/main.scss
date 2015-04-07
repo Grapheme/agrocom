@@ -1,0 +1,38 @@
+// bower:scss
+@import "../../bower_components/normalize-scss/_normalize.scss";
+// endbower
+
+@mixin cf() {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  
+  &:after {
+    clear: both;
+  }
+}
+
+.cf{
+  @include cf();
+}
+
+body {
+  min-width: 1000px;
+}
+
+a {
+  color: #1eb3c2;
+}
+
+a.no-style {
+  text-decoration: inherit !important;
+  color: inherit !important;
+}
+
+@import "fonts";
+@import "header";
+@import "footer";
+@import "business";
+@import "general";

@@ -1,0 +1,45 @@
+.content {
+  width: 960px;
+  margin: 0 auto;
+  color: #2c2c2c;
+  margin-bottom: 80px;
+  h1 {
+    font-family: 'Foros-Medium';
+    font-size: 52px;
+    font-weight: normal;
+    margin: 63-9px 0;
+  }
+  .center {
+    width: 710px;
+    margin: 0 auto;
+    font-family: 'Foros-Regular';
+    font-size: 15px;
+    h2 {
+      font-family: 'Foros-Medium';
+      font-size: 29px;
+      font-weight: normal;
+      margin-top: 60px;
+      &:before {
+        content: ' ';
+        display: block;
+        background: url('../images/daco-sigment.png');
+        width: 32px;
+        height: 34px;
+        position: absolute;
+        margin-left: -32px;
+        margin-top: -20px;
+      }
+    }
+    iframe {
+      margin: 40px 0;
+    }
+    blockquote {
+      margin: 40px 0;
+      margin-left: -125px;
+      width: 960px;
+      color: #1eb3c2;
+      font-size: 27px;
+      font-family: 'Foros-Medium';
+    }
+  }
+}

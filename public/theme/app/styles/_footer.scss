@@ -1,0 +1,23 @@
+footer {
+  .real-footer {
+    background: #1b1b1b;
+    padding: 0 80px;
+    padding-bottom: 80px;
+    @include cf();
+    color: white;
+    font-family: 'Foros-Regular';
+    padding-top: 32px;
+    font-size: 13px;
+    strong {
+      font-family: 'Foros-Medium';
+      font-weight: normal;
+    }
+    &>* {
+      float: left;
+      margin-right: 90px;
+    }
+    .company {
+      font-size: 14px;
+    }
+  }
+}

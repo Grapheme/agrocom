@@ -1,0 +1,58 @@
+header {
+  background: #2c2c2c;
+  width: 100%;
+  position: relative;
+  .holder {
+    padding: 0 54px;
+    padding-bottom: 28px;
+    @include cf();
+    .logo {
+      float: left;
+      margin-top: 30px;
+      img {
+        display: block;
+      }
+    }
+    .main-menu {
+      float: right;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      margin-top: 33px;
+      li {
+        float: left;
+        @include cf();
+        margin-left: 25px;
+        a {
+          
+        }
+      }
+    }
+    .lang-sw {
+      float: right;
+      margin-top: 33px;
+      margin-left: 124-9px;
+      @include cf();
+      a {
+        font-size: 12px;
+        float: left;
+        margin-left: 9px;
+      }
+    }
+    a {
+      text-decoration: none;
+      color: white;
+      text-transform: uppercase;
+      font-family: 'Foros-Medium';
+      font-size: 14px;
+      color: white;
+    }
+  }
+  .shadow {
+    position: absolute;
+    bottom: -36px;
+    background: url('../images/shdow-main-menu.png');
+    width: 100%;
+    height: 36px;
+  }
+}
