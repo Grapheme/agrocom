@@ -3,6 +3,9 @@ extends layout
 block vars
  - var bodyClass = "business";
 
+block header
+  include _header_small.jade
+
 block content
   #preload-visual.visual-wide(data-img="http://puu.sh/h69bp/04b5311ce4.png")
     .logo
@@ -56,7 +59,7 @@ block content
         <nobr>D-shape</nobr>. Более трети от&nbsp;общего объёма производства
         приходится на&nbsp;сигареты формата Super Slims.
       
-      iframe(src="https://player.vimeo.com/video/59913414?color=ffffff&title=0&byline=0&portrait=0" width="710" height="399" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen)
+      //iframe(src="https://player.vimeo.com/video/59913414?color=ffffff&title=0&byline=0&portrait=0" width="710" height="399" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen)
       
       blockquote
         p.
@@ -73,7 +76,7 @@ block content
         сигарет с&nbsp;пониженным содержанием смолы и&nbsp;никотина. Лидеры
         продаж&nbsp;&mdash; сигареты марок KISS, CONTINENT, ДОНСКОЙ ТАБАК
         и&nbsp;21 ВЕК.
-  .visual-wide-thin(data-img="http://dummyimage.com/1280x372/")
+  .visual-wide-thin(data-img="http://puu.sh/h6e9S/5c2e19869e.png")
   
   .content
     h1 СЕКАП АО

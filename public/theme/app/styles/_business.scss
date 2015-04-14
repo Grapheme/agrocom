@@ -80,32 +80,3 @@
   }
 }
 
-.row {
-  &.col-2 {
-    @include cf();
-    .info {
-      float: left;
-      font-family: 'Foros-Medium';
-      font-size: 18px;
-      width: 550px;
-      p {
-        margin-top: 0;
-        
-      }
-    }
-    .address {
-      float: right;
-      font-family: 'Foros-Regular';
-      font-size: 14px;
-      border-left: 2px solid #1eb3c2;
-      padding-left: 16px;
-      width: 374px;
-      p {
-        margin-top: 4px;
-      }
-      a {
-        color: #1eb3c2;
-      }
-    }
-  }
-}

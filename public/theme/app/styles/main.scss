@@ -32,8 +32,13 @@ a.no-style {
   color: inherit !important;
 }
 
+body {
+  font-family: 'Foros-Regular';
+}
+
 @import "fonts";
 @import "header";
 @import "footer";
 @import "business";
+@import "index";
 @import "general";

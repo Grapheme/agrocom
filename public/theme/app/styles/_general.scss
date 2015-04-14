@@ -2,7 +2,7 @@
   width: 960px;
   margin: 0 auto;
   color: #2c2c2c;
-  margin-bottom: 80px;
+  margin-bottom: 70px;
   h1 {
     font-family: 'Foros-Medium';
     font-size: 52px;
@@ -61,5 +61,53 @@
       transform: rotate(0deg);
       opacity: 1;
     }
+  }
+}
+
+.row {
+  &.col-2 {
+    @include cf();
+    .info {
+      float: left;
+      font-family: 'Foros-Medium';
+      font-size: 18px;
+      width: 550px;
+      p {
+        margin-top: 0;
+        
+      }
+    }
+    .address {
+      float: right;
+      font-family: 'Foros-Regular';
+      font-size: 14px;
+      border-left: 2px solid #1eb3c2;
+      padding-left: 16px;
+      width: 374px;
+      p {
+        margin-top: 4px;
+      }
+      a {
+        color: #1eb3c2;
+      }
+    }
+  }
+  &.text-col-2 {
+    column-count: 2;
+    font-family: 'Foros-Regular';
+    font-size: 18px;
+    line-height: 24px;
+    color: #2c2c2c;
+    margin-top: 72px;
+    margin-bottom: 72px;
+    p {
+      margin-top: 0;
+      break-inside: avoid-column;
+      margin-bottom: 32px;
+      &.bold {
+        font-family: 'Foros-Medium';
+        font-size: 19px;
+      }
+    }    
   }
 }
