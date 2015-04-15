@@ -2,7 +2,9 @@
 
 return array(
 
-    'theme_path' => URL::to('/dist'),
+    'theme_path' => URL::to('/theme/site/dist'),
+    #'theme_path' => URL::to('/theme/' . Config::get('app.template') . '/dist'),
+    #'mobile_theme_path' => URL::to('/theme/mobile/dist'),
 
     'paginate_limit' => 30,
 
@@ -48,9 +50,10 @@ return array(
     ## Template changing by mobile subdomain
     ##
     'mobile' => [
-        'enabled'  => TRUE,
+        'enabled'  => FALSE,
         'domain'   => 'm',
         'template' => 'mobile',
+        'theme_path' => URL::to('/theme/mobile/dist'),
     ],
 
 );
