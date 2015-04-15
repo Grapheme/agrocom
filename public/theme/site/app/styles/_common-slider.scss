@@ -1,0 +1,47 @@
+.bx-wrapper {
+  box-shadow: none;
+  border: none;
+  .common-slider {
+    margin: 0;
+  }
+}
+
+.common-slider-controls {
+  margin-bottom: 16px;
+  margin-top: 32px;
+  a {
+    display: inline-block;
+    text-align: center;
+    width: 12px;
+    height: 12px;
+    border: 2px solid white;
+    border-radius: 60px;
+    padding: 6px 8px 8px 6px;
+    vertical-align: middle;
+    span {
+      background: url('../images/common-slider-btns.png');
+      background-repeat: no-repeat;
+      display: inline-block;
+      width: 7px;
+      height: 12px;
+    }
+    &.next {
+      span {
+        background-position: right;
+      }
+    }
+    &:hover {
+      border: 2px solid #cfcfcf;
+    }
+  }
+  .numbers {
+    display: inline-block;
+    font-family: 'Foros-Medium';
+    font-size: 13px;
+    color: black;
+    vertical-align: middle;
+    margin: 0 5px;
+    margin-bottom: -3px;
+    margin-right: 7px;
+  }
+}
