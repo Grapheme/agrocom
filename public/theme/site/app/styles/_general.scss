@@ -179,7 +179,13 @@
       .center {
         blockquote {
           width: 555px;
-          margin-left: 160px;
+          margin-left: 120px;
+        }
+        @include max-screen(1200px) {
+          width: 510px;
+          blockquote {
+            width: 390px;
+          }
         }
       }
     }
