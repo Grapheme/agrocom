@@ -32,7 +32,7 @@ gulp.task('html', ['views', 'styles'], function () {
     .pipe(assets.restore())
     .pipe($.useref())
     //.pipe($.if('*.html', $.minifyHtml({conditionals: true, loose: true})))
-    .pipe(gulp.dest('site'));
+    .pipe(gulp.dest('dist'));
 });
 
 gulp.task('images', function () {
@@ -41,14 +41,14 @@ gulp.task('images', function () {
       progressive: true,
       interlaced: true
     })))
-    .pipe(gulp.dest('site/images'));
+    .pipe(gulp.dest('dist/images'));
 });
 
 gulp.task('fonts', function () {
   return gulp.src(require('main-bower-files')().concat('app/fonts/**/*'))
     .pipe($.filter('**/*.{eot,svg,ttf,woff,woff2}'))
     .pipe($.flatten())
-    .pipe(gulp.dest('site/fonts'));
+    .pipe(gulp.dest('dist/fonts'));
 });
 
 gulp.task('extras', function () {
@@ -58,10 +58,10 @@ gulp.task('extras', function () {
     'node_modules/apache-server-configs/dist/.htaccess'
   ], {
     dot: true
-  }).pipe(gulp.dest('site'));
+  }).pipe(gulp.dest('dist'));
 });
 
-gulp.task('clean', require('del').bind(null, ['.tmp', 'site']));
+gulp.task('clean', require('del').bind(null, ['.tmp', 'dist']));
 
 gulp.task('connect', ['styles'], function () {
   var serveStatic = require('serve-static');
@@ -123,7 +123,7 @@ gulp.task('watch', ['connect'], function () {
 });
 
 gulp.task('build', ['html', 'images', 'fonts', 'extras'], function () {
-  return gulp.src('site/**/*').pipe($.size({title: 'build', gzip: true}));
+  return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
 gulp.task('default', ['clean'], function () {
