@@ -204,14 +204,8 @@
 		    </div>
     	</section>
 
-        @if (count($locales) < 2 && Config::get('dic.seo.' . $dic->slug))
-        <section class="col col-6">
-            {{ ExtForm::seo('seo', $element->seo) }}
-        </section>
-        @endif
 
-
-        @if (Config::get('dic/' . $dic->slug . '.seo') && Allow::action('seo', 'edit'))
+        @if (Allow::action('seo', 'edit') && NULL !== ($dic_seo_params = Config::get('dic/' . $dic->slug . '.seo')))
         <section class="col col-6">
             <div class="well">
                 <header>Поисковая оптимизация</header>
@@ -237,7 +231,7 @@
                             @foreach ($locales as $locale_sign => $locale_name)
                             <div class="tab-pane fade {{ !$i++ ? 'active in' : '' }} clearfix" id="seo_locale_{{ $locale_sign }}">
 
-                                {{ ExtForm::seo('seo[' . $locale_sign . ']', @$element->seos[$locale_sign]) }}
+                                {{ ExtForm::seo('seo[' . $locale_sign . ']', @$element->seos[$locale_sign], $dic_seo_params) }}
 
                             </div>
                             @endforeach
