@@ -465,6 +465,23 @@ if (len > 0) {
         'after_destroy' => function ($dic, $dicval) {
         },
 
+        /**
+         * Вызывается после изменения порядка сортировки
+         */
+        'after_order' => function ($dic) {
+        },
+
+        /**
+         * Вызывается после создания, обновления или удаления записи
+         */
+        'after_store_update_destroy' => function ($dic, $dicval) {
+        },
+
+        /**
+         * Вызывается после создания, обновления, удаления записи, изменения порядка сортировки
+         */
+        'after_store_update_destroy_order' => function ($dic = NULL, $dicval = NULL) {
+        },
     ),
 
     /*

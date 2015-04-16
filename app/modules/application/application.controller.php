@@ -12,10 +12,11 @@ class ApplicationController extends BaseController {
 
         Route::group(array(), function() {
 
-            Route::any('/ajax/request-call', array('as' => 'ajax.request-call', 'uses' => __CLASS__.'@postRequestCall'));
-            Route::any('/ajax/send-message', array('as' => 'ajax.send-message', 'uses' => __CLASS__.'@postSendMessage'));
-            Route::any('/ajax/architects-competition', array('as' => 'ajax.architects-competition', 'uses' => __CLASS__.'@postArchitectsCompetition'));
+            #Route::any('/ajax/request-call', array('as' => 'ajax.request-call', 'uses' => __CLASS__.'@postRequestCall'));
+            #Route::any('/ajax/send-message', array('as' => 'ajax.send-message', 'uses' => __CLASS__.'@postSendMessage'));
         });
+
+        Route::any('/business/{slug}', array('as' => 'app.business', 'uses' => __CLASS__.'@getBusiness'));
     }
 
 
@@ -27,9 +28,15 @@ class ApplicationController extends BaseController {
 	}
 
 
-    public function postRequestCall() {
+    public function getBusiness($slug) {
 
-        #
+        $business = Dic::valueBySlugs('business', $slug);
+        if (!is_object($business))
+            App::abort(404);
+        #Helper::tad($business);
+        $business = DicLib::loadImages($business, ['header_bg_image', 'logo', 'content_wide_image']);
+
+        return View::make(Helper::layout('business'), compact('business'));
     }
 
 
@@ -39,9 +46,5 @@ class ApplicationController extends BaseController {
     }
 
 
-    public function postArchitectsCompetition() {
-
-        #
-    }
 
 }

@@ -549,16 +549,25 @@ class DicVal extends BaseModel {
         #Helper::ta($this);
 
         ## Extract all fields (without language & all i18n)
-        if (isset($this->allfields) && @is_object($this->allfields)) {
+        if (isset($this->allfields) && is_object($this->allfields)) {
 
-            if (count($this->allfields))
+            if (count($this->allfields)) {
+                $temp = [];
                 foreach ($this->allfields as $field) {
-                    $this->{$field->key} = $field->value;
+                    $lang = $field->language ? $field->language : Config::get('app.locale');
+                    if (!isset($temp[$lang])) {
+                        $temp[$lang] = [];
+                    }
+                    $temp[$lang][$field->key] = $field->value;
                 }
-            if ($unset)
                 unset($this->allfields);
+                $this->allfields = $temp;
+            }
+        }
 
-        } elseif (isset($this->fields) && @is_object($this->fields)) {
+        #Helper::tad($this);
+
+        if (isset($this->fields) && is_object($this->fields)) {
 
             ## Extract fields (with NULL language or language = default locale)
             if (count($this->fields))
@@ -573,14 +582,22 @@ class DicVal extends BaseModel {
         ## Extract all text fields (without language & all i18n)
         if (isset($this->alltextfields) && @is_object($this->alltextfields)) {
 
-            if (count($this->alltextfields))
-                foreach ($this->alltextfields as $textfield) {
-                    $this->{$textfield->key} = $textfield->value;
+            if (count($this->alltextfields)) {
+                $temp = [];
+                foreach ($this->alltextfields as $field) {
+                    if (!isset($temp[$field->language])) {
+                        $temp[$field->language] = [];
+                    }
+                    $temp[$field->language][$field->key] = $field->value;
                 }
-            if ($unset)
                 unset($this->alltextfields);
+                $this->alltextfields = $temp;
+            }
+        }
 
-        } elseif (isset($this->textfields) && @is_object($this->textfields)) {
+        #Helper::tad($this);
+
+        if (isset($this->textfields) && @is_object($this->textfields)) {
 
             ## Extract text fields (with NULL language or language = default locale)
             if (count($this->textfields))
@@ -1139,4 +1156,13 @@ class DicVal extends BaseModel {
 
         return $dicval;
     }
+
+
+    public function img_full($field) {
+        #Helper::tad($this);
+        if (is_object($this) && isset($this->$field) && is_object($this->$field))
+            return $this->$field->full();
+        return NULL;
+    }
+
 }

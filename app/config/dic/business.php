@@ -5,6 +5,10 @@ return array(
     'fields_i18n' => function() {
 
         return array(
+            'business_name' => array(
+                'title' => 'Название бизнеса',
+                'type' => 'text',
+            ),
             'header_bg_image' => array(
                 'title' => 'Фоновое изображение в шапке',
                 'type' => 'image',
@@ -22,13 +26,13 @@ return array(
                 'type' => 'textarea',
             ),
 
+            'desc' => array(
+                'title' => 'Основное описание',
+                'type' => 'textarea_redactor',
+            ),
             'contacts' => array(
                 'title' => 'Блок с контактной информацией',
                 'type' => 'textarea_redactor',
-            ),
-            'desc' => array(
-                'title' => 'Основное описание',
-                'type' => 'textarea',
             ),
             'content' => array(
                 'title' => 'Полное описание',
