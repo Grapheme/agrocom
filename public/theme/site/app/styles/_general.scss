@@ -1,3 +1,23 @@
+.sub-header {
+  background: rgb(0,183,199);
+  background: -moz-linear-gradient(left,  rgba(0,183,199,1) 0%, rgba(0,255,199,1) 100%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(0,183,199,1)), color-stop(100%,rgba(0,255,199,1)));
+  background: -webkit-linear-gradient(left,  rgba(0,183,199,1) 0%,rgba(0,255,199,1) 100%);
+  background: -o-linear-gradient(left,  rgba(0,183,199,1) 0%,rgba(0,255,199,1) 100%);
+  background: -ms-linear-gradient(left,  rgba(0,183,199,1) 0%,rgba(0,255,199,1) 100%);
+  background: linear-gradient(to right,  rgba(0,183,199,1) 0%,rgba(0,255,199,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00b7c7', endColorstr='#00ffc7',GradientType=1 );
+  padding-left: 54px;
+  margin-top: -(83+36)+px;
+  padding-top: 135px;
+  padding-bottom: 10px;
+  h1 {
+    font-family: 'Foros-Medium';
+    font-size: 52px;
+    color: white;
+    font-weight: normal;
+  }
+}
 .content {
   width: 960px;
   margin: 0 auto;
@@ -109,5 +129,65 @@
         font-size: 19px;
       }
     }    
+  }
+}
+
+.two-columns {
+  @include cf();
+  aside {
+    float: left;
+    width: 400px;
+    background: #e5e5e5;
+    padding-bottom: 180px;
+    ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      margin-left: 45px;
+      margin-top: 45px;
+      li {
+        margin: 12px 0;
+        a {
+          display: inline-block;
+          padding-left: 32px;
+          font-family: 'Foros-Regular';
+          font-size: 21px;
+          color: #2c2c2c;
+          text-decoration: none;        
+          width: 100%;
+          box-sizing: border-box;
+          &:hover {
+            text-decoration: underline;
+          }
+          &.active {
+            background: #606060;
+            color: white;
+            font-family: 'Foros-Medium';
+            font-size: 30px;
+            padding-top: 5px;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+  article {
+    float: left;
+    padding-left: 80px;
+    .content {
+      width: 100%;
+      .center {
+        blockquote {
+          width: 555px;
+          margin-left: 120px;
+        }
+        @include max-screen(1200px) {
+          width: 510px;
+          blockquote {
+            width: 390px;
+          }
+        }
+      }
+    }
   }
 }

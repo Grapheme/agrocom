@@ -38,7 +38,7 @@ $(document).ready(function() {
   }
   
   $(window).scroll(function(){
-    $('body > .content > *, body > .recent-news > .content > *, body > .content > .center > *, body > .visual-wide-thin, footer .logos-line').each(function(){
+    $('body > .content > *, body > .two-columns > article > .content > .center > *, body > .recent-news > .content > *, body > .content > .center > *, body > .visual-wide-thin, footer .logos-line').each(function(){
       if (isScrolledIntoView(this)) {
         $(this).addClass('on-screen');
       } else {
