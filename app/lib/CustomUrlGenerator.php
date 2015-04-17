@@ -32,7 +32,7 @@ class CustomUrlGenerator extends UrlGenerator {
         ## Need CustomRouter, CustomRoute & him custom facades
         ##
         $route = $route ?: $this->routes->getByName($name);
-        $parameters = $parameters + $route->getDefaults();
+        $parameters = (array)$parameters + (array)$route->getDefaults();
 
         ##
         ## Call original URL::route() with 100% right $parameters

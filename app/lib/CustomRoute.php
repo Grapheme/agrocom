@@ -14,6 +14,6 @@ class CustomRoute extends DefaultRoute {
      * @return array
      */
     public function getDefaults() {
-        return $this->defaults;
+        return (array)$this->defaults;
     }
 }

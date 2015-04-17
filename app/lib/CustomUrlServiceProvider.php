@@ -4,7 +4,7 @@
 ## See \vendor\laravel\framework\src\Illuminate\Routing\RoutingServiceProvider.php
 ##
 
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\ServiceProvider as ServiceProvider;
 
 class CustomUrlServiceProvider extends ServiceProvider {
 

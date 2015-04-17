@@ -16,26 +16,23 @@ class ApplicationController extends BaseController {
         });
 
 
-        #Route::group(array('before' => 'i18n_url'), function() {
-        #Route::group(array(), function() {
+        Route::group(array('prefix' => '{lang}'), function() {
 
             Route::any(
-                '/{lang}/business/{slug}',
+                '/business/{slug}',
                 array(
                     'as' => 'app.business',
                     'uses' => __CLASS__.'@getBusiness'
                 )
             )
                 ->defaults('lang', 'ru')
-                #->parameter('lang', 'ru')
-                #->with('lang', 'ru')
-                #->setParameter('lang', 'ru')
             ;
 
-        echo URL::route('app.business', ['slug' => '123']); die;
+        });
 
-            #Helper::tad(Route::input('lang'));
-        #});
+        #echo URL::route('app.business', ['slug' => '123']); die;
+        #Helper::tad(Route::input('lang'));
+
     }
 
 
