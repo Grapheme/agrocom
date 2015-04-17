@@ -1,13 +1,16 @@
 <?php namespace Illuminate\Routing;
 
-##
-## See \vendor\laravel\framework\src\Illuminate\Routing\UrlGenerator.php
-##
-
+use Illuminate\Http\Request;
 use Illuminate\Routing\UrlGenerator;
 
+/**
+ * Custom UrlGenerator Class - for redeclare route() method
+ *
+ * @package Illuminate\Routing
+ *
+ * @see \vendor\laravel\framework\src\Illuminate\Routing\UrlGenerator.php
+ */
 class CustomUrlGenerator extends UrlGenerator {
-
 
 	##
     ## Custom URL::route() method
@@ -16,11 +19,20 @@ class CustomUrlGenerator extends UrlGenerator {
 	{
         ##
         ## Call url link modifier closure
+        ## OUT OF DATE
         ##
         if (@is_callable($this->url_modifiers[$name])) {
             #\Helper::dd($parameters);
             $this->url_modifiers[$name]($parameters);
         }
+
+        ##
+        ## !!! IMPORTANT FOR MULTILANGUAGE!!!
+        ## Apply the route default parameters
+        ## Need CustomRouter, CustomRoute & him custom facades
+        ##
+        $route = $route ?: $this->routes->getByName($name);
+        $parameters = $parameters + $route->getDefaults();
 
         ##
         ## Call original URL::route() with 100% right $parameters
@@ -30,6 +42,7 @@ class CustomUrlGenerator extends UrlGenerator {
 
 
     /**
+     * Custom action method
      * Get the URL to a controller action.
      *
      * @param  string  $action
@@ -37,15 +50,8 @@ class CustomUrlGenerator extends UrlGenerator {
      * @param  bool    $absolute
      * @return string
      */
-    ##
-    ## Custom URL::action() method
-    ##
     public function action($action, $parameters = array(), $absolute = true)
     {
-
-        #\Helper::dd(rand(9999999,99999999));
-        #\Helper::dd($parameters);
-
         ##
         ## Call url link modifier closure
         ##
@@ -55,7 +61,6 @@ class CustomUrlGenerator extends UrlGenerator {
         }
 
         return parent::route($action, $parameters, $absolute, $this->routes->getByAction($action));
-        #return $this->route($action, $parameters, $absolute, $this->routes->getByAction($action));
     }
 
 

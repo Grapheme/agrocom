@@ -17,6 +17,10 @@ return array(
                 'title' => 'Логотип в шапке',
                 'type' => 'image',
             ),
+            'mainpage_logo' => array(
+                'title' => 'Логотип для главной страницы',
+                'type' => 'image',
+            ),
             'header_title' => array(
                 'title' => 'Заголовок в шапке',
                 'type' => 'text',
@@ -65,4 +69,7 @@ return array(
     'seo' => ['title', 'description', 'keywords'],
 
     'versions' => 0,
+
+    'slug_label' => 'URL',
+
 );

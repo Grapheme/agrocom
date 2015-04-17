@@ -60,6 +60,7 @@ return array(
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
         'Barryvdh\Debugbar\ServiceProvider',
         'Illuminate\Custom\CustomUrlServiceProvider',
+        'Illuminate\Routing\CustomRoutingServiceProvider',
         'Flynsarmy\DbBladeCompiler\DbBladeCompilerServiceProvider',
         'Scalia\SphinxSearch\SphinxSearchServiceProvider',
         'sngrl\StringBladeCompiler\StringBladeCompilerServiceProvider',
@@ -96,15 +97,20 @@ return array(
 		'Redis'           => 'Illuminate\Support\Facades\Redis',
 		'Request'         => 'Illuminate\Support\Facades\Request',
 		'Response'        => 'Illuminate\Support\Facades\Response',
-		'Route'           => 'Illuminate\Support\Facades\Route',
+
+		#'Route'           => 'Illuminate\Support\Facades\Route',
+		'Route'           => 'Sngrl\Support\Facades\CustomRoute',
+
 		'Schema'          => 'Illuminate\Support\Facades\Schema',
 		'Seeder'          => 'Illuminate\Database\Seeder',
 		'Session'         => 'Illuminate\Support\Facades\Session',
 		'SSH'             => 'Illuminate\Support\Facades\SSH',
 		'Str'             => 'Illuminate\Support\Str',
+
         #'URL'             => 'Illuminate\Support\Facades\URL',
         ## Custom UrlGenerator class, for checking & changing URL::route() links on-the-fly
-        'URL'             => 'Illuminate\Support\Facades\CustomURL',
+        'URL'             => 'Sngrl\Support\Facades\CustomURL',
+
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
 

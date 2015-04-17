@@ -1164,5 +1164,11 @@ class DicVal extends BaseModel {
             return $this->$field->full();
         return NULL;
     }
+    public function img_thumb($field) {
+        #Helper::tad($this);
+        if (is_object($this) && isset($this->$field) && is_object($this->$field))
+            return $this->$field->thumb();
+        return NULL;
+    }
 
 }

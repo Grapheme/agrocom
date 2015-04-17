@@ -11,12 +11,31 @@ class ApplicationController extends BaseController {
     public static function returnRoutes($prefix = null) {
 
         Route::group(array(), function() {
-
             #Route::any('/ajax/request-call', array('as' => 'ajax.request-call', 'uses' => __CLASS__.'@postRequestCall'));
             #Route::any('/ajax/send-message', array('as' => 'ajax.send-message', 'uses' => __CLASS__.'@postSendMessage'));
         });
 
-        Route::any('/business/{slug}', array('as' => 'app.business', 'uses' => __CLASS__.'@getBusiness'));
+
+        #Route::group(array('before' => 'i18n_url'), function() {
+        #Route::group(array(), function() {
+
+            Route::any(
+                '/{lang}/business/{slug}',
+                array(
+                    'as' => 'app.business',
+                    'uses' => __CLASS__.'@getBusiness'
+                )
+            )
+                ->defaults('lang', 'ru')
+                #->parameter('lang', 'ru')
+                #->with('lang', 'ru')
+                #->setParameter('lang', 'ru')
+            ;
+
+        echo URL::route('app.business', ['slug' => '123']); die;
+
+            #Helper::tad(Route::input('lang'));
+        #});
     }
 
 

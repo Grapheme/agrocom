@@ -5,6 +5,19 @@
  */
 ?>
 @extends(Helper::layout())
+<?
+$business = Cache::get('app.business', function(){
+    $business = Dic::valuesBySlug('business', function($query){
+        $query->orderBy('lft', 'ASC');
+        $query->orderBy('id', 'ASC');
+    }, ['fields'], true, true, true);
+    $business = DicLib::loadImages($business, ['logo', 'mainpage_logo']);
+    #Helper::tad($business);
+    Cache::put('app.business', $business, 60);
+    return $business;
+});
+#Helper::tad($business);
+?>
 
 
 @section('header')
@@ -62,7 +75,15 @@
         </div>
     </div>
 
+    @if (isset($business) && is_object($business) && $business->count())
     <ul class="business-list">
+        @foreach ($business as $biz)
+        <li>
+            {{--<a href="{{ URL::route('app.business', ['slug' => $biz->slug]) }}"><img src="{{ $biz->img_full('mainpage_logo') }}"></a>--}}
+            <a href="{{ URL::route('app.business') }}"><img src="{{ $biz->img_full('mainpage_logo') }}"></a>
+        </li>
+        @endforeach
+{{--
         <li>
             <a href="business.html"><img src="{{ Config::get('site.theme_path') }}/images/logo-don-tabaco-mid.png"></a>
         </li>
@@ -75,7 +96,9 @@
         <li>
             <a href="business.html"><img src="{{ Config::get('site.theme_path') }}/images/logo-aqua-don-mid.png"></a>
         </li>
+--}}
     </ul>
+    @endif
 
     <div class="content">
         <div class="row text-col-2">

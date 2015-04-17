@@ -14,9 +14,9 @@ if (!$business_all) {
     $business_all = DicLib::loadImages($business_all, ['logo']);
     #Helper::tad($business_all);
     Cache::put('app.business_all', $business_all, 60);
-    echo "<!-- From DB -->";
+    #echo "<!-- From DB -->";
 } else {
-    echo "<!-- From cache -->";
+    #echo "<!-- From cache -->";
 }
 ?>
 
