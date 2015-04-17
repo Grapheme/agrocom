@@ -37,6 +37,8 @@ URL::route('article', ['id' => 123, 'lang' => 'ru']) => /ru/article/123
 
 Все методы контроллеров, которые будут обрабатывать мультиязычные роуты, первым параметром должны принимать параметр $lang:
 
-    public function getArticle($lang, $id) {
-        ...
-    }
+```php
+public function getArticle($lang, $id) {
+    ...
+}
+```
