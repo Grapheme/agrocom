@@ -76,7 +76,7 @@ class PublicPagesController extends BaseController {
             ## Генерим роуты только для текущего языка
             $locale_sign = Config::get('app.locale');
             ## ...генерим роуты с префиксом (первый сегмент), который будет указывать на текущую локаль
-            Route::group(array('before' => 'i18n_url', 'prefix' => $locale_sign), function() use ($class, $default_locale_mainpage) {
+            Route::group(array('before' => 'i18n_url', 'prefix' => '{lang}'), function() use ($class, $default_locale_mainpage) {
 
                 ## Regular page
                 Route::any('/{url}', array(

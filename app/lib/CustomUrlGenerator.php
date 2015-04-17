@@ -32,27 +32,28 @@ class CustomUrlGenerator extends UrlGenerator {
         ## Need CustomRouter, CustomRoute & him custom facades
         ##
         $route = $route ?: $this->routes->getByName($name);
-        if ($name == 'app.business' || 1) {
 
-            #dd($this);
-            #var_dump($route);
-            #dd($route->uri());
+        $parameters = (array)$parameters;
+        $defaults = (array)$route->getDefaults();
 
-            $defaults = (array)$route->getDefaults();
-            foreach ((array)$route->parameterNames() as $key => $value) {
-                #echo $key . ' => ' . $value . '<br/>';
+        if ($name == 'page' && 0) {
+            var_dump($route);
+            var_dump((array)$route->parameterNames());
+            var_dump($parameters);
+            var_dump($defaults);
+            #die;
+        }
 
-                #if ($value == 'lang' && !isset($parameters[$value]) && isset($defaults[$value]))
-                #    $parameters[$value] = $defaults[$value];
+        foreach ((array)$route->parameterNames() as $value) {
+            #echo $key . ' => ' . $value . '<br/>';
 
-                if (!isset($parameters[$value]) && isset($defaults[$value]))
-                    $parameters[$value] = $defaults[$value];
+            #if ($value == 'lang' && !isset($parameters[$value]) && isset($defaults[$value]))
+            #    $parameters[$value] = $defaults[$value];
+
+            if (!isset($parameters[$value]) && isset($defaults[$value])) {
+
+                $parameters[$value] = $defaults[$value];
             }
-
-            #var_dump($route->parameterNames());
-            #var_dump($parameters);
-            #$parameters = (array)$parameters + (array)$route->getDefaults();
-            #var_dump($parameters);
         }
 
         ##

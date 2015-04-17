@@ -9,6 +9,7 @@
 $seo = $business->seo;
 $page_title = $business->name;
 ?>
+{{ URL::route('page', ['lang' => 'en', '123']) }}
 
 
 @section('content')

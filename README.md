@@ -23,7 +23,9 @@ URL::route('article', 123) => /en/article/123
 Для генерации ссылки на страницу с другим языком достаточно просто передать нужную локаль в параметрах маршрута:
 
 ```php
-URL::route('article', ['id' => 123, 'lang' => 'ru']) => /ru/article/123
+URL::route('article', ['lang' => 'ru', 'id' => 123]) => /ru/article/123
+## или так:
+URL::route('article', ['lang' => 'ru', 123]) => /ru/article/123
 ```
 
 Следует отметить, что доступны будут только те локали, которые определены в конфиге (Config::get('app.locales')):
