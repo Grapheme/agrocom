@@ -1,0 +1,28 @@
+
+МУЛЬТИЯЗЫЧНОСТЬ
+=======================================
+
+Для реализации мультиязычности достаточно добавить к роуту или группе роутов префикс {lang}, например так:
+
+Route::group(array('prefix' => '{lang}'), function() {
+    Route::get('/article/{id}', array('as' => 'article', 'uses' => 'ArticleController@getArticle'));
+});
+
+Или так:
+
+Route::get('/{lang}/article/{id}', array('as' => 'article', 'uses' => 'ArticleController@getArticle'));
+
+Система сама будет заменять данный сегмент на текущую активную локаль (Config::get('app.locale')):
+
+URL::route('article', 123) => /en/article/123
+
+Для генерации ссылки на страницу с другим языком достаточно просто передать нужную локаль в параметрах маршрута:
+
+URL::route('article', ['id' => 123, 'lang' => 'ru']) => /ru/article/123
+
+Следует отметить, что доступны будут только те локали, которые определены в конфиге (Config::get('app.locales')):
+
+'locales' => array(
+    'ru' => 'Русский',
+    'en' => 'English',
+),

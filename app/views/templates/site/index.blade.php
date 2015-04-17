@@ -79,8 +79,8 @@ $business = Cache::get('app.business', function(){
     <ul class="business-list">
         @foreach ($business as $biz)
         <li>
-            {{--<a href="{{ URL::route('app.business', ['slug' => $biz->slug]) }}"><img src="{{ $biz->img_full('mainpage_logo') }}"></a>--}}
-            <a href="{{ URL::route('app.business') }}"><img src="{{ $biz->img_full('mainpage_logo') }}"></a>
+            <a href="{{ URL::route('app.business', ['slug' => $biz->slug]) }}"><img src="{{ $biz->img_full('mainpage_logo') }}"></a>
+{{--            <a href="{{ URL::route('app.business') }}"><img src="{{ $biz->img_full('mainpage_logo') }}"></a>--}}
         </li>
         @endforeach
 {{--
