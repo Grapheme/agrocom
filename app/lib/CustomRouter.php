@@ -76,14 +76,12 @@ class Router extends DefaultRouter {
      */
     protected function addWhereClausesToRoute($route)
     {
-        #if ($route->getName() == 'app.business') {
-            #echo "!!!";
-            #print_r($this->get_patterns_defaults());
-            foreach ($this->get_patterns_defaults() as $key => $value) {
-                $route->defaults($key, $value);
-            }
+        foreach ($this->get_patterns_defaults() as $key => $value) {
+            $route->defaults($key, $value);
+        }
+        if ($route->getName() == 'page') {
             #dd($route);
-        #}
+        }
         parent::addWhereClausesToRoute($route);
     }
 

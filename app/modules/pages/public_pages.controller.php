@@ -163,7 +163,10 @@ class PublicPagesController extends BaseController {
 
 
     ## Функция для просмотра мультиязычной страницы
-    public function showPage($slug = false){
+    public function showPage($lang = NULL, $slug = false){
+
+        if (!$lang)
+            $lang = 'ru';
 
         ## Как будем искать страницы - в кеше или в БД?
         if (Config::get('pages.not_cached')) {
@@ -260,7 +263,7 @@ class PublicPagesController extends BaseController {
 
         #Helper::tad($page);
 
-        return View::make($template, compact('page'));
+        return View::make($template, compact('page', 'lang'));
 	}
     
 
