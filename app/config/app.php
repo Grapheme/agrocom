@@ -108,7 +108,6 @@ return array(
 		'Str'             => 'Illuminate\Support\Str',
 
         #'URL'             => 'Illuminate\Support\Facades\URL',
-        ## Custom UrlGenerator class, for checking & changing URL::route() links on-the-fly
         'URL'             => 'Sngrl\Support\Facades\CustomURL',
 
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
