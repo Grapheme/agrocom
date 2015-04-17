@@ -82,16 +82,12 @@ class PublicPagesController extends BaseController {
                 Route::any('/{url}', array(
                     'as' => 'page',
                     'uses' => $class.'@showPage',
-                    #function($url) {
-                    #    Helper::dd($url);
-                    #}
                 ));
 
                 ## Main page for non-default locale
                 if (!Config::get('pages.disable_mainpage_route') && !$default_locale_mainpage)
                     Route::any('/', array(
                         'as' => 'mainpage',
-                        'before' => 'i18n_url',
                         'uses' => $class.'@showPage'
                     ));
 
@@ -101,7 +97,6 @@ class PublicPagesController extends BaseController {
             if (!Config::get('pages.disable_mainpage_route') && $default_locale_mainpage)
                 Route::any('/', array(
                     'as' => 'mainpage',
-                    'before' => '',
                     'uses' => $class.'@showPage'
                 ));
 
