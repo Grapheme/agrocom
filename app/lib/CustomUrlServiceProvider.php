@@ -1,4 +1,4 @@
-<?php namespace Illuminate\Custom;
+<?php namespace Sngrl\Routing;
 
 ##
 ## See \vendor\laravel\framework\src\Illuminate\Routing\RoutingServiceProvider.php

@@ -1,6 +1,7 @@
-<?php namespace Illuminate\Routing;
+<?php namespace Sngrl\Routing;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Routing\RoutingServiceProvider as RoutingServiceProvider;
 
 /**
  * Custom RoutingServiceProvider Class - for overloading router facade
