@@ -1,0 +1,55 @@
+extends layout
+
+block vars
+ - var bodyClass = "news";
+
+block header
+  include _header_small.jade
+
+block content
+  .sub-header
+    ul
+      li
+        a.active(href="")
+          h1 Новости
+      li
+        a(href="") Публикации в СМИ
+  
+  .content
+    .page-desc
+      p.
+        &laquo;ГРУППА АГРОКОМ&raquo;&nbsp;&mdash; российская компания, владеющая
+        активами в&nbsp;предприятиях табачной и&nbsp;пищевой промышленности,
+        в&nbsp;сельскохозяйственных предприятиях, в&nbsp;сети розничной торговли
+        в&nbsp;Южном федеральном округе России, а&nbsp;также
+        <nobr>медиа-активами</nobr>. Группа компаний была создана
+        в&nbsp;<nobr>Ростове-на-Дону</nobr> в&nbsp;2004 году.
+    .news-list
+      .unit
+        .date 11.12.2014
+        .news
+          h2 Самые популярные бренды и компании в Ростовской области
+          .common-slider-controls
+            a.prev(href="")
+              span
+            .numbers
+            a.next(href="")
+              span
+          ul.common-slider
+            li
+              img(src="http://dummyimage.com/710x430/")
+            li
+              img(src="http://dummyimage.com/710x430/")
+            li
+              img(src="http://dummyimage.com/710x430/")
+          .description
+            p.
+              &laquo;ТАВР&raquo;&nbsp;&mdash; единственное пищевое предприятие
+              в&nbsp;Российской Федерации, которое стало обладателем этого приза
+              в&nbsp;2012 году. А&nbsp;также единственная компания Ростовской
+              области, удостоенная этой награды за&nbsp;пятнадцатилетнюю историю
+              Всероссийского конкурса. В&nbsp;2013&nbsp;г. в&nbsp;рамках
+              мероприятия признания удостоились тавровские сосиски
+              &laquo;Итальянские с
+          a.more(href="") Подробнее
+      a.next-page(href="news-page2.html") Следующая страница //ссылка на следующую страницу, будет загружена в бесконечный скролл автоматически
