@@ -16,7 +16,8 @@
         <?
         $route = Route::getCurrentRoute();
         $langs = [
-                'ru' => 'rus', 'en' => 'eng',
+                'ru' => 'rus',
+                'en' => 'eng',
         ];
         ?>
 
