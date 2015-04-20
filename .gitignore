@@ -38,3 +38,6 @@ _ide_helper.php
 /!files
 /!info
 app/config/packages/scalia/sphinxsearch/config.php
+
+/site
+

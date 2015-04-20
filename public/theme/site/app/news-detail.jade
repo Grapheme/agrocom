@@ -1,0 +1,52 @@
+extends layout
+
+block vars
+ - var bodyClass = "news";
+
+block header
+  include _header_small.jade
+
+block content
+  .sub-header
+    ul
+      li
+        a.active(href="press.html") Новости
+      li
+        a(href="press.html") Публикации в СМИ
+  
+  .content
+      
+    h1 Самые популярные бренды и компании в Ростовской области
+    .date 11.12.2014
+    
+    p.
+      &laquo;ТАВР&raquo;&nbsp;&mdash; единственное пищевое предприятие
+      в&nbsp;Российской Федерации, которое стало обладателем этого приза
+      в&nbsp;2012 году. А&nbsp;также единственная компания Ростовской
+      области, удостоенная этой награды за&nbsp;пятнадцатилетнюю историю
+      Всероссийского конкурса. В&nbsp;2013&nbsp;г. в&nbsp;рамках
+      мероприятия признания удостоились тавровские сосиски
+      &laquo;Итальянские с
+    
+    .common-slider-controls
+      a.prev(href="")
+        span
+      .numbers
+      a.next(href="")
+        span
+    ul.common-slider
+      li
+        img(src="http://dummyimage.com/710x430/")
+      li
+        img(src="http://dummyimage.com/710x430/")
+      li
+        img(src="http://dummyimage.com/710x430/")
+    br
+    p.
+      &laquo;ТАВР&raquo;&nbsp;&mdash; единственное пищевое предприятие
+      в&nbsp;Российской Федерации, которое стало обладателем этого приза
+      в&nbsp;2012 году. А&nbsp;также единственная компания Ростовской
+      области, удостоенная этой награды за&nbsp;пятнадцатилетнюю историю
+      Всероссийского конкурса. В&nbsp;2013&nbsp;г. в&nbsp;рамках
+      мероприятия признания удостоились тавровские сосиски
+      &laquo;Итальянские с

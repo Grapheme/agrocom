@@ -10,10 +10,9 @@ block content
   .sub-header
     ul
       li
-        a.active(href="")
-          h1 Новости
+        a.active() Новости
       li
-        a(href="") Публикации в СМИ
+        a(href="press.html") Публикации в СМИ
   
   .content
     .page-desc
@@ -24,7 +23,7 @@ block content
         в&nbsp;Южном федеральном округе России, а&nbsp;также
         <nobr>медиа-активами</nobr>. Группа компаний была создана
         в&nbsp;<nobr>Ростове-на-Дону</nobr> в&nbsp;2004 году.
-    .news-list
+    .news-list.inf-scroll
       .unit
         .date 11.12.2014
         .news
@@ -52,4 +51,5 @@ block content
               мероприятия признания удостоились тавровские сосиски
               &laquo;Итальянские с
           a.more(href="") Подробнее
-      a.next-page(href="news-page2.html") Следующая страница //ссылка на следующую страницу, будет загружена в бесконечный скролл автоматически
+      .page-nav
+        a.next(href="news-page2.html") Следующая страница //ссылка на следующую страницу, будет загружена в бесконечный скролл автоматически

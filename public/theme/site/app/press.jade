@@ -1,7 +1,7 @@
 extends layout
 
 block vars
- - var bodyClass = "news";
+ - var bodyClass = "press";
 
 block header
   include _header_small.jade
@@ -10,9 +10,10 @@ block content
   .sub-header
     ul
       li
-        a.active() Новости
+        a(href="news.html") Новости
       li
-        a(href="press.html") Публикации в СМИ
+        a.active()
+          h1 Публикации в СМИ
   
   .content
     .page-desc
@@ -25,9 +26,11 @@ block content
         в&nbsp;<nobr>Ростове-на-Дону</nobr> в&nbsp;2004 году.
     .news-list.inf-scroll
       .unit
-        .date 11.12.2014
         .news
-          h2 2222222Самые популярные бренды и компании в Ростовской области
+          h2 Инвестпрограмма на ближайшие пять лет — 3,5 млрд рублей
+          .date-info 11.12.2014 // «Город N» // номер 21
+          .poster
+            img(src="http://dummyimage.com/111x156/")
           .description
             p.
               &laquo;ТАВР&raquo;&nbsp;&mdash; единственное пищевое предприятие
@@ -37,23 +40,12 @@ block content
               Всероссийского конкурса. В&nbsp;2013&nbsp;г. в&nbsp;рамках
               мероприятия признания удостоились тавровские сосиски
               &laquo;Итальянские с
+            a.download.pdf(href="") Скачать .pdf
       .unit
-        .date 11.12.2014
         .news
-          h2 2222222Самые популярные бренды и компании в Ростовской области
-          .common-slider-controls
-            a.prev(href="")
-              span
-            .numbers
-            a.next(href="")
-              span
-          ul.common-slider
-            li
-              img(src="http://dummyimage.com/710x430/")
-            li
-              img(src="http://dummyimage.com/710x430/")
-            li
-              img(src="http://dummyimage.com/710x430/")
+          h2 Инвестпрограмма на ближайшие пять лет — 3,5 млрд рублей
+          .date-info 11.12.2014 // «Город N»
+          .poster
           .description
             p.
               &laquo;ТАВР&raquo;&nbsp;&mdash; единственное пищевое предприятие
@@ -63,5 +55,6 @@ block content
               Всероссийского конкурса. В&nbsp;2013&nbsp;г. в&nbsp;рамках
               мероприятия признания удостоились тавровские сосиски
               &laquo;Итальянские с
+            a.download.pdf(href="") Скачать .pdf
       .page-nav
-        a.next(href="news.html") Следующая страница //ссылка на следующую страницу, будет загружена в бесконечный скролл автоматически
+        a.next(href="press.html") Следующая страница //ссылка на следующую страницу, будет загружена в бесконечный скролл автоматически
