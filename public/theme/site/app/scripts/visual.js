@@ -2,10 +2,19 @@ var _AGROKOM_isScrolledIntoView;
 
 $(document).ready(function() {
   
+  if ($('header').hasClass('big')) {
+    $('header .holder').addClass('loaded');
+  }
+  
+  $('#main-slider .preloader-wrapper .preloader').addClass('loaded');
+  
   $(window).load(function() {
+    $('#main-slider .preloader-wrapper .preloader').removeClass('loaded');
     setTimeout(function(){
       $('header .holder').addClass('loaded');
       $('.sub-header').addClass('loaded');
+      $('#main-slider').addClass('loaded');
+      $('.slogan').addClass('loaded');
     }, 100)
   });
   

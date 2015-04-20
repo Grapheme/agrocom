@@ -61,7 +61,12 @@ header {
         @include cf();
         margin-left: 25px;
         a {
-          
+          &:hover {
+            text-decoration: underline;
+          }
+          &.active {
+            color: #1eb3c2;
+          }
         }
       }
     }
@@ -115,14 +120,13 @@ header {
           height: 106px;
           margin-left: 100px;
           position: relative;
-          
           .duga1{
             width: 45px;
             position: absolute;
             left: 55px;
             transform-origin: 0 47px;
-            transform: rotate(-360deg*2.5) scale(0.8);
-            transition: all 3000ms cubic-bezier(0.645, 0.045, 0.355, 1);
+            transform: rotate(-360deg*1.5) scale(0.8);
+            transition: all 1500ms cubic-bezier(0.645, 0.045, 0.355, 1);
           }
           .text {
             width: 116px;
@@ -132,15 +136,15 @@ header {
             opacity: 0;
             transform: translateX(20px);
             transition: all 800ms cubic-bezier(0.215, 0.61, 0.355, 1);
-            transition-delay: 2600ms;
+            transition-delay: 1100ms;
           }
           .duga2 {
             width: 55px;
             position: absolute;
             top: 53px;
             transform-origin: right -6px;
-            transform: rotate(360deg*1.5) scale(0.8);
-            transition: all 3200ms cubic-bezier(0.645, 0.045, 0.355, 1);
+            transform: rotate(360deg*0.5) scale(0.8);
+            transition: all 1700ms cubic-bezier(0.645, 0.045, 0.355, 1);
           }
         }
       }
