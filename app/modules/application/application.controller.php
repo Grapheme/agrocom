@@ -20,6 +20,7 @@ class ApplicationController extends BaseController {
 
             Route::any('/business/{slug}', array('as' => 'app.business', 'uses' => __CLASS__.'@getBusiness'));
             Route::any('/projects/{slug}', array('as' => 'app.project', 'uses' => __CLASS__.'@getProject'));
+            Route::any('/news/{slug}', array('as' => 'app.news_one', 'uses' => __CLASS__.'@getNewsOne'));
         });
 
 
@@ -65,6 +66,19 @@ class ApplicationController extends BaseController {
 
         return View::make(Helper::layout('projects'), compact('project', 'slug'));
     }
+
+
+    public function getNewsOne($lang, $slug) {
+
+        $new = Dic::valueBySlugs('news', $slug);
+        if (!is_object($new))
+            App::abort(404);
+        $new = DicLib::loadGallery($new, ['gallery']);
+        #Helper::tad($new);
+
+        return View::make(Helper::layout('news_one'), compact('new', 'slug'));
+    }
+
 
     public function postSendMessage() {
 
