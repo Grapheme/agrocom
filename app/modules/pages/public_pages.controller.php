@@ -46,7 +46,8 @@ class PublicPagesController extends BaseController {
         ##
         ## Add URL modifier for check SEO url of the page (custom UrlGenerator functionality)
         ##
-        URL::add_url_modifier('page', function(&$parameters) use ($class) {
+        /*
+        URL::add_url_modifier('page', function(&$name, &$parameters) use ($class) {
             #var_dump($class); die;
             #Helper::dd('Page url modifier!');
             #Helper::dd($parameters);
@@ -67,38 +68,54 @@ class PublicPagesController extends BaseController {
                 #$parameters = '111';
             }
         });
+        */
+        #/*
+        if (
+            count(Config::get('app.locales')) > 1
+            && !Config::get('pages.disable_url_modification')
+        ) {
+            ## Mainpage route modifier
+            URL::add_url_modifier('mainpage', function(&$name, &$parameters) use ($class) {
+
+                #print_r($parameters);
+
+                if (isset($parameters['lang']) && $parameters['lang'] == Config::get('app.default_locale'))
+                    unset($parameters['lang']);
+
+                #print_r($parameters);
+            });
+        }
+        #*/
 
         ## Если в конфиге прописано несколько языковых версий - генерим роуты с языковым префиксом
         if (is_array(Config::get('app.locales')) && count(Config::get('app.locales')) > 1) {
 
             $default_locale_mainpage = ( Config::get('app.default_locale') == Config::get('app.locale') );
+            #$locale_sign = Config::get('app.locale');
 
-            ## Генерим роуты только для текущего языка
-            $locale_sign = Config::get('app.locale');
-            ## ...генерим роуты с префиксом (первый сегмент), который будет указывать на текущую локаль
+            ## Генерим роуты для всех языков с префиксом (первый сегмент), который будет указывать на текущую локаль
             Route::group(array('before' => 'i18n_url', 'prefix' => '{lang}'), function() use ($class, $default_locale_mainpage) {
 
                 ## Regular page
-                Route::any('/{url}', array(
-                    'as' => 'page',
-                    'uses' => $class.'@showPage',
-                ));
+                Route::any('/{url}', array('as' => 'page', 'uses' => $class . '@showPage'));
 
                 ## Main page for non-default locale
-                if (!Config::get('pages.disable_mainpage_route') && !$default_locale_mainpage)
-                    Route::any('/', array(
-                        'as' => 'mainpage',
-                        'uses' => $class.'@showPage'
-                    ));
+                #if (!Config::get('pages.disable_mainpage_route') && !$default_locale_mainpage)
+                #    Route::any('/', array('as' => 'mainpage', 'uses' => $class.'@showPage'));
+
+                ## Main page for current locale (non-default)
+                #Route::any('/', array('as' => 'mainpage_i18n', 'uses' => $class.'@showPage'));
 
             });
 
+            Route::any('{lang?}', array('as' => 'mainpage', 'uses' => $class.'@showPage'));
+
             ## Main page for default locale
-            if (!Config::get('pages.disable_mainpage_route') && $default_locale_mainpage)
-                Route::any('/', array(
-                    'as' => 'mainpage',
-                    'uses' => $class.'@showPage'
-                ));
+            #if (!Config::get('pages.disable_mainpage_route') && $default_locale_mainpage)
+            #    Route::any('/', array('as' => 'mainpage', 'uses' => $class.'@showPage'));
+
+            ## Main page for default locale
+            #Route::any('/', array('as' => 'mainpage_default', 'uses' => $class.'@showPage'));
 
         } else {
 
