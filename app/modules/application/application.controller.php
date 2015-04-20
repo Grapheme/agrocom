@@ -18,14 +18,8 @@ class ApplicationController extends BaseController {
 
         Route::group(array('prefix' => '{lang}'), function() {
 
-            Route::any(
-                '/business/{slug}',
-                array(
-                    'as' => 'app.business',
-                    'uses' => __CLASS__.'@getBusiness'
-                )
-            );
-
+            Route::any('/business/{slug}', array('as' => 'app.business', 'uses' => __CLASS__.'@getBusiness'));
+            Route::any('/projects/{slug}', array('as' => 'app.project', 'uses' => __CLASS__.'@getProject'));
         });
 
 
@@ -60,6 +54,17 @@ class ApplicationController extends BaseController {
         return View::make(Helper::layout('business'), compact('business'));
     }
 
+
+    public function getProject($lang, $slug) {
+
+        $project = Dic::valueBySlugs('projects', $slug);
+        if (!is_object($project))
+            App::abort(404);
+        $project = DicLib::loadGallery($project, ['gallery']);
+        #Helper::tad($project);
+
+        return View::make(Helper::layout('projects'), compact('project', 'slug'));
+    }
 
     public function postSendMessage() {
 

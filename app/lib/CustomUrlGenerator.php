@@ -33,8 +33,10 @@ class CustomUrlGenerator extends UrlGenerator {
         ##
         $route = $route ?: $this->routes->getByName($name);
 
-        $parameters = (array)$parameters;
-        $defaults = (array)$route->getDefaults();
+        if (NULL !== $route) {
+            $parameters = (array)$parameters;
+            $defaults = (array)$route->getDefaults();
+        }
 
         if ($name == 'page' && 0) {
             var_dump($route);
@@ -44,15 +46,17 @@ class CustomUrlGenerator extends UrlGenerator {
             #die;
         }
 
-        foreach ((array)$route->parameterNames() as $value) {
-            #echo $key . ' => ' . $value . '<br/>';
+        if (NULL !== $route) {
+            foreach ((array)$route->parameterNames() as $value) {
+                #echo $key . ' => ' . $value . '<br/>';
 
-            #if ($value == 'lang' && !isset($parameters[$value]) && isset($defaults[$value]))
-            #    $parameters[$value] = $defaults[$value];
+                #if ($value == 'lang' && !isset($parameters[$value]) && isset($defaults[$value]))
+                #    $parameters[$value] = $defaults[$value];
 
-            if (!isset($parameters[$value]) && isset($defaults[$value])) {
+                if (!isset($parameters[$value]) && isset($defaults[$value])) {
 
-                $parameters[$value] = $defaults[$value];
+                    $parameters[$value] = $defaults[$value];
+                }
             }
         }
 

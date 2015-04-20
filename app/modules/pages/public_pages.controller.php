@@ -263,7 +263,7 @@ class PublicPagesController extends BaseController {
 
         #Helper::tad($page);
 
-        return View::make($template, compact('page', 'lang'));
+        return View::make($template, compact('page', 'lang'))->render();
 	}
     
 
