@@ -98,6 +98,21 @@ public function getArticle($lang, $id) {
 
 Для реализации мультиязычности используются модифицированные классы движка Laravel 4.2 с добавлением необходимых методов и свойств. Все они находятся в /app/lib/:
 CustomRoute, CustomRouteFacade, CustomRouter, CustomRoutingServiceProvider, CustomURL, CustomUrlGenerator, CustomUrlServiceProvider
+В файле /app/config/app.php добавлены необходимые сервис-провайдеры:
+
+```php
+        'Sngrl\Routing\CustomUrlServiceProvider',
+        'Sngrl\Routing\CustomRoutingServiceProvider',
+```
+
+Там же переопределены некоторые алиасы:
+
+```php
+		#'Route'           => 'Illuminate\Support\Facades\Route',
+		'Route'           => 'Sngrl\Support\Facades\CustomRoute',
+        #'URL'             => 'Illuminate\Support\Facades\URL',
+        'URL'             => 'Sngrl\Support\Facades\CustomURL',
+```
 
 Также в файле /app/routes.php объявлен следующий паттерн для переменной {lang}:
 
