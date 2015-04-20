@@ -7,6 +7,8 @@
 @extends(Helper::layout())
 
 
+@section('body_class') contacts @stop
+
 @section('content')
 
     <div class="sub-header">

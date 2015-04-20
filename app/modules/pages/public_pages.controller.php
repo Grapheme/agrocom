@@ -197,6 +197,8 @@ class PublicPagesController extends BaseController {
                 $page = $page->where('start_page', 1);
             }
 
+            $page->with(['blocks.meta', 'seo']);
+
             $page = $page->first();
 
         } else {
@@ -210,7 +212,7 @@ class PublicPagesController extends BaseController {
         }
 
         #Helper::smartQueries(1); #die;
-        #Helper::ta($page);
+        #Helper::tad($page);
 
         ## Если страница не найдена...
         if (!isset($page) || !is_object($page)) {
