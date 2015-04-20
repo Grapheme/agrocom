@@ -26,6 +26,9 @@ body {
 
 a {
   color: #1eb3c2;
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 a.no-style {
