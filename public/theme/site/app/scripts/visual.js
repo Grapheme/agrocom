@@ -25,6 +25,7 @@ $(document).ready(function() {
   //var $preload_visual = $('#preload-visual');
   preloadImage('#preload-visual');
   preloadImage('.visual-wide-thin');
+  preloadImage('#main-slider .slide');
   
   function isScrolledIntoView(elem){
     if (elem) {
@@ -46,9 +47,16 @@ $(document).ready(function() {
   _AGROKOM_isScrolledIntoView = isScrolledIntoView;
   
   $(window).scroll(function(){
-    $('body > .content > *, body > .grey > .content > .unit, body > .two-columns > article > .content > .center > *, body > .recent-news > .content > *, body > .content .news-list .unit, body > .content > .center > *, body > .visual-wide-thin, footer .logos-line').each(function(){
+    $('body > .content > *, body > .grey > .content > .unit, body > .two-columns > article > .content > .center > *, body > .recent-news > .content > *, body > .content .news-list .unit, body > .content > .center > *, body > .visual-wide-thin, footer .logos-line, .projects-grid .unit').each(function(index){
       if (isScrolledIntoView(this)) {
-        $(this).addClass('on-screen');
+        var $this = $(this);
+        if ($(this).closest('.projects-grid').size()) {
+          setTimeout(function(){
+            $this.addClass('on-screen');
+          }, 0);
+        } else {
+          $this.addClass('on-screen');
+        }
       } else {
         //$(this).removeClass('on-screen');
       }
