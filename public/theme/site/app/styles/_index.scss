@@ -207,7 +207,7 @@ ul.business-list {
       background: #2c2c2c;
       position: relative;
       border-color: transparent #2c2c2c transparent transparent;
-      &:before {
+      &:before{
         position: absolute;
         content: '';
         display: block;
@@ -215,11 +215,26 @@ ul.business-list {
         height: 0;
         border-style: solid;
         border-width: 20px 25px 20px 0;
-        //border-color: transparent #2c2c2c transparent transparent;
-        border-color: inherit;
+        border-color: transparent #2c2c2c transparent transparent;
+        //border-color: inherit;
         left: -25px;
         top: 50%;
         margin-top: -20px;
+      }
+      &:after {
+        position: absolute;
+        content: '';
+        display: block;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 20px 0 20px 25px;
+        border-color: transparent transparent transparent #2c2c2c;
+        //border-color: inherit;
+        right: -25px;
+        top: 50%;
+        margin-top: -20px;
+        display: none;
       }
       .title {
         font-family: 'Foros-Medium';
@@ -242,6 +257,14 @@ ul.business-list {
         display: inline-block;
         margin-top: 54px;
       }
+      @include max-screen(1300px) {
+        .text {
+          font-size: 12px;
+        }
+        .more {
+          margin-top: 44px;
+        }
+      }
     }
     &.wide {
       width: 100%;
@@ -258,10 +281,13 @@ ul.business-list {
     &:nth-child(3n+1) {
       .info {
         background: white;
-        border-color: transparent white transparent transparent;
-        /*&:before {
+        //border-color: transparent white transparent transparent;
+        &:before {
           border-color: transparent white transparent transparent;
-        }*/
+        }
+        &:after {
+          border-color: transparent transparent transparent white;
+        }
         .title {
           color: #2c2c2c;
         }
@@ -273,9 +299,14 @@ ul.business-list {
     &:nth-child(3n+2) {
     .info {
         background: #1eb3c2;
-        border-color: transparent #1eb3c2 transparent transparent;
+        //border-color: transparent #1eb3c2 transparent transparent;
         &:before {
-          border-color: inherit;
+          //border-color: inherit;
+          border-color: transparent #1eb3c2 transparent transparent;
+        }
+        &:after {
+          //border-color: inherit;
+          border-color: transparent transparent transparent #1eb3c2;
         }
       }
       .more {
@@ -288,10 +319,15 @@ ul.business-list {
         float: right;
       }
       .info {
+        &:after {
+          //right: -25px;
+          display: block;
+          //transform: scale(-1, 1);
+          //border-width: 20px 0 20px 25px;
+          //border-color: transparent transparent transparent #007bff;
+        }
         &:before {
-          left: auto;
-          right: -25px;
-          transform: scale(-1, 1);
+          display: none;
         }
       }
     }

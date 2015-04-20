@@ -1,8 +1,11 @@
+var _AGROKOM_isScrolledIntoView;
+
 $(document).ready(function() {
   
   $(window).load(function() {
     setTimeout(function(){
       $('header .holder').addClass('loaded');
+      $('.sub-header').addClass('loaded');
     }, 100)
   });
   
@@ -24,21 +27,26 @@ $(document).ready(function() {
   preloadImage('.visual-wide-thin');
   
   function isScrolledIntoView(elem){
-    var $elem = $(elem);
-    var $window = $(window);
- 
-    var docViewTop = $window.scrollTop();
-    var docViewBottom = docViewTop + $window.height();
- 
-    var elemTop = $elem.offset().top;
-    var elemBottom = elemTop + $elem.height();
- 
-    //return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
-    return docViewBottom >= elemTop
+    if (elem) {
+      var $elem = $(elem);
+      var $window = $(window);
+   
+      var docViewTop = $window.scrollTop();
+      var docViewBottom = docViewTop + $window.height();
+      var elemTop = $elem.offset().top;
+      var elemBottom = elemTop + $elem.height();
+   
+      //return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+      return docViewBottom >= elemTop
+    } else {
+      return false
+    }
   }
   
+  _AGROKOM_isScrolledIntoView = isScrolledIntoView;
+  
   $(window).scroll(function(){
-    $('body > .content > *, body > .two-columns > article > .content > .center > *, body > .recent-news > .content > *, body > .content .news-list .unit, body > .content > .center > *, body > .visual-wide-thin, footer .logos-line').each(function(){
+    $('body > .content > *, body > .grey > .content > .unit, body > .two-columns > article > .content > .center > *, body > .recent-news > .content > *, body > .content .news-list .unit, body > .content > .center > *, body > .visual-wide-thin, footer .logos-line').each(function(){
       if (isScrolledIntoView(this)) {
         $(this).addClass('on-screen');
       } else {
