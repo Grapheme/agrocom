@@ -47,7 +47,7 @@ $page_title = $project->name;
         <aside>
             <ul>
                 @foreach ($projects as $proj)
-                    <li><a href="{{ URL::route('app.project', ['slug' => $proj->slug]) }}"@if($proj->slug == $slug) class="active" @endif>{{ $proj->name }}</a></li>
+                    <li><a href="{{ URL::route('app.project', ['slug' => $proj->slug]) }}"@if($proj->slug == $slug) class="active" @endif>{{ $proj->project_name }}</a></li>
                 @endforeach
             </ul>
         </aside>
@@ -55,7 +55,7 @@ $page_title = $project->name;
             <div class="content">
                 <div class="center">
 
-                    <h1>{{ $project->name }}</h1>
+                    <h1>{{ $project->project_name }}</h1>
 
                     {{ $project->short }}
 

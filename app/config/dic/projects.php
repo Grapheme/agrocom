@@ -5,6 +5,10 @@ return array(
     'fields_i18n' => function() {
 
         return array(
+            'project_name' => array(
+                'title' => 'Название проекта',
+                'type' => 'text',
+            ),
             'short' => array(
                 'title' => 'Краткое описание',
                 'type' => 'textarea_redactor',
@@ -35,6 +39,20 @@ return array(
             ),
         );
     },
+
+    /**
+     * HOOKS - набор функций-замыканий, которые вызываются в некоторых местах кода модуля словарей, для выполнения нужных действий.
+     */
+    'hooks' => array(
+
+        /**
+         * Вызывается после создания, обновления, удаления записи, изменения порядка сортировки
+         */
+        'after_store_update_destroy_order' => function ($dic = NULL, $dicval = NULL) {
+            Cache::forget('app.projects');
+        },
+
+    ),
 
     'seo' => ['title', 'description', 'keywords'],
 
