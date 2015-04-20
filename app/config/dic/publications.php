@@ -5,8 +5,8 @@ return array(
     'fields_i18n' => function() {
 
         return array(
-            'news_name' => array(
-                'title' => 'Название новости',
+            'press_name' => array(
+                'title' => 'Название публикации',
                 'type' => 'text',
             ),
             'published_at' => array(
@@ -24,34 +24,35 @@ return array(
                     return $value ? date('d.m.Y', strtotime($value)) : date('d.m.Y');
                 },
             ),
-            'preview' => array(
-                'title' => 'Анонс новости',
-                'type' => 'textarea',
+            'source' => array(
+                'title' => 'Место публикации',
+                'type' => 'text',
+            ),
+            'source_number' => array(
+                'title' => 'Доп. инфо (например, номер журнала)',
+                'type' => 'text',
             ),
             'content' => array(
                 'title' => 'Полный текст новости',
                 'type' => 'textarea_redactor',
             ),
-            'gallery' => array(
-                'title' => 'Галерея',
-                'type' => 'gallery',
+            'image' => array(
+                'title' => 'Изображение',
+                'type' => 'image',
                 'params' => array(
-                    'maxfilesize' => 4, // MB
-                    #'acceptedfiles' => 'image/*',
+                    'maxFilesize' => 6, // MB
+                    #'acceptedFiles' => 'image/*',
+                    #'maxFiles' => 2,
                 ),
-                'handler' => function($array, $element) {
-                    return ExtForm::process('gallery', array(
-                        'module'  => 'DicValMeta',
-                        'unit_id' => $element->id,
-                        'gallery' => $array,
-                        'single'  => true,
-                    ));
-                }
+            ),
+            'link_to_file' => array(
+                'title' => 'Ссылка на файл',
+                'type' => 'text',
             ),
         );
     },
 
-    'seo' => ['title', 'description', 'keywords'],
+    'seo' => true,
 
     'versions' => false,
 

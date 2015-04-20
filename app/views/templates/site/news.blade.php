@@ -6,18 +6,17 @@
 ?>
 @extends(Helper::layout())
 <?
-$limit = 2;
+$limit = 5;
 $p = Input::get('page') ?: 1;
 #dd($p);
 $news = Dic::valuesBySlug('news', function($query) use ($limit, $p) {
     $query->order_by_field('published_at', 'DESC');
     #$query->skip($limit*($p-1));
-}, ['fields', 'textfields'], 1, 1, 1, $limit);
+}, ['fields', 'textfields'], 1, 1, 0, $limit);
+#Helper::tad($news);
 $news = DicLib::loadGallery($news, ['gallery']);
 #dd($news);
 #Helper::tad($news);
-#Helper::tad($news->getCurrentPage());
-#Helper::tad($news->getTotalPages());
 ?>
 
 
@@ -44,7 +43,9 @@ $news = DicLib::loadGallery($news, ['gallery']);
                         <div class="date">{{ Carbon::createFromFormat('Y-m-d', $new->published_at)->format('d.m.Y') }}</div>
                         <div class="news">
                             <h2>
-                                {{ $new->name }}
+                                <a href="{{ URL::route('app.news_one', ['slug' => $new->slug]) }}" class="more">
+                                    {{ $new->news_name }}
+                                </a>
                             </h2>
 
                             @if (is_object($new->gallery) && isset($new->gallery->photos) && is_object($new->gallery->photos) && $new->gallery->photos->count())
@@ -67,7 +68,7 @@ $news = DicLib::loadGallery($news, ['gallery']);
                         </div>
                     </div>
                 @endforeach
-                <div class="page-nav"><a href="{{ URL::route('page', ['slug' => 'news', 'page' => $p+1]) }}" class="next">Следующая страница //ссылка на следующую страницу, будет загружена в бесконечный скролл автоматически</a></div>
+                <div class="page-nav"><a href="{{ URL::route('page', ['slug' => 'news', 'page' => $p+1]) }}" class="next">Следующая страница</a></div>
             </div>
         @endif
     </div>
