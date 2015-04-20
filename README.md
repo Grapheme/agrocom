@@ -47,7 +47,7 @@ public function getArticle($lang, $id) {
 
 ## Locale switcher
 
-Пример реализации кнопок переключения между языковыми версиями (с сохранением урл-адреса текущей страницы, и поддержкой главной страницы):
+Пример реализации кнопок переключения между языковыми версиями - с поддержкой главной страницы и с сохранением урл-адреса текущей страницы (при условии, что роут текущей страницы имеет префикс {lang}):
 
 ```php
 @if (NULL !== ($route = Route::getCurrentRoute()) && is_object($route))
@@ -89,6 +89,23 @@ public function getArticle($lang, $id) {
             <a href="{{ URL::route($route_name, $route_params) }}" class="{{ $class }}">{{ $lang_text }}</a>
 
         @endforeach
+        
     </div>
 @endif
 ```
+
+## Принцип работы мультиязычности
+
+Для реализации мультиязычности используются модифицированные классы движка Laravel 4.2 с добавлением необходимых методов и свойств. Все они находятся в /app/lib/:
+CustomRoute, CustomRouteFacade, CustomRouter, CustomRoutingServiceProvider, CustomURL, CustomUrlGenerator, CustomUrlServiceProvider
+
+Также в файле /app/routes.php объявлен следующий паттерн для переменной {lang}:
+
+```php
+Route::pattern('lang', implode('|', array_keys(Config::get('app.locales'))))
+    ->defaults('lang', Config::get('app.locale'))
+;
+```
+
+Он делает возможными для использования только те локали, которые указаны в файле /app/config/app.php в секции locales.
+Также устанавливается значение для паттерна по умолчанию, которое используется в том случае, если значение не передано явно (данный функционал не является стандартным для Laravel, и был реализован самостоятельно).
