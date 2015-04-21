@@ -19,17 +19,29 @@
 #Helper::tad($business);
 
 #$slider = Cache::get('app.slider', function(){
-    $slider = Dic::valuesBySlug('slider', function($query){
-        $query->orderBy('lft', 'ASC');
-        $query->orderBy('id', 'ASC');
-    }, ['fields'], true, true, true);
-    $slider = DicLib::loadImages($slider, ['image']);
-    #Helper::tad($slider);
+$slider = Dic::valuesBySlug('slider', function($query){
+    $query->orderBy('lft', 'ASC');
+    $query->orderBy('id', 'ASC');
+}, ['fields'], true, true, true);
+$slider = DicLib::loadImages($slider, ['image']);
+#Helper::tad($slider);
 #    Cache::put('app.slider', $slider, 60);
 #    return $slider;
 #});
 #Helper::tad($slider);
-#dd($slider);
+
+#$slider = Cache::get('app.slider', function(){
+$news = Dic::valuesBySlug('news', function($query){
+    $query->order_by_field('published_at', 'DESC');
+    $query->orderBy('id', 'DESC');
+    $query->limit(3);
+}, ['fields', 'textfields'], true, true, true);
+#$news = DicLib::loadImages($news, ['image']);
+#Helper::tad($news);
+#    Cache::put('app.news', $news, 60);
+#    return $news;
+#});
+#Helper::tad($news);
 ?>
 
 
@@ -82,28 +94,13 @@
     @endif
 
     @if (isset($business) && is_object($business) && $business->count())
-    <ul class="business-list">
-        @foreach ($business as $biz)
-        <li>
-            <a href="{{ URL::route('app.business', ['slug' => $biz->slug]) }}"><img src="{{ $biz->img_full('mainpage_logo') }}"></a>
-{{--            <a href="{{ URL::route('app.business') }}"><img src="{{ $biz->img_full('mainpage_logo') }}"></a>--}}
-        </li>
-        @endforeach
-{{--
-        <li>
-            <a href="business.html"><img src="{{ Config::get('site.theme_path') }}/images/logo-don-tabaco-mid.png"></a>
-        </li>
-        <li>
-            <a href="business.html"><img src="{{ Config::get('site.theme_path') }}/images/logo-tavr-mid.png"></a>
-        </li>
-        <li>
-            <a href="business.html"><img src="{{ Config::get('site.theme_path') }}/images/logo-atlantis-pack-mid.png"></a>
-        </li>
-        <li>
-            <a href="business.html"><img src="{{ Config::get('site.theme_path') }}/images/logo-aqua-don-mid.png"></a>
-        </li>
---}}
-    </ul>
+        <ul class="business-list">
+            @foreach ($business as $biz)
+                <li>
+                    <a href="{{ URL::route('app.business', ['slug' => $biz->slug]) }}"><img src="{{ $biz->img_full('mainpage_logo') }}"></a>
+                </li>
+            @endforeach
+        </ul>
     @endif
 
     <div class="content">
@@ -113,26 +110,22 @@
 
         </div>
     </div>
-    <div class="recent-news">
-        <div class="content">
-            <p class="head-title">Последние новости</p>
-            <a href="" class="unit">
-                <time>11.12.2014</time>
-                <div class="title">«Атлантис-Пак» — <br>лучший российский экспортер</div>
-                <div class="desc">«Атлантис-Пак» стал победителем конкурса «Лучший российский экспортер» по итогам 2013 года.</div>
-            </a>
-            <a href="" class="unit">
-                <time>22.11.2014</time>
-                <div class="title">Мэр Ростова-на-Дону наградил бизнесменов за вклад в развитие города</div>
-                <div class="desc">Мэр Ростова-на-Дону Михаил Чернышев наградил бизнесменов и руководителей организаций за вклад в развитие города.</div>
-            </a>
-            <a href="" class="unit">
-                <time>20.10.2014</time>
-                <div class="title">Сеть «Тавровские мясные лавки» вышла на крымский рынок</div>
-                <div class="desc">Первая лавка тавровской розничной сети открылась 5 июля в Симферополе.</div>
-            </a>
+
+    @if (isset($news) && is_object($news) && $news->count())
+        <div class="recent-news">
+            <div class="content">
+                <p class="head-title">Последние новости</p>
+                @foreach ($news as $new)
+                    <a href="" class="unit">
+                        <time>{{ Carbon::createFromFormat('Y-m-d', $new->published_at)->format('d.m.Y') }}</time>
+                        <div class="title">{{ $new->news_name }}</div>
+                        <div class="desc">{{ $new->preview }}</div>
+                    </a>
+                @endforeach
+            </div>
         </div>
-    </div>
+    @endif
+
     <div class="projects-grid">
         <div class="head-title">
             <a href="/projects.html">Проекты</a>
