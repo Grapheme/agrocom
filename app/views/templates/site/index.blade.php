@@ -46,8 +46,14 @@ $slider = Cache::get('app.slider', function(){
 
     @if (isset($slider) && is_object($slider))
         <div id="main-slider">
+            <div class="preloader-wrapper">
+                <div class="preloader">
+                    <div class="ball"></div>
+                    <div class="ball1"></div>
+                </div>
+            </div>
             @foreach ($slider as $slide)
-                <div data-img='{{ $slide->is_img('image') ? $slide->image->full() : '' }}' class="slide">
+                <div @if($slide->is_img('image')) data-img='{{ $slide->image->full() }}' @endif class="slide">
                     <div class="holder">
                         <div class="text">
                             @if ($slide->number)
@@ -67,6 +73,11 @@ $slider = Cache::get('app.slider', function(){
                     </div>
                 </div>
             @endforeach
+            <div class="dots">
+                @foreach ($slider as $slide)
+                    <a href=""></a>
+                @endforeach
+            </div>
         </div>
     @endif
 

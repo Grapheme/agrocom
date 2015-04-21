@@ -298,6 +298,8 @@ class MenuConstructor {
         if ($this->get_active($data))
             $attr['class'] = @trim(@trim($attr['class']) . ' ' . $this->tpl['active_class']);
 
+        #var_dump($this->get_active($data));
+
         /**
          * Получаем URL ссылки
          */
