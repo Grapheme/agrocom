@@ -6,16 +6,16 @@
 ?>
 @extends(Helper::layout())
 <?
-$business = Cache::get('app.business', function(){
+#$business = Cache::get('app.business', function(){
     $business = Dic::valuesBySlug('business', function($query){
         $query->orderBy('lft', 'ASC');
         $query->orderBy('id', 'ASC');
     }, ['fields'], true, true, true);
     $business = DicLib::loadImages($business, ['logo', 'mainpage_logo']);
     #Helper::tad($business);
-    Cache::put('app.business', $business, 60);
-    return $business;
-});
+#    Cache::put('app.business', $business, 60);
+#    return $business;
+#});
 #Helper::tad($business);
 
 #$slider = Cache::get('app.slider', function(){
