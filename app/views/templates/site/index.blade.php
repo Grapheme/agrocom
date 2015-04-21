@@ -18,16 +18,16 @@ $business = Cache::get('app.business', function(){
 });
 #Helper::tad($business);
 
-$slider = Cache::get('app.slider', function(){
+#$slider = Cache::get('app.slider', function(){
     $slider = Dic::valuesBySlug('slider', function($query){
         $query->orderBy('lft', 'ASC');
         $query->orderBy('id', 'ASC');
     }, ['fields'], true, true, true);
     $slider = DicLib::loadImages($slider, ['image']);
     #Helper::tad($slider);
-    Cache::put('app.slider', $slider, 60);
-    return $slider;
-});
+#    Cache::put('app.slider', $slider, 60);
+#    return $slider;
+#});
 #Helper::tad($slider);
 #dd($slider);
 ?>
