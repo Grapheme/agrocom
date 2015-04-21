@@ -43,7 +43,7 @@ $news = DicLib::loadGallery($news, ['gallery']);
                         <div class="date">{{ Carbon::createFromFormat('Y-m-d', $new->published_at)->format('d.m.Y') }}</div>
                         <div class="news">
                             <h2>
-                                <a href="{{ URL::route('app.news_one', ['slug' => $new->slug]) }}" class="more">
+                                <a href="{{ URL::route('app.news_one', ['slug' => $new->slug]) }}">
                                     {{ $new->news_name }}
                                 </a>
                             </h2>
