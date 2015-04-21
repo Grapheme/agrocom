@@ -59,7 +59,10 @@
 <?
 #/*
 if (count($bad_photos) && Input::get('delete_bad_photos') == 1) {
-    Photo::whereIn('id', $bad_photos)->full_delete();
+    #Photo::whereIn('id', $bad_photos)->full_delete();
+    $photos = Photo::whereIn('id', $bad_photos)->get();
+    foreach ($photos as $photo)
+        $photo->full_delete();
 }
 #*/
 ?>
