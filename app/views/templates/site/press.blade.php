@@ -64,13 +64,19 @@ $publications = DicLib::loadImages($publications, ['image']);
                             <div class="description">
                                 {{ $press->content }}
                                 @if ($press->link_to_file != '')
-                                    <a href="{{ $press->link_to_file }}" class="download pdf">Скачать .pdf</a>
+                                    <a href="{{ $press->link_to_file }}" class="download pdf">
+                                        {{ trans("interface.download_pdf") }}
+                                    </a>
                                 @endif
                             </div>
                         </div>
                     </div>
                 @endforeach
-                <div class="page-nav"><a href="{{ URL::route('page', ['slug' => pageslug('publications'), 'page' => $p+1]) }}" class="next">Следующая страница</a></div>
+                <div class="page-nav">
+                    <a href="{{ URL::route('page', ['slug' => pageslug('publications'), 'page' => $p+1]) }}" class="next">
+                        {{ trans("interface.next_page") }}
+                    </a>
+                </div>
             </div>
         @endif
 

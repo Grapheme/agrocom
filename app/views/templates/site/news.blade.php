@@ -36,7 +36,7 @@ $news = DicLib::loadGallery($news, ['gallery']);
                 {{ $page->block('intro') }}
             </p>
         </div>
-        @if ($news->count())
+        @if (isset($news) && is_object($news) && $news->count())
             <div class="news-list inf-scroll">
                 @foreach ($news as $new)
                     <div class="unit">
@@ -64,12 +64,18 @@ $news = DicLib::loadGallery($news, ['gallery']);
                             </div>
 
                             @if($new->content)
-                                <a href="{{ URL::route('app.news_one', ['slug' => $new->slug]) }}" class="more">Подробнее</a>
+                                <a href="{{ URL::route('app.news_one', ['slug' => $new->slug]) }}" class="more">
+                                    {{ trans("interface.more") }}
+                                </a>
                             @endif
                         </div>
                     </div>
                 @endforeach
-                <div class="page-nav"><a href="{{ URL::route('page', ['slug' => 'news', 'page' => $p+1]) }}" class="next">Следующая страница</a></div>
+                <div class="page-nav">
+                    <a href="{{ URL::route('page', ['slug' => 'news', 'page' => $p+1]) }}" class="next">
+                        {{ trans("interface.next_page") }}
+                    </a>
+                </div>
             </div>
         @endif
     </div>

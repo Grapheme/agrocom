@@ -37,10 +37,12 @@ if (!$business_all) {
         </div>
     </div>
     <div class="real-footer">
-        <div class="company"><strong>ООО «ГРУППА АГРОКОМ»<br></strong><span>&copy; 2006-{{ date('Y') }}</span></div>
-        <div class="address">344002, г. Ростов-на-Дону<br>ул. Красноармейская, 170</div>
+        <div class="company"><strong>{{ trans("interface.company.name") }}<br></strong><span>&copy; 2006-{{ date('Y') }}</span></div>
+        <div class="address">
+            {{ nl2br(trans("interface.company.address")) }}
+        </div>
         <div class="contacts">
-            Тел. приемная +7 863 250-58-10,<br> факс +7 863 290-71-16<br> <br> Дирекция по корпоративным коммуникациям<br> +7 863 250-58-14
+            {{ nl2br(trans("interface.company.phones")) }}
         </div>
     </div>
 </footer>

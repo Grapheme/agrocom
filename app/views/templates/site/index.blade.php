@@ -61,7 +61,7 @@ $projects_count = count($projects);
 @section('content')
 
     <div class="slogan">
-        Объединяем<br> Сохраняем<br> Приумножаем
+        {{ nl2br(trans("interface.slogan")) }}
     </div>
 
     @if (isset($slider) && is_object($slider))
@@ -120,7 +120,9 @@ $projects_count = count($projects);
     @if (isset($news) && is_object($news) && $news->count())
         <div class="recent-news">
             <div class="content">
-                <p class="head-title">Последние новости</p>
+                <p class="head-title">
+                    {{ trans("interface.last_news") }}
+                </p>
                 @foreach ($news as $new)
                     <a href="{{ URL::route('app.news_one', ['slug' => $new->slug]) }}" class="unit">
                         <time>{{ Carbon::createFromFormat('Y-m-d', $new->published_at)->format('d.m.Y') }}</time>
@@ -135,7 +137,9 @@ $projects_count = count($projects);
     @if (isset($projects) && is_object($projects) && $projects->count())
         <div class="projects-grid">
             <div class="head-title">
-                <a href="{{ URL::route('page', pageslug('projects'))  }}">Проекты</a>
+                <a href="{{ URL::route('page', pageslug('projects'))  }}">
+                    {{ trans("interface.projects_title") }}
+                </a>
             </div>
             <div class="holder">
                 <?
@@ -149,7 +153,9 @@ $projects_count = count($projects);
                             <div class="text">
                                 {{ $project->mainpage_short }}
                             </div>
-                            <a href="{{ URL::route('app.project', ['slug' => $project->slug]) }}" class="more">Подробнее</a>
+                            <a href="{{ URL::route('app.project', ['slug' => $project->slug]) }}" class="more">
+                                {{ trans("interface.more") }}
+                            </a>
                         </div>
                     </div>
                 @endforeach

@@ -41,7 +41,7 @@ $page_title = $project->name;
 @section('content')
 
     <div class="sub-header">
-        <h1>Проекты</h1>
+        <h1>{{ trans("interface.projects_title") }}</h1>
     </div>
     <div class="two-columns">
         <aside>

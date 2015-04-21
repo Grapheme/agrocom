@@ -13,7 +13,9 @@
 @section('content')
 
     <div class="sub-header">
-        <h1 class="title">Контактная информация</h1>
+        <h1 class="title">
+            {{ trans("interface.contacts") }}
+        </h1>
     </div>
     <div class="content">
         <div class="row">
