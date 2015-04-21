@@ -57,9 +57,9 @@
     </div>
     <div class="clear"></div>
 <?
-/*
-if (count($bad_photos)) {
+#/*
+if (count($bad_photos) && Input::get('delete_bad_photos') == 1) {
     Photo::whereIn('id', $bad_photos)->full_delete();
 }
-*/
+#*/
 ?>
