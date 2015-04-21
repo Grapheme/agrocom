@@ -49,7 +49,11 @@ $page_title = $business->name;
 
         </div>
     </div>
-    <div data-img="http://puu.sh/h6e9S/5c2e19869e.png" class="visual-wide-thin"></div>
+
+    @if ($business->is_img('content_wide_image'))
+        <div data-img="{{ $business->content_wide_image->full() }}" class="visual-wide-thin"></div>
+    @endif
+
     <div class="content">
         <h2>
             {{ $business->company_title }}
