@@ -9,6 +9,20 @@ return array(
                 'title' => 'Название проекта',
                 'type' => 'text',
             ),
+            'image' => array(
+                'title' => 'Изображение для главной страницы',
+                'type' => 'image',
+                'params' => array(
+                    'maxFilesize' => 6, // MB
+                    #'acceptedFiles' => 'image/*',
+                    #'maxFiles' => 2,
+                ),
+            ),
+            'mainpage_short' => array(
+                'title' => 'Описание для главной страницы',
+                'type' => 'textarea',
+            ),
+
             'short' => array(
                 'title' => 'Краткое описание',
                 'type' => 'textarea_redactor',

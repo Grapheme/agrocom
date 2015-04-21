@@ -42,6 +42,14 @@
     #return $news;
 #});
 #Helper::tad($news);
+
+$projects = Dic::valuesBySlug('projects', function($query){
+    $query->orderBy('lft', 'ASC');
+    $query->orderBy('id', 'DESC');
+}, ['fields', 'textfields'], true, true, true);
+$projects = DicLib::loadImages($projects, ['image']);
+#Helper::tad($projects);
+$projects_count = count($projects);
 ?>
 
 
@@ -124,63 +132,30 @@
         </div>
     @endif
 
-    <div class="projects-grid">
-        <div class="head-title">
-            <a href="/projects.html">Проекты</a>
-        </div>
-        <div class="holder">
-            <div class="unit">
-                <a style="background-image:url('http://dummyimage.com/640x640');" class="visual"></a>
-                <div class="info">
-                    <div class="title">Продукция и разработки</div>
-                    <div class="text">
-                        На основе собственных научных и технологических мощностей разрабатывает системные решения для проектов цифрового телевещания в России и за рубежом.
-                    </div>
-                    <a href="" class="more">Подробнее</a>
-                </div>
+    @if (isset($projects) && is_object($projects) && $projects->count())
+        <div class="projects-grid">
+            <div class="head-title">
+                <a href="{{ URL::route('page', pageslug('projects'))  }}">Проекты</a>
             </div>
-            <div class="unit">
-                <a style="background-image:url('http://dummyimage.com/640x640');" class="visual"></a>
-                <div class="info">
-                    <div class="title">Продукция и разработки</div>
-                    <div class="text">
-                        На основе собственных научных и технологических мощностей разрабатывает системные решения для проектов цифрового телевещания в России и за рубежом.
+            <div class="holder">
+                <?
+                $i = 0;
+                ?>
+                @foreach ($projects as $project)
+                    <div class="unit{{ $projects_count % 2 == 1 && ++$i == $projects_count ? ' wide' : '' }}">
+                        <a style="background-image:url('{{ $project->is_img('image') ? $project->img_full('image') : '' }}');" class="visual"></a>
+                        <div class="info">
+                            <div class="title">{{ $project->project_name }}</div>
+                            <div class="text">
+                                {{ $project->mainpage_short }}
+                            </div>
+                            <a href="{{ URL::route('app.project', ['slug' => $project->slug]) }}" class="more">Подробнее</a>
+                        </div>
                     </div>
-                    <a href="" class="more">Подробнее</a>
-                </div>
-            </div>
-            <div class="unit">
-                <a style="background-image:url('http://dummyimage.com/640x640');" class="visual"></a>
-                <div class="info">
-                    <div class="title">Продукция и разработки</div>
-                    <div class="text">
-                        На основе собственных научных и технологических мощностей разрабатывает системные решения для проектов цифрового телевещания в России и за рубежом.
-                    </div>
-                    <a href="" class="more">Подробнее</a>
-                </div>
-            </div>
-            <div class="unit">
-                <a style="background-image:url('http://dummyimage.com/640x640');" class="visual"></a>
-                <div class="info">
-                    <div class="title">Продукция и разработки</div>
-                    <div class="text">
-                        На основе собственных научных и технологических мощностей разрабатывает системные решения для проектов цифрового телевещания в России и за рубежом.
-                    </div>
-                    <a href="" class="more">Подробнее</a>
-                </div>
-            </div>
-            <div class="unit wide">
-                <a style="background-image:url('http://dummyimage.com/640x640');" class="visual"></a>
-                <div class="info">
-                    <div class="title">Продукция и разработки</div>
-                    <div class="text">
-                        На основе собственных научных и технологических мощностей разрабатывает системные решения для проектов цифрового телевещания в России и за рубежом.
-                    </div>
-                    <a href="" class="more">Подробнее</a>
-                </div>
+                @endforeach
             </div>
         </div>
-    </div>
+    @endif
 
 @stop
 
