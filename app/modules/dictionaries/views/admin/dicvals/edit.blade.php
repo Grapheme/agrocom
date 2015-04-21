@@ -202,7 +202,7 @@
         </section>
 
 
-        @if (Allow::action('seo', 'edit') && NULL !== ($dic_seo_params = Config::get('dic/' . $dic->slug . '.seo')))
+        @if (Allow::action('seo', 'edit') && NULL != ($dic_seo_params = Config::get('dic/' . $dic->slug . '.seo')))
             <section class="col col-6">
                 <div class="well">
                     <header>Поисковая оптимизация</header>

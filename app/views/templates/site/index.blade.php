@@ -17,6 +17,19 @@ $business = Cache::get('app.business', function(){
     return $business;
 });
 #Helper::tad($business);
+
+$slider = Cache::get('app.slider', function(){
+    $slider = Dic::valuesBySlug('slider', function($query){
+        $query->orderBy('lft', 'ASC');
+        $query->orderBy('id', 'ASC');
+    }, ['fields'], true, true, true);
+    $slider = DicLib::loadImages($slider, ['image']);
+    #Helper::tad($slider);
+    Cache::put('app.slider', $slider, 60);
+    return $slider;
+});
+#Helper::tad($slider);
+#dd($slider);
 ?>
 
 
@@ -30,50 +43,32 @@ $business = Cache::get('app.business', function(){
     <div class="slogan">
         Объединяем<br> Сохраняем<br> Приумножаем
     </div>
-    <div id="main-slider">
-        <div style="background-image:url('http://puu.sh/hdx69/3c7a8a471f.jpg');" class="slide">
-            <div class="holder">
-                <div class="text">
-                    <div class="row"><big>46,6</big>
-                        <small>млрд. рублей</small>
+
+    @if (isset($slider) && is_object($slider))
+        <div id="main-slider">
+            @foreach ($slider as $slide)
+                <div data-img='{{ $slide->is_img('image') ? $slide->image->full() : '' }}' class="slide">
+                    <div class="holder">
+                        <div class="text">
+                            @if ($slide->number)
+                            <div class="row">
+                                <big>{{ $slide->number }}</big>
+                                @if ($slide->unit)
+                                    <small>{{ $slide->unit }}</small>
+                                @endif
+                            </div>
+                            @endif
+                            @if ($slide->entity)
+                                <div class="row">
+                                    {{ $slide->entity }}
+                                </div>
+                            @endif
+                        </div>
                     </div>
-                    <div class="row">годовой оборот</div>
                 </div>
-            </div>
+            @endforeach
         </div>
-        <div style="background-image:url('http://puu.sh/hdx69/3c7a8a471f.jpg');" class="slide active">
-            <div class="holder">
-                <div class="text">
-                    <div class="row"><big>40</big></div>
-                    <div class="row">Предприятий</div>
-                </div>
-            </div>
-        </div>
-        <div style="background-image:url('http://puu.sh/hdx69/3c7a8a471f.jpg');" class="slide">
-            <div class="holder">
-                <div class="text">
-                    <div class="row"><big>15 000</big></div>
-                    <div class="row">Сотрудников</div>
-                </div>
-            </div>
-        </div>
-        <div style="background-image:url('http://puu.sh/hdx69/3c7a8a471f.jpg');" class="slide">
-            <div class="holder">
-                <div class="text">
-                    <div class="row"><big>26,7</big>
-                        <small>млрд. рублей</small>
-                    </div>
-                    <div class="row">налогов</div>
-                </div>
-            </div>
-        </div>
-        <div class="dots">
-            <a href=""></a>
-            <a href="" class="active"></a>
-            <a href=""></a>
-            <a href=""></a>
-        </div>
-    </div>
+    @endif
 
     @if (isset($business) && is_object($business) && $business->count())
     <ul class="business-list">

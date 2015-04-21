@@ -486,6 +486,7 @@ if (len > 0) {
 
     /*
     'first_line_modifier' => function($line, $dic, $dicval) {
+        $dicval->extract(true);
         return '<a href="' . URL::route('feedback.view', $dicval->id) . '" target="_blank">' . $line . '</a> <i class="fa fa-arrow-right"></i>';
     },
     #*/

@@ -52,7 +52,7 @@ return array(
         );
     },
 
-    'seo' => true,
+    'seo' => ['title', 'description', 'keywords'],
 
     'versions' => false,
 
