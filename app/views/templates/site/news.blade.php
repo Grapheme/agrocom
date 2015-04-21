@@ -62,6 +62,7 @@ $news = DicLib::loadGallery($news, ['gallery']);
                             <div class="description">
                                 {{ $new->preview }}
                             </div>
+
                             @if($new->content)
                                 <a href="{{ URL::route('app.news_one', ['slug' => $new->slug]) }}" class="more">Подробнее</a>
                             @endif

@@ -13,33 +13,33 @@
     }, ['fields'], true, true, true);
     $business = DicLib::loadImages($business, ['logo', 'mainpage_logo']);
     #Helper::tad($business);
-#    Cache::put('app.business', $business, 60);
-#    return $business;
+    #Cache::put('app.business', $business, 60);
+    #return $business;
 #});
 #Helper::tad($business);
 
 #$slider = Cache::get('app.slider', function(){
-$slider = Dic::valuesBySlug('slider', function($query){
-    $query->orderBy('lft', 'ASC');
-    $query->orderBy('id', 'ASC');
-}, ['fields'], true, true, true);
-$slider = DicLib::loadImages($slider, ['image']);
-#Helper::tad($slider);
-#    Cache::put('app.slider', $slider, 60);
-#    return $slider;
+    $slider = Dic::valuesBySlug('slider', function($query){
+        $query->orderBy('lft', 'ASC');
+        $query->orderBy('id', 'ASC');
+    }, ['fields'], true, true, true);
+    $slider = DicLib::loadImages($slider, ['image']);
+    #Helper::tad($slider);
+    #    Cache::put('app.slider', $slider, 60);
+    #    return $slider;
 #});
 #Helper::tad($slider);
 
-#$slider = Cache::get('app.slider', function(){
-$news = Dic::valuesBySlug('news', function($query){
-    $query->order_by_field('published_at', 'DESC');
-    $query->orderBy('id', 'DESC');
-    $query->limit(3);
-}, ['fields', 'textfields'], true, true, true);
-#$news = DicLib::loadImages($news, ['image']);
-#Helper::tad($news);
-#    Cache::put('app.news', $news, 60);
-#    return $news;
+#$news = Cache::get('app.news', function(){
+    $news = Dic::valuesBySlug('news', function($query){
+        $query->order_by_field('published_at', 'DESC');
+        $query->orderBy('id', 'DESC');
+        $query->limit(3);
+    }, ['fields', 'textfields'], true, true, true);
+    #$news = DicLib::loadImages($news, ['image']);
+    #Helper::tad($news);
+    #Cache::put('app.news', $news, 60);
+    #return $news;
 #});
 #Helper::tad($news);
 ?>
@@ -105,9 +105,7 @@ $news = Dic::valuesBySlug('news', function($query){
 
     <div class="content">
         <div class="row text-col-2">
-
             {{ $page->block('description') }}
-
         </div>
     </div>
 
@@ -116,7 +114,7 @@ $news = Dic::valuesBySlug('news', function($query){
             <div class="content">
                 <p class="head-title">Последние новости</p>
                 @foreach ($news as $new)
-                    <a href="" class="unit">
+                    <a href="{{ URL::route('app.news_one', ['slug' => $new->slug]) }}" class="unit">
                         <time>{{ Carbon::createFromFormat('Y-m-d', $new->published_at)->format('d.m.Y') }}</time>
                         <div class="title">{{ $new->news_name }}</div>
                         <div class="desc">{{ $new->preview }}</div>
