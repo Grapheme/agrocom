@@ -22,12 +22,17 @@ $(document).ready(function() {
     elem = $(elem);
     elem.each(function(){
       var $this = $(this);
-      $('<img src="'+$this.attr('data-img')+'">').load(function(){
-        $this.css({
-          'background-image': 'url('+$(this).attr('src')+')'
+      var data_img = $this.attr('data-img') || null;
+      if (data_img) {
+        $('<img src="'+$this.attr('data-img')+'">').load(function(){
+          $this.css({
+            'background-image': 'url('+$(this).attr('src')+')'
+          });
+          $this.addClass('loaded');
         });
+      } else {
         $this.addClass('loaded');
-      });
+      }
     });
   }
   
