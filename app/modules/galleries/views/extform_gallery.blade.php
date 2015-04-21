@@ -58,7 +58,7 @@
     <div class="clear"></div>
 <?
 #/*
-if (count($bad_photos) && Input::get('delete_bad_photos') == 1) {
+if (isset($bad_photos) && is_array($bad_photos) && count($bad_photos) && Input::get('delete_bad_photos') == 1) {
     #Photo::whereIn('id', $bad_photos)->full_delete();
     $photos = Photo::whereIn('id', $bad_photos)->get();
     foreach ($photos as $photo)
