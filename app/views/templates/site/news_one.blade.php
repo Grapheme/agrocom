@@ -44,7 +44,7 @@
 
         <br/>
 
-        {{ $new->preview }}
+        {{ $new->content }}
 
     </div>
 
