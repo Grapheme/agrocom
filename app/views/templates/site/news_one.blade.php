@@ -5,6 +5,10 @@
  */
 ?>
 @extends(Helper::layout())
+<?
+$seo = $new->seo;
+$page_title = $new->name;
+?>
 
 
 @section('body_class') news @stop
