@@ -48,7 +48,7 @@
   }
   h1, .title {
     font-family: 'Foros-Medium';
-    font-size: 52px;
+    font-size: 32px;
     color: white;
     font-weight: normal;
     margin: 0.67em 0;
@@ -63,7 +63,7 @@
       a {
         color: black;    
         font-family: 'Foros-Medium';
-        font-size: 52px;
+        font-size: 32px;
         color: black;
         font-weight: normal;
         margin: 0.67em 0;
@@ -73,7 +73,7 @@
         border: 1px solid transparent;
         margin-right: 15px;
         &.active {
-          border: 1px solid white;
+          border: 2px solid white;
           color: white;
         }
         h1 {

@@ -4,7 +4,11 @@ $(document).ready(function() {
       $dots = $slider.find('.dots a'),
       delay = 50*1000,
       timer;
-      
+  if (!Modernizr.csstransitions) {
+    var d_s = 100;
+  } else {
+    var d_s = 0; 
+  }
   $dots.click(function(e){
     e.preventDefault();
     if (!$(this).hasClass('active')) {
@@ -15,7 +19,7 @@ $(document).ready(function() {
       $dots.removeClass('active');
       setTimeout(function(){
         $slides.eq(cur).addClass('active');  
-      }, 100);
+      }, d_s);
       $(this).addClass('active');
       
       if (cur>=count) {

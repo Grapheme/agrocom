@@ -5,11 +5,9 @@ header {
   z-index: 100;
   .holder {
     padding: 0 54px;
-    padding-bottom: 28px;
     @include cf();
-    overflow: hidden;
     position: relative;
-    &:before {
+    /*&:before {
       width: 300px;
       //width: 620px;
       height: 84px;
@@ -22,7 +20,7 @@ header {
       transition: all 1500ms cubic-bezier(0.86, 0, 0.07, 1);
       left: -360px;
       z-index: 100;
-    }
+    }*/
     &.loaded {
       &:before {
         left: 105%;
@@ -55,17 +53,72 @@ header {
       list-style: none;
       padding: 0;
       margin: 0;
-      margin-top: 33px;
       li {
         float: left;
         @include cf();
-        margin-left: 25px;
+        //margin-left: 25px;
         a {
+          display: block;
+          padding-top: 26px;
+          padding-bottom: 34px;
+          padding-left: 12px;
+          padding-right: 12px;
+          border-top: 6px solid transparent;
           &:hover {
-            text-decoration: underline;
+            //text-decoration: underline;
           }
           &.active {
             color: #1eb3c2;
+          }
+        }
+        ul {
+          margin-left: 0;
+          padding-left: 0;
+          position: absolute;
+          list-style: none;
+          display: none;
+          li {
+            padding-left: 0;
+            margin-left: 0;
+            float: none;
+          }
+        }
+        &:hover {
+          &>a {
+            border-top: 6px solid #00b1c2;
+            background: #343434;
+            color: #00b2c2;
+          }
+          ul {
+            display: block;
+            background: rgba(#343434, 0.9) url("../images/shdow-main-menu.png") top;
+            background-repeat: repeat-x;
+            padding-left: 7px;
+            padding-right: 14px;
+            padding-top: 15px;
+            padding-bottom: 10px;
+            li {
+              a {
+                padding-top: 0;
+                padding-bottom: 0;
+                border: none;
+                text-transform: none;
+                font-family: "Foros-Regular";
+                border-left: 2px solid transparent;
+                padding-left: 4px;
+                line-height: 140%;
+                margin-top: 10px;
+                margin-bottom: 10px;
+              }
+              &:hover {
+                a {
+                  background: none;
+                  border: none;
+                  color: #00b2c2;
+                  border-left: 2px solid #00b2c2;
+                }
+              }
+            }
           }
         }
       }
@@ -73,7 +126,7 @@ header {
     .lang-sw {
       float: right;
       margin-top: 33px;
-      margin-left: 124-9px;
+      margin-left: 55px;
       @include cf();
       a {
         font-size: 12px;
