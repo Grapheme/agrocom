@@ -157,6 +157,7 @@
         .row:last-of-type {
           margin-left: 116px;
           transition-delay: 150ms;
+          padding-top: 3px;
         }
         &:before {
           //background: url('../images/deco-sigment-white-bottom.png');
@@ -433,6 +434,7 @@ ul.business-list {
     perspective-origin: 50% 50%;
     opacity: 0;
     transition:  all 900ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    overflow: hidden;
     &:nth-child(even) {
       transition-delay: 400ms;
     }
@@ -447,7 +449,9 @@ ul.business-list {
       display: block;
       float: left;
       background-size: cover;
-      background-position: center center;;
+      background-position: center center;
+      transition: all 1500ms cubic-bezier(.455,.03,.515,.955);
+      transform: scale(1.1);
     }
     .info {
       float: left;
@@ -533,6 +537,11 @@ ul.business-list {
       .info {
         width: 37%;
       } 
+    }
+    &:hover {
+      .visual {
+        transform: scale(1);
+      }
     }
   }
   .holder >.unit {

@@ -101,7 +101,7 @@
     font-size: 15px;
     h2 {
       font-family: 'Foros-Medium';
-      font-size: 29px;
+      font-size: 22px;
       font-weight: normal;
       margin-top: 60px;
       &:before {
@@ -119,6 +119,13 @@
         transition-delay: 0.7s;
         transform-origin: right bottom;
       }
+    }
+    h3 {
+      font-family: 'Foros-Medium';
+      font-size: 29px;
+      font-weight: normal;
+      //margin-top: 60px;
+      color: black;
     }
     iframe {
       margin: 40px 0;
