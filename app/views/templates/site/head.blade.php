@@ -62,7 +62,8 @@ if (isset($page) && is_object($page) && isset($page->seo) && is_object($page->se
         <meta name="keywords" content="@yield('keywords')">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <link rel="icon" type="image/png" href="{{ Config::get('site.theme_path') }}/images/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="{{ Config::get('site.theme_path') }}/images/favicon-16x16.png" sizes="16x16">
 
         {{ HTML::style(Config::get('site.theme_path').'/styles/vendor.css') }}
         {{ HTML::style(Config::get('site.theme_path').'/styles/main.css') }}
