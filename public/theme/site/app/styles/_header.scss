@@ -56,7 +56,6 @@ header {
       li {
         float: left;
         @include cf();
-        //margin-left: 25px;
         a {
           display: block;
           padding-top: 26px;
@@ -65,7 +64,6 @@ header {
           padding-right: 12px;
           border-top: 6px solid transparent;
           &:hover {
-            //text-decoration: underline;
           }
           &.active {
             color: #1eb3c2;
