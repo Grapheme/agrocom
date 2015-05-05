@@ -5,10 +5,27 @@ return array(
     'fields' => function() {
 
         return array(
+            /*
             'logo' => array(
                 'title' => 'Логотип',
                 'type' => 'image',
             ),
+            */
+
+            'logo_svg' => array(
+                'title' => 'Логотип (SVG)',
+                'type' => 'upload',
+                'accept' => '.svg', # .exe,image/*,video/*,audio/*
+                'label_class' => 'input-file',
+                'handler' => function($value, $element = false) {
+                    if (@is_object($element) && @is_array($value)) {
+                        $value['module'] = 'DicVal';
+                        $value['unit_id'] = $element->id;
+                    }
+                    return ExtForm::process('upload', $value);
+                },
+            ),
+
             'link' => array(
                 'title' => 'Ссылка',
                 'type' => 'text',
