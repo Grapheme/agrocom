@@ -35,7 +35,9 @@ if (!$business_all) {
                     -->
                 </div>
             </div>
-            <div class="logo"><img src="{{ Config::get('site.theme_path') }}/images/logo-agrokom-small.png" /></div>
+            <div class="logo">
+                {{ trans("interface.logo.bottom-small") }}
+            </div>
         </div>
     </div>
     <div class="real-footer">
