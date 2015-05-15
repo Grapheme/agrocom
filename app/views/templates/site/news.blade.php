@@ -15,6 +15,9 @@ $news = Dic::valuesBySlug('news', function($query) use ($limit, $p) {
 }, ['fields', 'textfields'], 1, 1, 0, $limit);
 #Helper::tad($news);
 $news = DicLib::loadGallery($news, ['gallery']);
+foreach ($news as $n => $new)
+    if ($new->news_name == '')
+        unset($news[$n]);
 #dd($news);
 #Helper::tad($news);
 ?>

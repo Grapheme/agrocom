@@ -14,6 +14,10 @@ $publications = Dic::valuesBySlug('publications', function($query) {
     $query->order_by_field('published_at', 'DESC');
 }, ['fields', 'textfields'], 1, 1, 1, $limit);
 
+foreach ($publications as $p => $publication)
+    if ($publication->publication_name == '')
+        unset($publications[$p]);
+
 #Helper::smartQueries(1);
 
 $publications = DicLib::loadImages($publications, ['image']);
@@ -39,7 +43,7 @@ $publications = DicLib::loadImages($publications, ['image']);
                 {{ $page->block('intro') }}
             </p>
         </div>
-        @if ($publications->count())
+        @if (isset($publications) && is_object($publications) && $publications->count())
             <div class="news-list inf-scroll">
                 @foreach ($publications as $press)
                     <div class="unit">

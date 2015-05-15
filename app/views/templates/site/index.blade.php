@@ -32,6 +32,7 @@
 
 #$news = Cache::get('app.news', function(){
     $news = Dic::valuesBySlug('news', function($query){
+        #$query->filter_by_field('news_name', '!=', '');
         $query->order_by_field('published_at', 'DESC');
         $query->orderBy('id', 'DESC');
         $query->limit(3);
@@ -41,6 +42,10 @@
     #Cache::put('app.news', $news, 60);
     #return $news;
 #});
+#Helper::smartQueries(1);
+foreach ($news as $n => $new)
+    if ($new->news_name == '')
+        unset($news[$n]);
 #Helper::tad($news);
 
 $projects = Dic::valuesBySlug('projects', function($query){
@@ -49,6 +54,9 @@ $projects = Dic::valuesBySlug('projects', function($query){
 }, ['fields', 'textfields'], true, true, true);
 $projects = DicLib::loadImages($projects, ['image']);
 #Helper::tad($projects);
+foreach ($projects as $p => $project)
+    if ($project->project_name == '')
+        unset($projects[$p]);
 $projects_count = count($projects);
 ?>
 
