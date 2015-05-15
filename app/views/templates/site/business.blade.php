@@ -7,7 +7,8 @@
 @extends(Helper::layout())
 <?
 $seo = $business->seo;
-$page_title = $business->name;
+$page_title = $business->business_name;
+        #Helper::tad($business);
 ?>
 
 

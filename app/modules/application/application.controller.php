@@ -70,9 +70,13 @@ class ApplicationController extends BaseController {
 
     public function getNewsOne($lang, $slug) {
 
-        $new = Dic::valueBySlugs('news', $slug);
+        #$new = Dic::valueBySlugs('news', $slug, 'all', false, false);
+        $new = Dic::valueBySlugs('news', $slug, ['fields', 'textfields', 'seo']);
         if (!is_object($new))
             App::abort(404);
+
+        #Helper::tad($new);
+
         $new = DicLib::loadGallery($new, ['gallery']);
         #Helper::tad($new);
 

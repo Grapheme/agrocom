@@ -34,7 +34,7 @@ if (!isset($slug) || NULL === $slug) {
 }
 
 $seo = $project->seo;
-$page_title = $project->name;
+$page_title = $project->project_name;
 ?>
 
 
