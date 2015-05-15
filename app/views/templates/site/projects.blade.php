@@ -10,16 +10,16 @@
 #    Redirect(URL::route('app.project', ['slug' => $slug]));
 
 ## Бизнесы для футера - будем их кешировать
-$projects = Cache::get('app.projects', function(){
+#$projects = Cache::get('app.projects', function(){
     $projects = Dic::valuesBySlug('projects', function($query){
         $query->orderBy('lft', 'ASC');
         $query->orderBy('id', 'ASC');
     }, ['fields', 'textfields'], true, true, true);
     $projects = DicLib::loadGallery($projects, ['gallery']);
     #Helper::tad($projects);
-    Cache::put('app.projects', $projects, 60);
-    return $projects;
-});
+    #Cache::put('app.projects', $projects, 60);
+    #return $projects;
+#});
 #$projects = NULL;
 #Helper::tad($projects);
 if (!count($projects)) {
