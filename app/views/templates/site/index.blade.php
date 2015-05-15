@@ -32,12 +32,13 @@
 
 #$news = Cache::get('app.news', function(){
     $news = Dic::valuesBySlug('news', function($query){
-        #$query->filter_by_field('news_name', '!=', '');
+        $query->filter_by_field('news_name', '!=', '', true);
         $query->order_by_field('published_at', 'DESC');
         $query->orderBy('id', 'DESC');
         $query->limit(3);
     }, ['fields', 'textfields'], true, true, true);
     #$news = DicLib::loadImages($news, ['image']);
+    #Helper::smartQueries(1);
     #Helper::tad($news);
     #Cache::put('app.news', $news, 60);
     #return $news;
