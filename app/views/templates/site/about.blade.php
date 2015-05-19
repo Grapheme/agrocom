@@ -22,7 +22,9 @@
     </div>
     <div id="preload-visual" data-img="{{ Config::get('site.theme_path') }}/images/visual-about.jpg" class="visual-wide">
         <div class="holder">
-            <div class="teaser"><img src="{{ Config::get('site.theme_path') }}/images/visual-about-text.png" style="margin-bottom: -110px;margin-left: 75px;"></div>
+            <div class="teaser">
+                {{ trans("interface.logo.about.top") }}
+            </div>
         </div>
     </div>
     <div class="content">
