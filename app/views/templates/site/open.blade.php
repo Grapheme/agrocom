@@ -24,22 +24,20 @@ if (isset($page) && is_object($page))
 
     <div class="content">
         <div class="row">
-            <div class="address">
 
-                <h1 class="title">
-                    {{ $page->h1_or_name() }}
-                </h1>
+            <h1 class="title">
+                {{ $page->h1_or_name() }}
+            </h1>
 
-                @if (count($page->blocks))
-                    @foreach ($page->blocks as $block)
-                        @if (0)
-                            <h2>{{ $page->block($block->slug, 'name') }}</h2>
-                        @endif
-                        {{ $page->block($block->slug) }}
-                    @endforeach
-                @endif
+            @if (count($page->blocks))
+                @foreach ($page->blocks as $block)
+                    @if (0)
+                        <h2>{{ $page->block($block->slug, 'name') }}</h2>
+                    @endif
+                    {{ $page->block($block->slug) }}
+                @endforeach
+            @endif
 
-            </div>
         </div>
     </div>
 
