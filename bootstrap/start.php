@@ -22,6 +22,7 @@ $env = $app->detectEnvironment(array(
 	'vkharseev' => array('DNS'),
 	'kd' => array('DobriyMac.local'),
 	'at' => array('MacBook-Pro-Tommy.local'),
+	'kf' => array('Mac-mini-Admin.local'),
 ));
 $app->bindInstallPaths(require __DIR__.'/paths.php');
 $framework = $app['path.base'].'/vendor/laravel/framework/src';

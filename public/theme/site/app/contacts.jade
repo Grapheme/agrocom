@@ -29,6 +29,18 @@ block content
           <strong>Горячая линия для партнеров</strong><br>
           +7 (863) 250-58-14<br>
           <a href="mailto:info@agrokomgroup.ru">info@agrokomgroup.ru</a>
+      .form-holder
+        p.form-head Форма обратной связи
+        form#feed-back-form(action="" method="GET")
+          p.field-title Ваше имя
+          input(type="text" name="name")
+          p.field-title E-mail:
+          input(type="text" name="email")
+          p.field-title Сообщение:
+          textarea.message(name="message")
+          button(type="submit") Отправить
+      .form-holder.final
+        p.form-head Сообщение успешно отправлено!
       .map.
         <div id="MyGmaps" style="width:480px;height:374px;"></div>
   .grey
