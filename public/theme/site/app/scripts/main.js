@@ -14,7 +14,7 @@ $(document).ready(function() {
 		name: 'Обязательное поле!',
 		email: {
 			required: 'Обязательное поле!',
-			email: 'Неверный формат. Попробуйте еще!'
+			email: 'Неверный формат!'
 		},
 		message: 'Обязательное поле!'
 	},
@@ -23,13 +23,14 @@ $(document).ready(function() {
          _data = $(form).serialize(),
          _method = $(form).attr('method')||'POST';
          $('.js-form-error').hide();
+         $('.form-holder [type="submit"]').attr('disabled', 'disabled');
      $.ajax({
        type: _method,
        url: _url,
        data: _data
  	 }).done(function(data){
- 	 	if(data.responseText && data.status == true) {
-       		$('.js-form-success').html(data.responseText);
+ 	 	if(data.status == true) {
+       		//$('.js-form-success').html(data.responseText);
        		$('.form-holder').slideUp();
        		$('.form-holder.final').slideDown();
        	}
@@ -38,6 +39,8 @@ $(document).ready(function() {
        	}
        }).fail(function(data){
        	$('.js-form-error').show().html('Server error');
+       }).always(function(){
+       	$('.form-holder [type="submit"]').removeAttr('disabled');
        });
  	}
  })
