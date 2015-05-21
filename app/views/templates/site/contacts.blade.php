@@ -35,10 +35,11 @@
                 <p class="field-title">Сообщение:</p>
                 <textarea name="content" class="message"></textarea>
                 <button type="submit">Отправить</button>
+                <div class="form-error js-form-error"></div>
               </form>
             </div>
             <div class="form-holder final">
-              <p class="form-head">Сообщение успешно отправлено!</p>
+              <p class="form-head js-form-success"></p>
             </div>
             <!-- ФОРМА ОБРАТНОЙ СВЯЗИ -->
             <div class="map"><div id="MyGmaps" style="width:960px;height:450px;"></div></div>
@@ -46,7 +47,7 @@
 
        
 
-        <div class="map"><div id="MyGmaps" style="width:480px;height:450px;"></div></div>
+        <div class="map"><div id="MyGmaps" style="width:960px;height:450px;"></div></div>
       </div>
 
     </div>
