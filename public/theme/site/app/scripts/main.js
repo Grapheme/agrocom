@@ -22,15 +22,23 @@ $(document).ready(function() {
      var _url = $(form).attr('action'),
          _data = $(form).serialize(),
          _method = $(form).attr('method')||'POST';
+         $('.js-form-error').hide();
      $.ajax({
        type: _method,
        url: _url,
-       data: _data,
-       success: function(data) {
-         $('.form-holder').slideUp();
-         $('.form-holder.final').slideDown();
-       }
- 	 });
+       data: _data
+ 	 }).done(function(data){
+ 	 	if(data.responseText && data.status == true) {
+       		$('.js-form-success').html(data.responseText);
+       		$('.form-holder').slideUp();
+       		$('.form-holder.final').slideDown();
+       	}
+       	if(!data.status && data.responseText) {
+       		$('.js-form-error').show().html(data.responseText);
+       	}
+       }).fail(function(data){
+       	$('.js-form-error').show().html('Server error');
+       });
  	}
  })
 })
