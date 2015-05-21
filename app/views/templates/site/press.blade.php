@@ -15,7 +15,7 @@ $publications = Dic::valuesBySlug('publications', function($query) {
 }, ['fields', 'textfields'], 1, 1, 1, $limit);
 
 foreach ($publications as $p => $publication)
-    if ($publication->publication_name == '')
+    if ($publication->press_name == '')
         unset($publications[$p]);
 
 #Helper::smartQueries(1);
