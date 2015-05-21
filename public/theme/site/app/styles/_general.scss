@@ -353,7 +353,8 @@ body.contacts {
     @include cf();
     .map {
         float: left;
-        width: 480px;
+        width: 960px;
+        margin-top: 94px;
     }
     .row {
       margin-top: 39px;
