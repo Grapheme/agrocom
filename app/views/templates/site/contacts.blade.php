@@ -24,26 +24,27 @@
                 {{ $page->block('contacts') }}
 
             </div>
+            <!-- ФОРМА ОБРАТНОЙ СВЯЗИ -->
+            <div class="form-holder">
+              <p class="form-head">Форма обратной связи</p>
+              <form id="feed-back-form" action="" method="GET">
+                <p class="field-title">Ваше имя</p>
+                <input type="text" name="name">
+                <p class="field-title">E-mail:</p>
+                <input type="text" name="email">
+                <p class="field-title">Сообщение:</p>
+                <textarea name="message" class="message"></textarea>
+                <button type="submit">Отправить</button>
+              </form>
+            </div>
+            <div class="form-holder final">
+              <p class="form-head">Сообщение успешно отправлено!</p>
+            </div>
+            <!-- ФОРМА ОБРАТНОЙ СВЯЗИ -->
             <div class="map"><div id="MyGmaps" style="width:480px;height:374px;"></div></div>
         </div>
 
-       <!-- ФОРМА ОБРАТНОЙ СВЯЗИ -->
-        <div class="form-holder">
-          <p class="form-head">Форма обратной связи</p>
-          <form id="feed-back-form" action="" method="GET">
-            <p class="field-title">Ваше имя</p>
-            <input type="text" name="name">
-            <p class="field-title">E-mail:</p>
-            <input type="text" name="email">
-            <p class="field-title">Сообщение:</p>
-            <textarea name="message" class="message"></textarea>
-            <button type="submit">Отправить</button>
-          </form>
-        </div>
-        <div class="form-holder final">
-          <p class="form-head">Сообщение успешно отправлено!</p>
-        </div>
-        <!-- ФОРМА ОБРАТНОЙ СВЯЗИ -->
+       
 
         <div class="map"><div id="MyGmaps" style="width:480px;height:374px;"></div></div>
       </div>

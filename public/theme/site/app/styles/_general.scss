@@ -276,23 +276,17 @@
   }
 }
 
-body.business h1.on-screen {
-  display: none;
+body.business {
+  h1.on-screen {
+    display: none;
+  }
+
+  .row.text-col-2 {
+    margin-top: 2px;
+  }
 }
 
-body.contacts {
-  .content {
-    @include cf();
-    .row {
-      margin-top: 39px;
-      .address {
-        float: left;
-        width: 480px;
-        p {
-          margin: 20px 0;
-        }
-      }
-      .form-holder {
+.form-holder {
         width: 421px;
         height: 449px;
         float: right;
@@ -352,7 +346,20 @@ body.contacts {
 
       .final {
           display: none;
+      }
+
+body.contacts {
+  .content {
+    @include cf();
+    .row {
+      margin-top: 39px;
+      .address {
+        float: left;
+        width: 480px;
+        p {
+          margin: 20px 0;
         }
+      }
 
       .map {
         float: left;
