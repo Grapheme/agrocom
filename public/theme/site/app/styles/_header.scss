@@ -178,6 +178,7 @@ header {
             transform-origin: 0 47px;
             transform: rotate(-360deg*1.5) scale(0.8);
             transition: all 1500ms cubic-bezier(0.645, 0.045, 0.355, 1);
+            -ms-transition: all 1500ms cubic-bezier(0.645, 0.045, 0.355, 1);
           }
           .text {
             width: 116px;
@@ -187,7 +188,9 @@ header {
             opacity: 0;
             transform: translateX(20px);
             transition: all 800ms cubic-bezier(0.215, 0.61, 0.355, 1);
+            -ms-transition: all 800ms cubic-bezier(0.215, 0.61, 0.355, 1);
             transition-delay: 1100ms;
+            -ms-transition-delay: 1100ms;
           }
           .duga2 {
             width: 55px;
@@ -196,6 +199,7 @@ header {
             transform-origin: right -6px;
             transform: rotate(360deg*0.5) scale(0.8);
             transition: all 1700ms cubic-bezier(0.645, 0.045, 0.355, 1);
+            -ms-transition: all 1700ms cubic-bezier(0.645, 0.045, 0.355, 1);
           }
         }
       }
