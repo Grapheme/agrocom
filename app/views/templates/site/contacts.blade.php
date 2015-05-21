@@ -26,15 +26,25 @@
             </div>
             <!-- ФОРМА ОБРАТНОЙ СВЯЗИ -->
             <div class="form-holder">
-              <p class="form-head">Форма обратной связи</p>
+              <p class="form-head">
+                  {{ trans("interface.feedback.form_title") }}
+              </p>
               <form id="feed-back-form" action="{{ URL::route('ajax.send-message') }}" method="POST">
-                <p class="field-title">Ваше имя</p>
+                <p class="field-title">
+                    {{ trans("interface.feedback.name") }}
+                </p>
                 <input type="text" name="name">
-                <p class="field-title">E-mail:</p>
+                <p class="field-title">
+                    {{ trans("interface.feedback.email") }}
+                </p>
                 <input type="text" name="email">
-                <p class="field-title">Сообщение:</p>
+                <p class="field-title">
+                    {{ trans("interface.feedback.message") }}
+                </p>
                 <textarea name="content" class="message"></textarea>
-                <button type="submit">Отправить</button>
+                <button type="submit">
+                    {{ trans("interface.feedback.send") }}
+                </button>
                 <div class="form-error js-form-error"></div>
               </form>
             </div>
@@ -68,8 +78,10 @@
     <script>
         var _AGROKOM_coords = [{{ $page->block('coords') }}];
         var _AGROKOM_ = {
-            'required': 'Обязательное поле!',
-            'email_format': 'Неверный формат. Попробуйте еще!'
+            'required': '{{ trans("interface.feedback.msg.required") }}',
+            'email_format': '{{ trans("interface.feedback.msg.email_format") }}',
+            'status_success': '{{ trans("interface.feedback.msg.status_success") }}',
+            'status_error': '{{ trans("interface.feedback.msg.status_error") }}'
         };
     </script>
 @stop
