@@ -49,7 +49,7 @@
               </form>
             </div>
             <div class="form-holder final">
-              <p class="form-head js-form-success">Сообщение успешно отправленно!</p>
+              <p class="form-head js-form-success">Сообщение успешно отправлено</p>
             </div>
             <!-- ФОРМА ОБРАТНОЙ СВЯЗИ -->
             <div class="map"><div id="MyGmaps" style="width:960px;height:450px;"></div></div>
