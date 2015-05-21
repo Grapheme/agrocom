@@ -212,7 +212,9 @@ class PublicPagesController extends BaseController {
         }
 
         #Helper::smartQueries(1); #die;
-        #Helper::tad($page);
+
+        #Helper::ta($page);
+        #Helper::tad(Config::get('app'));
 
         ## Если страница не найдена...
         if (!isset($page) || !is_object($page)) {

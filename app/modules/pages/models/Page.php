@@ -45,6 +45,7 @@ class Page extends BaseModel {
     }
 
     public function seo() {
+        #Helper::tad(Config::get('app.locale'));
         return $this->hasOne('Seo', 'unit_id', 'id')->where('module', 'Page')->where('language', Config::get('app.locale', 'ru'));
     }
 
