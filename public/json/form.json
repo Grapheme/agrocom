@@ -1,4 +1,4 @@
 {
-	"status": true,
-	"responseText": "Сообщение успешно отправлено!"
+	"status": false,
+	"responseText": "Сообщение неуспешно неотправлено!"
 }
