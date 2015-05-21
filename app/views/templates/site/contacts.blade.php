@@ -27,13 +27,13 @@
             <!-- ФОРМА ОБРАТНОЙ СВЯЗИ -->
             <div class="form-holder">
               <p class="form-head">Форма обратной связи</p>
-              <form id="feed-back-form" action="" method="GET">
+              <form id="feed-back-form" action="{{ URL::route('ajax.send-message') }}" method="POST">
                 <p class="field-title">Ваше имя</p>
                 <input type="text" name="name">
                 <p class="field-title">E-mail:</p>
                 <input type="text" name="email">
                 <p class="field-title">Сообщение:</p>
-                <textarea name="message" class="message"></textarea>
+                <textarea name="content" class="message"></textarea>
                 <button type="submit">Отправить</button>
               </form>
             </div>

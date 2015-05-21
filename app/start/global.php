@@ -153,4 +153,10 @@ require app_path().'/filters.php';
     #Helper::d( '/' . Request::segment(1) . '/ - (' . Config::get('app.default_locale') . ') => (' . Config::get('app.locale') . ") - " . Session::get('locale') );
 #*/
 
+##
+## Загружаем настройки из кеша
+##
+$settings = Cache::get('cms.settings');
+Config::set('app.settings', $settings);
+
 #Event::listen('illuminate.query', function($query){ echo $query . "<br/>\n"; });
