@@ -25,7 +25,6 @@
         @foreach ($langs as $lang_sign => $lang_text)
 
             <?
-            #/*
             if (in_array($route_name, ['mainpage'])) {
 
                 ## Если мы на главной странице (основной или языковой)
@@ -46,11 +45,9 @@
                 $route_params = ['lang' => $lang_sign] + $route->parameters();
                 $class = (NULL !== ($route_lang = $route->getParameter('lang')) && $route_lang == $lang_sign) ? 'active' : '';
             }
-            #*/
             ?>
 
-{{--            <a href="{{ URL::route($route_name, $route_params) }}" class="{{ $class }}">{{ $lang_text }}</a>--}}
-            <a href="{{ URL::route('mainpage', ['lang' => $lang_sign]) }}" class="{{ $class }}">{{ $lang_text }}</a>
+            <a href="{{ URL::route($route_name, $route_params) }}" class="{{ $class }}">{{ $lang_text }}</a>
 
         @endforeach
     </div>

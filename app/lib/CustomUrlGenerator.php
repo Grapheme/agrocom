@@ -68,7 +68,22 @@ class CustomUrlGenerator extends UrlGenerator {
 
                 #print_r(\Config::get('app.locale'));
 
-                if ($route->getName() == 'mainpage' && $value == 'lang' && isset($defaults[$value]) && $defaults[$value] == \Config::get('app.locale'))
+                if (
+                    $route->getName() == 'mainpage'
+                    && $value == 'lang'
+                    && isset($defaults[$value])
+                    && count(\Config::get('app.locales')) > 1
+                    && $defaults[$value] == \Config::get('app.locale')
+                )
+                    continue;
+
+                if (
+                    $route->getName() == 'page'
+                    && $value == 'lang'
+                    && !@$parameters['slug']
+                    && count(\Config::get('app.locales')) > 1
+                    && \Config::get('app.locale') == \Config::get('app.default_locale')
+                )
                     continue;
 
                 if (!isset($parameters[$value]) && isset($defaults[$value])) {
