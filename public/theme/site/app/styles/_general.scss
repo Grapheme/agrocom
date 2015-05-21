@@ -276,6 +276,10 @@
   }
 }
 
+body.business h1.on-screen {
+  display: none;
+}
+
 body.contacts {
   .content {
     @include cf();
