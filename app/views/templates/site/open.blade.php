@@ -25,9 +25,11 @@ if (isset($page) && is_object($page))
     <div class="content">
         <div class="row">
 
+{{--
             <h1 class="title">
                 {{ $page->h1_or_name() }}
             </h1>
+--}}
 
             @if (count($page->blocks))
                 @foreach ($page->blocks as $block)
