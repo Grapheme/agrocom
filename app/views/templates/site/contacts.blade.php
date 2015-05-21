@@ -27,7 +27,7 @@
             <!-- ФОРМА ОБРАТНОЙ СВЯЗИ -->
             <div class="form-holder">
               <p class="form-head">Форма обратной связи</p>
-              <form id="feed-back-form" action="json/form.json" method="GET">
+              <form id="feed-back-form" action="/json/form.json" method="GET">
                 <p class="field-title">Ваше имя</p>
                 <input type="text" name="name">
                 <p class="field-title">E-mail:</p>
