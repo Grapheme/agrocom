@@ -338,6 +338,22 @@ class MenuConstructor {
         if (@$data['hidden'])
             return false;
 
+        if (@$data['use_display_logic'] && @$data['display_logic'] != '') {
+            #Helper::ta($data['display_logic']);
+            $result = NULL;
+            try {
+
+                $code = '$result = @(bool)(' . $data['display_logic'] . ');';
+                @eval($code);
+                #die;
+
+            } catch (Exception $e) {
+                #
+            }
+            if (!$result)
+                return false;
+        }
+
         return $this->get_element_info_by_data($data);
     }
 
