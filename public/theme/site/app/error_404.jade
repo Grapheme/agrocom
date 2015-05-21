@@ -1,0 +1,18 @@
+extends layout
+
+block header
+	include _header_small.jade
+
+block vars
+	- var bodyClass = "error-404";
+
+block content
+	.error-block-holder
+		.error-block
+			.center-hack
+			.not-found 
+				p Page Not Found
+			.number 
+				p 404
+			.message 
+				p The page you are looking for could not be found.
