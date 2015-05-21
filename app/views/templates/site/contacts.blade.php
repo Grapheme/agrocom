@@ -55,9 +55,6 @@
             <div class="map"><div id="MyGmaps" style="width:960px;height:450px;"></div></div>
         </div>
 
-       
-
-        <div class="map"><div id="MyGmaps" style="width:960px;height:450px;"></div></div>
       </div>
 
     </div>
