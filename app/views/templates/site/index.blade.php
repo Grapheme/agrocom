@@ -6,7 +6,6 @@
 ?>
 @extends(Helper::layout())
 <?
-
 #$business = Cache::get('app.business', function(){
     $business = Dic::valuesBySlug('business', function($query){
         $query->orderBy('lft', 'ASC');
