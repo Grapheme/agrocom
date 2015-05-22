@@ -142,7 +142,11 @@ $projects_count = count($projects);
             </div>
         </div>
     @endif
-
+        <div class="ivan-link">
+            <img src="{{ Config::get('site.theme_path') }}/images/ivan-s.png">
+            <p>Иван Саввиди – председатель Совета директоров «ГРУППЫ АГРОКОМ»</p>
+            <a href="http://savvidi.ru/" target="_blank">www.savvidi.ru</a>
+        </div>
     @if (isset($projects) && is_object($projects) && $projects->count())
         <div class="projects-grid">
             <div class="head-title">
