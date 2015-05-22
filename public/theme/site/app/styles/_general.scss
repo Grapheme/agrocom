@@ -476,3 +476,36 @@ body.error-404 .shadow {
     }
   }
 }
+
+.ivan-link {
+  width: 1012px;
+  margin: 0 auto;
+  overflow: hidden;
+
+  img {
+    margin-bottom: -6px;
+    float: left;
+    padding: 36px 39px 33px 0;
+  }
+
+  p {
+    line-height: 154px;
+    float: left;
+    padding-right: 102px;
+    font-size: 17px;
+    margin: 0;
+  }
+
+  a {
+    font-size: 29px;
+    background: url('../images/link-bg.png');
+    background-position: center bottom;
+    font-style: italic;
+    background-repeat: no-repeat;
+    color: #000;
+    margin-top: 50px;
+    display: block;
+    float: right;
+    text-decoration: none;
+  }
+}
