@@ -6,6 +6,7 @@
 ?>
 @extends(Helper::layout())
 <?
+
 #$business = Cache::get('app.business', function(){
     $business = Dic::valuesBySlug('business', function($query){
         $query->orderBy('lft', 'ASC');
@@ -144,7 +145,7 @@ $projects_count = count($projects);
     @endif
         <div class="ivan-link">
             <img src="{{ Config::get('site.theme_path') }}/images/ivan-s.png">
-            <p>Иван Саввиди – председатель Совета директоров «ГРУППЫ АГРОКОМ»</p>
+            <p>{{ trans("interface.index.savvidi") }}</p>
             <a href="http://savvidi.ru/" target="_blank">www.savvidi.ru</a>
         </div>
     @if (isset($projects) && is_object($projects) && $projects->count())
