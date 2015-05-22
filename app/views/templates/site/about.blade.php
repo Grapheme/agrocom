@@ -20,10 +20,10 @@
     <div class="slogan">
         {{ nl2br(trans("interface.slogan")) }}
     </div>
-    <div id="preload-visual" data-img="{{ Config::get('site.theme_path') }}/images/visual-about.jpg" class="visual-wide">
+    <div id="preload-visual" data-img="/uploads/files/1432284937_1687.jpg" class="visual-wide">
         <div class="holder">
             <div class="teaser">
-                {{ trans("interface.logo.about.top") }}
+                <img src="/uploads/files/1432284937_1751.png" style="margin-bottom: -110px;margin-left: 75px;">
             </div>
         </div>
     </div>
