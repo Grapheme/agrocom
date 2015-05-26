@@ -14,9 +14,9 @@ $publications = Dic::valuesBySlug('publications', function($query) {
     $query->order_by_field('published_at', 'DESC');
 }, ['fields', 'textfields'], 1, 1, 1, $limit);
 
-foreach ($publications as $p => $publication)
+foreach ($publications as $pub => $publication)
     if ($publication->press_name == '')
-        unset($publications[$p]);
+        unset($publications[$pub]);
 
 #Helper::smartQueries(1);
 
