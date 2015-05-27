@@ -48,5 +48,8 @@ if (!$business_all) {
         <div class="contacts">
             {{ nl2br(trans("interface.company.phones")) }}
         </div>
+        <div class="contacts">
+            {{ trans("interface.facebook") }}
+        </div>
     </div>
 </footer>
