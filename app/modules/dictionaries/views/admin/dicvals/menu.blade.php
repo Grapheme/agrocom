@@ -43,6 +43,12 @@ if (Allow::action($module['group'], 'edit') && (!$dic->entity || Allow::superuse
             'link' => action('dic.edit', array('dic_id' => $dic->id)), 'title' => 'Изменить', 'class' => 'btn btn-success'
     );
 }
+if (isset($total_elements_current_selection) && is_numeric($total_elements_current_selection) && $total_elements_current_selection > 0 && Allow::superuser()) {
+    $menus[] = array(
+        #'link' => URL::route('dic.clear', array('dic_id' => $dic->id)), 'title' => 'Очистить', 'class' => 'btn btn-danger'
+        'raw' => Form::open(['url' => URL::route('dic.clear', array('dic_id' => $dic->id)), 'method' => 'POST', 'class' => 'clear_dic', 'style' => 'display:inline-block']) . Form::submit('Очистить', ['class' => 'btn btn-danger margin-bottom-5']) . Form::close(),
+    );
+}
 
 if (isset($dic_settings['menus']))
     $dic_menu = $dic_settings['menus'];

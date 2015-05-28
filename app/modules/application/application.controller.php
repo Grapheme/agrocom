@@ -21,6 +21,7 @@ class ApplicationController extends BaseController {
             Route::any('/business/{slug}', array('as' => 'app.business', 'uses' => __CLASS__.'@getBusiness'));
             Route::any('/projects/{slug}', array('as' => 'app.project', 'uses' => __CLASS__.'@getProject'));
             Route::any('/news/{slug}', array('as' => 'app.news_one', 'uses' => __CLASS__.'@getNewsOne'));
+            Route::any('/publications/{slug}', array('as' => 'app.publication', 'uses' => __CLASS__.'@getPublication'));
         });
 
 
@@ -81,6 +82,22 @@ class ApplicationController extends BaseController {
         #Helper::tad($new);
 
         return View::make(Helper::layout('news_one'), compact('new', 'slug'));
+    }
+
+
+    public function getPublication($lang, $slug) {
+
+        #$new = Dic::valueBySlugs('news', $slug, 'all', false, false);
+        $press = Dic::valueBySlugs('publications', $slug, ['fields', 'textfields', 'seo']);
+        if (!is_object($press))
+            App::abort(404);
+
+        #Helper::tad($press);
+
+        $press = DicLib::loadImages($press, ['image']);
+        #Helper::tad($press);
+
+        return View::make(Helper::layout('publication'), compact('press', 'slug'));
     }
 
 

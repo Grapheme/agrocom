@@ -48,7 +48,9 @@ $publications = DicLib::loadImages($publications, ['image']);
                 @foreach ($publications as $press)
                     <div class="unit">
                         <div class="news">
-                            <h2>{{ $press->press_name }}</h2>
+                            <h2>
+                                {{ $press->press_name }}
+                            </h2>
                             <div class="date-info">
                                 @if ($press->published_at)
                                     {{ Carbon::createFromFormat('Y-m-d', $press->published_at)->format('d.m.Y') }}
@@ -66,11 +68,14 @@ $publications = DicLib::loadImages($publications, ['image']);
                                 </div>
                             @endif
                             <div class="description">
-                                {{ $press->content }}
+                                {{ $press->preview }}
                                 @if ($press->link_to_file != '')
                                     <a href="{{ $press->link_to_file }}" class="download pdf">
                                         {{ trans("interface.download_pdf") }}
                                     </a>
+                                @endif
+                                @if ($press->content != '' && $press->slug)
+                                    <a href="{{ URL::route('app.publication', ['slug' => $press->slug]) }}">Подробнее</a>
                                 @endif
                             </div>
                         </div>

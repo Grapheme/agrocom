@@ -68,7 +68,7 @@ class helperr extends Command {
 
                 $this->info('[ ' . $dic_slug . ' ] - ' . $record->id . ' / ' . $count . ': ' . Helper::translit($record->title));
 
-                if ($dic_slug == 'news') {
+                if ($dic_slug == 'news' && 0) {
 
                     $dicval = DicVal::inject($dic_slug, array(
                         'slug' => Helper::translit($record->title),
@@ -88,7 +88,7 @@ class helperr extends Command {
                         ),
                     ));
 
-                } else if ($dic_slug == 'publications') {
+                } elseif ($dic_slug == 'publications') {
 
                     $dicval = DicVal::inject($dic_slug, array(
                         'slug' => Helper::translit($record->title),
@@ -102,7 +102,8 @@ class helperr extends Command {
                         ),
                         'textfields_i18n' => array(
                             'ru' => array(
-                                'content' => $record->short_text,
+                                'preview' => $record->short_text,
+                                'content' => $record->full_text,
                             ),
                         ),
                     ));

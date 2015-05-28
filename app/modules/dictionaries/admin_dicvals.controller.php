@@ -158,7 +158,7 @@ class AdminDicvalsController extends BaseController {
          */
         $total_elements_current_selection = clone $elements;
         $total_elements_current_selection = (int)$total_elements_current_selection->count();
-        #Helper::ta($total_elements_current_selection);
+        #Helper::tad($total_elements_current_selection);
 
         switch ($dic->sort_by) {
             case '':
@@ -226,6 +226,15 @@ class AdminDicvalsController extends BaseController {
             ;
         }
 
+        ## Dic settings
+        $dic_settings = Config::get('dic/' . $dic->slug);
+        #Helper::dd($dic_settings);
+
+        ## Sortable settings
+        $sortable = ($dic->sortable && $dic->pagination == 0 && $dic->sort_by == NULL) ? true : false;
+
+        if (isset($dic_settings['sortable']) && is_callable($dic_settings['sortable']))
+            $sortable = $dic_settings['sortable']($dic, $elements);
 
         ## Pagination
         if ($dic->pagination > 0)
@@ -234,9 +243,6 @@ class AdminDicvalsController extends BaseController {
             $elements = $elements->get();
 
         #Helper::tad($elements);
-
-        $sortable = ($dic->sortable && $dic->pagination == 0 && $dic->sort_by == NULL) ? true : false;
-
         #Helper::smartQueries(1);
 
         $elements_pagination = clone $elements;
@@ -249,10 +255,6 @@ class AdminDicvalsController extends BaseController {
             Helper::smartQueries(1);
             Helper::tad($elements);
         }
-
-        $dic_settings = Config::get('dic/' . $dic->slug);
-        #Helper::dd($dic_settings);
-
 
         $actions_column = false;
         if (
@@ -408,8 +410,10 @@ class AdminDicvalsController extends BaseController {
             $input['slug'] = Helper::translit($input['name']);
         */
 
-        if (!@$input['name'])
+        if (!isset($input['name']) || !mb_strlen($input['name']))
             $input['name'] = '';
+
+        $input['name'] = trim($input['name']);
 
         /**
          * Генерация системного имени в зависимости от настроек словаря
@@ -686,10 +690,35 @@ class AdminDicvalsController extends BaseController {
             $this->callHook('after_store_update_destroy_order', $dic, $element);
 
 			$json_request['responseText'] = 'Сохранено';
-            if ($redirect && Input::get('redirect'))
-			    $json_request['redirect'] = Input::get('redirect');
-			$json_request['status'] = TRUE;
+
+
+            if ($redirect) {
+
+                $redirect_url = NULL;
+                if (@$dic_settings['new_element_redirect'] == 'list') {
+
+                    $redirect_url = URL::route(is_numeric($dic_id) ? 'dicval.index' : 'entity.index', array('dic_id' => $dic_id)) . (Request::getQueryString() ? '?' . Request::getQueryString() : '');
+
+                } elseif (@is_array($dic_settings['new_element_redirect']) && isset($dic_settings['new_element_redirect']['route_name'])) {
+
+                    $redirect_url = URL::route($dic_settings['new_element_redirect']['route_name'], (array)@$dic_settings['new_element_redirect']['route_params']) . (@$dic_settings['new_element_redirect']['add_query_string'] && Request::getQueryString() ? '?' . Request::getQueryString() : '');
+
+                #} elseif (@$dic_settings['new_element_redirect'] == 'new' || !@$dic_settings['new_element_redirect']) {
+                } else {
+
+                    $redirect_url = URL::route(is_numeric($dic_id) ? 'dicval.edit' : 'entity.edit', array('dic_id' => $dic_id, 'id' => $element->id)) . (Request::getQueryString() ? '?' . Request::getQueryString() : '');
+
+                }
+            }
+
+
+            if ($redirect && $redirect_url)
+			    $json_request['redirect'] = $redirect_url;
+
+            $json_request['status'] = TRUE;
+
 		} else {
+
 			$json_request['responseText'] = 'Неверно заполнены поля';
 			$json_request['responseErrorText'] = $validator->messages()->all();
 		}
@@ -698,10 +727,14 @@ class AdminDicvalsController extends BaseController {
 
     /************************************************************************************/
 
-	#public function deleteDestroy($entity, $id){
-	public function destroy($dic_id, $id){
+    public function full_destroy($dic_id, $id) {
+        return $this->destroy($dic_id, $id, false);
+    }
 
-		if(!Request::ajax())
+	#public function deleteDestroy($entity, $id){
+	public function destroy($dic_id, $id, $check_ajax = true){
+
+		if($check_ajax && !Request::ajax())
             App::abort(404);
 
         $dic = Dictionary::where(is_numeric($dic_id) ? 'id' : 'slug', $dic_id)->first();

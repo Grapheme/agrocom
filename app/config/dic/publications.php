@@ -32,8 +32,12 @@ return array(
                 'title' => 'Доп. инфо (например, номер журнала)',
                 'type' => 'text',
             ),
+            'preview' => array(
+                'title' => 'Анонс публикации',
+                'type' => 'textarea',
+            ),
             'content' => array(
-                'title' => 'Полный текст новости',
+                'title' => 'Полный текст публикации',
                 'type' => 'textarea_redactor',
             ),
             'image' => array(
