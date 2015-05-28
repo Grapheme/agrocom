@@ -6,17 +6,17 @@ Options -Indexes
 
     RewriteEngine on
 
+    RewriteCond %{HTTP_HOST} ^www\.([^\/]+)$ [NC]
+    RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
     ## agrocomgroup.ru — открывается русская версия сайта
     ## agrocomgroup.com — открывается английская версия сайта
-    RewriteCond %{HTTP_HOST} ^(www\.|)agrocomgroup.com [NC]
+    RewriteCond %{HTTP_HOST} ^agrocomgroup.com [NC]
     RewriteRule ^(.*)$ http://agrocomgroup.ru/en [R=301,L]
 
     ## agrokomgroup.ru — перенаправляется на agrocomgroup.ru
-    RewriteCond %{HTTP_HOST} ^(www\.|)agrokomgroup.ru [NC]
+    RewriteCond %{HTTP_HOST} ^agrokomgroup.ru [NC]
     RewriteRule ^(.*)$ http://agrocomgroup.ru [R=301,L]
-
-    RewriteCond %{HTTP_HOST} ^www\.([^\/]+)$ [NC]
-    RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
 
 	# project.dev.grapheme.ru
     #RewriteCond %{DOCUMENT_ROOT}/public -d
