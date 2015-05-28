@@ -254,7 +254,7 @@ $('form.clear_dic').submit(function () {
         placeholder : ""
     }, function(ButtonPress, Value) {
 
-        alert(ButtonPress + " " + Value);
+        //alert(ButtonPress + " " + Value);
         if (ButtonPress === 'Удалить все записи (' + tecs + ')' && Value === 'delete') {
             clear_dic_confirm = true;
             $($form).submit();
