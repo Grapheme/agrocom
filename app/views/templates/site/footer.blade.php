@@ -49,7 +49,9 @@ if (!$business_all) {
             {{ nl2br(trans("interface.company.phones")) }}
         </div>
         <div class="contacts">
-            {{ trans("interface.facebook") }}
+            <a class="facebook" href="https://ru-ru.facebook.com/people/%D0%93%D1%80%D1%83%D0%BF%D0%BF%D0%B0-%D0%90%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%BC/100002853534059" target="_blank">
+                <img src="/images/logo_fb.svg">
+            </a>
         </div>
     </div>
 </footer>
