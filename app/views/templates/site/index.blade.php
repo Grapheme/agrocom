@@ -143,7 +143,9 @@ $projects_count = count($projects);
         </div>
     @endif
         <div class="ivan-link">
-            <img src="{{ Config::get('site.theme_path') }}/images/ivan-s.png">
+            <div class="logo">
+                {{ trans("interface.ivan-logo") }}
+            </div>
             <p>{{ trans("interface.index.savvidi") }}</p>
             <a href="http://savvidi.ru/" target="_blank">www.savvidi.ru</a>
         </div>

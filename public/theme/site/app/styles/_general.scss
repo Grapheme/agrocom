@@ -482,10 +482,12 @@ body.error-404 .shadow {
   margin: 0 auto;
   overflow: hidden;
 
-  img {
+  .logo {
     margin-bottom: -6px;
     float: left;
-    padding: 36px 39px 33px 0;
+    padding: 43px 25px 34px 0;
+    width: 103px;
+    height: 77px;
   }
 
   p {

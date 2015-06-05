@@ -2,7 +2,7 @@ $(document).ready(function() {
   var $slider = $('#main-slider'),
       $slides = $slider.find('.slide'),
       $dots = $slider.find('.dots a'),
-      delay = 5*1000,
+      delay = 3.5*1000,
       timer;
   if (!Modernizr.csstransitions) {
     var d_s = 100;
