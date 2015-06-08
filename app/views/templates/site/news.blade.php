@@ -33,6 +33,7 @@ foreach ($news as $n => $new)
         {{ Menu::placement('news_press') }}
 
     </div>
+    {{--
     <div class="news-sidebar">
         <form name="date-filter">
             <h3>Архив новостей</h3>
@@ -67,8 +68,8 @@ foreach ($news as $n => $new)
 
             <button type="submit" for="date-filter">Показать</button>
         </form>
-
     </div>
+    --}}
     <div class="content">
         <div class="page-desc">
             <p>
