@@ -43,5 +43,5 @@ $(document).ready(function() {
        	$('.form-holder [type="submit"]').removeAttr('disabled');
        });
  	}
- })
-})
+ });
+});

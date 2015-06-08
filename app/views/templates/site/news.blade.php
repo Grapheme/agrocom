@@ -33,6 +33,42 @@ foreach ($news as $n => $new)
         {{ Menu::placement('news_press') }}
 
     </div>
+    <div class="news-sidebar">
+        <form name="date-filter">
+            <h3>Архив новостей</h3>
+            <select name="month" id="month" for="date-filter">
+                <option value="1">January</option>
+                <option value="2">February</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+                <option value="9">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+            </select>
+
+            <select name="year" id="year" for="date-filter">
+                <option value="1">2015</option>
+                <option value="2">2014</option>
+                <option value="3">2013</option>
+                <option value="4">2012</option>
+                <option value="5">2011</option>
+                <option value="6">2010</option>
+                <option value="7">2009</option>
+                <option value="8">2008</option>
+                <option value="9">2007</option>
+                <option value="10">2006</option>
+                <option value="11">2005</option>
+            </select>
+
+            <button type="submit" for="date-filter">Показать</button>
+        </form>
+
+    </div>
     <div class="content">
         <div class="page-desc">
             <p>
