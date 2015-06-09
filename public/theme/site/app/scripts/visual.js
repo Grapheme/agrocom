@@ -82,5 +82,5 @@ $(document).ready(function() {
   });
   
   $(window).scroll();
-  
+  $( "#year, #month" ).selectmenu();
 });
