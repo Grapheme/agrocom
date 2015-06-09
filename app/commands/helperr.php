@@ -68,7 +68,7 @@ class helperr extends Command {
 
                 $this->info('[ ' . $dic_slug . ' ] - ' . $record->id . ' / ' . $count . ': ' . Helper::translit($record->title));
 
-                if ($dic_slug == 'news' && 0) {
+                if ($dic_slug == 'news') {
 
                     $dicval = DicVal::inject($dic_slug, array(
                         'slug' => Helper::translit($record->title),
