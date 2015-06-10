@@ -529,11 +529,20 @@ class AdminPagesPageController extends BaseController {
 
         $input = Input::all();
         $locales = Helper::withdraw($input, 'locales');
-        $input['template'] = @$input['template'] ? $input['template'] : NULL;
-        $input['slug'] = @$input['slug'] ? $input['slug'] : $input['name'];
-        $input['slug'] = Helper::translit($input['slug']);
 
         if (Allow::action('pages', 'advanced', true, false)) {
+
+            if (isset($input['template'])) {
+
+                $input['template'] = trim($input['template']) != '' ? $input['template'] : NULL;
+            }
+
+            if (isset($input['slug'])) {
+
+                $input['slug'] = trim($input['slug']) != '' ? $input['slug'] : $input['name'];
+                $input['slug'] = Helper::translit($input['slug']);
+            }
+
             $input['settings']['system_block'] = isset($input['settings']['system_block']) ? 1 : 0;
         }
 
