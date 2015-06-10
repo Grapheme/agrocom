@@ -232,6 +232,10 @@ class AdminPagesPageController extends BaseController {
         $blocks_new = Helper::withdraw($input, 'blocks_new');
         #$seo = Helper::withdraw($input, 'seo');
 
+        $fields_all = @$input['fields'];
+        $element_fields = Config::get('pages.fields');
+        $element_fields = is_callable($element_fields) ? $element_fields() : [];
+
         $input['template'] = @$input['template'] ? $input['template'] : NULL;
         $input['start_page'] = @$input['start_page'] ? 1 : NULL;
 
@@ -307,8 +311,29 @@ class AdminPagesPageController extends BaseController {
                 foreach ($locales as $locale_sign => $locale_settings) {
 
                     $seo = Helper::withdraw($locale_settings, 'seo');
-                    $locale_settings['template'] = @$locale_settings['template'] ? $locale_settings['template'] : NULL;
+
                     $page_meta = $this->pages_meta->where('page_id', $element->id)->where('language', $locale_sign)->first();
+
+                    ## Сохраняем доп. поля
+                    ## Сыровато, требует доработки - нужно сделать по аналогии со словарями
+                    #Helper::tad($fields_all);
+                    $fields = (array)$fields_all[$locale_sign];
+                    if (count($fields)) {
+                        foreach ($fields as $field_name => $field) {
+
+                            if (is_callable($handler = @$element_fields[$field_name]['handler'])) {
+                                #Helper::d($handler);
+                                $field = $handler($field, $element);
+                                $fields[$field_name] = $field;
+                            }
+                        }
+                    }
+                    $settings = is_object($page_meta) ? @json_decode($page_meta->settings, true) : [];
+                    $settings['fields'] = $fields;
+                    $locale_settings['settings'] = json_encode($settings);
+
+                    $locale_settings['template'] = @$locale_settings['template'] ? $locale_settings['template'] : NULL;
+
                     if (is_object($page_meta)) {
                         $page_meta->update($locale_settings);
                     } else {
