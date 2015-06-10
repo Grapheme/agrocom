@@ -9,11 +9,31 @@
 $limit = 5;
 $p = Input::get('page') ?: 1;
 #dd($p);
-$news = Dic::valuesBySlug('news', function($query) use ($limit, $p) {
+
+$years = [];
+for($i = date('Y'); $i>=2005; $i--) {
+    $years[] = $i;
+}
+$monthes = Config::get('site.monthes.' . Config::get('app.locale'));
+
+$year = Input::get('year') ?: null;
+$month = Input::get('month') ?: null;
+
+$news = Dic::valuesBySlug('news', function($query) use ($limit, $p, $year, $month) {
+
+    if ($year && $month) {
+        $filter_exp_1 = $year . '-' . $month . '-01';
+        $filter_exp_2 = $year . '-' . $month . '-31';
+
+        $query->filter_by_field('published_at', '>=', $filter_exp_1);
+        $query->filter_by_field('published_at', '<=', $filter_exp_2);
+    }
+
     $query->order_by_field('published_at', 'DESC');
-    #$query->skip($limit*($p-1));
+
 }, ['fields', 'textfields'], 1, 1, 0, $limit);
 #Helper::tad($news);
+
 $news = DicLib::loadGallery($news, ['gallery']);
 foreach ($news as $n => $new)
     if ($new->news_name == '')
@@ -33,43 +53,34 @@ foreach ($news as $n => $new)
         {{ Menu::placement('news_press') }}
 
     </div>
-    {{--
-    <div class="news-sidebar">
-        <form name="date-filter">
-            <h3>Архив новостей</h3>
-            <select name="month" id="month" for="date-filter">
-                <option value="1">January</option>
-                <option value="2">February</option>
-                <option value="3">March</option>
-                <option value="4">April</option>
-                <option value="5">May</option>
-                <option value="6">June</option>
-                <option value="7">July</option>
-                <option value="8">August</option>
-                <option value="9">September</option>
-                <option value="10">October</option>
-                <option value="11">November</option>
-                <option value="12">December</option>
-            </select>
 
-            <select name="year" id="year" for="date-filter">
-                <option value="1">2015</option>
-                <option value="2">2014</option>
-                <option value="3">2013</option>
-                <option value="4">2012</option>
-                <option value="5">2011</option>
-                <option value="6">2010</option>
-                <option value="7">2009</option>
-                <option value="8">2008</option>
-                <option value="9">2007</option>
-                <option value="10">2006</option>
-                <option value="11">2005</option>
-            </select>
+    @if (false)
+        <div class="news-sidebar">
+            <form action="?" method="GET" name="date-filter">
+                <h3>Архив новостей</h3>
+                <select name="month" id="month" for="date-filter">
+                    @foreach ($monthes as $m => $month)
+                        <?
+                        $current_month = Input::get('month') ?: date('m');
+                        ?>
+                        <option value="{{ $m }}"{{ $m == $current_month ? ' selected="selected"' : '' }}>{{ $month }}</option>
+                    @endforeach
+                </select>
 
-            <button type="submit" for="date-filter">Показать</button>
-        </form>
-    </div>
-    --}}
+                <select name="year" id="year" for="date-filter">
+                    @foreach ($years as $year)
+                        <?
+                        $current_year = Input::get('year') ?: date('Y');
+                        ?>
+                        <option value="{{ $year }}"{{ $year == $current_year ? ' selected="selected"' : '' }}>{{ $year }}</option>
+                    @endforeach
+                </select>
+
+                <button type="submit" for="date-filter">Показать</button>
+            </form>
+        </div>
+    @endif
+
     <div class="content">
         <div class="page-desc">
             <p>

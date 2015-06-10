@@ -68,7 +68,7 @@ if (isset($dic_menu) && is_callable($dic_menu)) {
 {{ Form::close() }}
 
 <h1 class="top-module-menu">
-    <a href="{{ URL::route(is_numeric($dic_id) ? 'dicval.index' : 'entity.index', array('dic_id' => $dic_id)) }}">{{ $dic->name }}</a>
+    <a href="{{ URL::route(is_numeric($dic_id) ? 'dicval.index' : 'entity.index', array('dic_id' => $dic_id)) }}" title="{{ isset($total_elements_current_selection) && $total_elements_current_selection ? 'Всего записей: ' . $total_elements_current_selection : '' }}">{{ $dic->name }}</a>
     {{ $dic->entity && is_numeric($dic_id) ? ' <i class="fa fa-angle-double-right"></i> <a href="' . URL::route('entity.index', $dic->slug) . '" title="Вынесено в отдельную сущность">' . $dic->slug . '</a>' : '' }}
     @if (isset($element) && is_object($element) && $element->name)
         &nbsp;&mdash;&nbsp;

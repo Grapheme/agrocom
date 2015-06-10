@@ -10,8 +10,27 @@ $limit = 5;
 $p = Input::get('page') ?: 1;
 #dd($p);
 
-$publications = Dic::valuesBySlug('publications', function($query) {
+$years = [];
+for($i = date('Y'); $i>=2005; $i--) {
+    $years[] = $i;
+}
+$monthes = Config::get('site.monthes.' . Config::get('app.locale'));
+
+$year = Input::get('year') ?: null;
+$month = Input::get('month') ?: null;
+
+$publications = Dic::valuesBySlug('publications', function($query) use ($year, $month) {
+
+    if ($year && $month) {
+        $filter_exp_1 = $year . '-' . $month . '-01';
+        $filter_exp_2 = $year . '-' . $month . '-31';
+
+        $query->filter_by_field('published_at', '>=', $filter_exp_1);
+        $query->filter_by_field('published_at', '<=', $filter_exp_2);
+    }
+
     $query->order_by_field('published_at', 'DESC');
+
 }, ['fields', 'textfields'], 1, 1, 1, $limit);
 
 foreach ($publications as $pub => $publication)
@@ -36,6 +55,33 @@ $publications = DicLib::loadImages($publications, ['image']);
         {{ Menu::placement('news_press') }}
 
     </div>
+
+    @if (false)
+        <div class="news-sidebar">
+            <form action="?" method="GET" name="date-filter">
+                <h3>Архив публикаций</h3>
+                <select name="month" id="month" for="date-filter">
+                    @foreach ($monthes as $m => $month)
+                        <?
+                        $current_month = Input::get('month') ?: date('m');
+                        ?>
+                        <option value="{{ $m }}"{{ $m == $current_month ? ' selected="selected"' : '' }}>{{ $month }}</option>
+                    @endforeach
+                </select>
+
+                <select name="year" id="year" for="date-filter">
+                    @foreach ($years as $year)
+                        <?
+                        $current_year = Input::get('year') ?: date('Y');
+                        ?>
+                        <option value="{{ $year }}"{{ $year == $current_year ? ' selected="selected"' : '' }}>{{ $year }}</option>
+                    @endforeach
+                </select>
+
+                <button type="submit" for="date-filter">Показать</button>
+            </form>
+        </div>
+    @endif
 
     <div class="content">
         <div class="page-desc">
