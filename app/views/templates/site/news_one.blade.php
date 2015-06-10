@@ -25,7 +25,7 @@ $page_title = $new->news_name;
 
     <div class="content">
         <h1>
-            {{ $new->name }}
+            {{ $new->news_name }}
         </h1>
         <div class="date">
             {{ Carbon::createFromFormat('Y-m-d', $new->published_at)->format('d.m.Y') }}
