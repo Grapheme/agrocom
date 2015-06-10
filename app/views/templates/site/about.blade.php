@@ -23,7 +23,7 @@
     <div id="preload-visual" data-img="/uploads/files/1432284937_1687.jpg" class="visual-wide">
         <div class="holder">
             <div class="teaser">
-                <img src="/uploads/files/1432284937_1751.png" style="margin-bottom: -110px;margin-left: 75px;">
+                <img src="/uploads/files/1432284937_1751.png" style="margin-bottom: -67px;margin-left: 75px;">
             </div>
         </div>
     </div>
