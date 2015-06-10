@@ -270,8 +270,16 @@ class AdminPagesPageController extends BaseController {
                 ## PAGES_BLOCKS - update
                 if (count($blocks)) {
                     foreach ($blocks as $block_id => $block_data) {
-                        $block_data['slug'] = @$block_data['slug'] ? $block_data['slug'] : $block_data['name'];
-                        $block_data['slug'] = Helper::translit($block_data['slug']);
+
+                        if (Allow::action('pages', 'advanced', true, false)) {
+
+                            if (isset($block_data['slug'])) {
+
+                                $block_data['slug'] = trim($block_data['slug']) != '' ? $block_data['slug'] : $block_data['name'];
+                                $block_data['slug'] = Helper::translit($block_data['slug']);
+                            }
+                        }
+
                         #$block_data['settings'] = json_encode($block_data['settings']);
                         $block = $this->pages_blocks->find($block_id);
                         if (is_object($block)) {
