@@ -328,9 +328,18 @@ class AdminPagesPageController extends BaseController {
             ## PAGES_BLOCKS - create
             if (count($blocks_new)) {
                 foreach ($blocks_new as $null => $block_data) {
+
                     $block_data['page_id'] = $id;
-                    $block_data['slug'] = @$block_data['slug'] ? $block_data['slug'] : $block_data['name'];
-                    $block_data['slug'] = Helper::translit($block_data['slug']);
+
+                    if (Allow::action('pages', 'advanced', true, false)) {
+
+                        if (isset($block_data['slug'])) {
+
+                            $block_data['slug'] = trim($block_data['slug']) != '' ? $block_data['slug'] : $block_data['name'];
+                            $block_data['slug'] = Helper::translit($block_data['slug']);
+                        }
+                    }
+
                     $this->pages_blocks->create($block_data);
                 }
             }
