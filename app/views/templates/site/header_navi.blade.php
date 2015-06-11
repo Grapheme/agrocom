@@ -50,6 +50,9 @@
                 $class = (NULL !== ($route_lang = $route->getParameter('lang')) && $route_lang == $lang_sign) ? 'active' : '';
             }
             #*/
+
+            ## HACK
+            $class = 'active';
             ?>
 
 {{--            <a href="{{ URL::route($route_name, $route_params) }}" class="{{ $class }}">{{ $lang_text }}</a>--}}
