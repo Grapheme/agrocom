@@ -130,7 +130,9 @@ $projects_count = count($projects);
         <div class="recent-news">
             <div class="content">
                 <p class="head-title">
-                    {{ trans("interface.last_news") }}
+                    <a href="{{ URL::route('page', pageslug('news')) }}">
+                        {{ trans("interface.news") }}
+                    </a>
                 </p>
                 @foreach ($news as $new)
                     <a href="{{ URL::route('app.news_one', ['slug' => $new->slug]) }}" class="unit">

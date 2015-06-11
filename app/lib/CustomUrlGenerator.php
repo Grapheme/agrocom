@@ -17,8 +17,7 @@ class CustomUrlGenerator extends UrlGenerator {
 	##
     ## Custom URL::route() method
     ##
-	public function route($name, $parameters = array(), $absolute = true, $route = null)
-	{
+	public function route($name, $parameters = array(), $absolute = true, $route = null) {
         ##
         ## Call route modifier closure
         ##
@@ -51,6 +50,22 @@ class CustomUrlGenerator extends UrlGenerator {
             var_dump($parameters);
             var_dump($defaults);
             #die;
+        }
+
+        if ($name == 'page' && 0) {
+            var_dump($route);
+            var_dump((array)$route->parameterNames());
+            var_dump($parameters);
+            var_dump($defaults);
+            #die;
+        }
+
+        ## URL::route('page', 'news') => parameters: [0 => 'news'] => ['slug' => 'news']
+        ## URL::route('page', ['news', 'lang' => 'en']) => parameters: [0 => 'news', 'lang' => 'en'] => ['slug' => 'news', 'lang' => 'en']
+        if (is_object($route) && $route->getName() == 'page' && !isset($parameters['slug']) && isset($parameters[0])) {
+            #\Helper::ta($parameters);
+            $parameters['slug'] = $parameters[0];
+            unset($parameters[0]);
         }
 
         if (NULL !== $route) {
@@ -146,7 +161,7 @@ class CustomUrlGenerator extends UrlGenerator {
             #\Helper::d('=== START URL::get_modified_parameters() ===');
             #\Helper::d($route_name);
             #\Helper::d($params);
-            $this->url_modifiers[$route_name]($params);
+            $this->url_modifiers[$route_name]($route_name, $params);
             #\Helper::d($params);
             #\Helper::d('=== END URL::get_modified_parameters() ===');
         }
