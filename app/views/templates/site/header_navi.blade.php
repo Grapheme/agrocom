@@ -25,6 +25,9 @@
         @foreach ($langs as $lang_sign => $lang_text)
 
             <?
+            if ($lang_sign == Config::get('app.locale'))
+                continue;
+
             #/*
             if (in_array($route_name, ['mainpage'])) {
 
