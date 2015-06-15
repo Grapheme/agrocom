@@ -131,6 +131,12 @@ $publications = DicLib::loadImages($publications, ['image']);
                     <a href="{{ URL::route('page', ['slug' => pageslug('publications'), 'page' => $p+1]) }}" class="next">
                         {{ trans("interface.next_page") }}
                     </a>
+                    <center>
+                      <div class="preloader">
+                        <div class="ball"></div>
+                        <div class="ball1"></div>
+                      </div>
+                    </center>
                 </div>
             </div>
         @endif

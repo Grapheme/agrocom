@@ -43,6 +43,48 @@
       }
     }
   }
+  .page-nav {
+    .preloader {
+      width: 90%;
+      display: inline-block;
+      vertical-align: middle;
+      transition: all 800ms cubic-bezier(0.075, 0.82, 0.165, 1);
+      -ms-transition: all 800ms cubic-bezier(0.075, 0.82, 0.165, 1);
+      transform: translate(0px, 30px);
+      .ball {
+        background-color: rgba(0,0,0,0);
+        border: 5px solid #777777;
+        opacity: .9;
+        border-top: 5px solid rgba(0,0,0,0);
+        border-left: 5px solid rgba(0,0,0,0);
+        border-radius: 50px;
+        //box-shadow: 0 0 35px #2187e7;
+        width: 50px;
+        height: 50px;
+        margin: 0 auto;
+        animation: spin 1s infinite linear;
+      }
+      .ball1 {
+        background-color: rgba(0,0,0,0);
+        border: 5px solid #777;
+        opacity: .9;
+        border-top: 5px solid rgba(0,0,0,0);
+        border-left: 5px solid rgba(0,0,0,0);
+        border-radius: 50px;
+        //box-shadow: 0 0 15px #2187e7;
+        width: 30px;
+        height: 30px;
+        margin: 0 auto;
+        position: relative;
+        top: -50px;
+        animation: spinoff 1s infinite linear;
+      }
+      &.loaded {
+        transform: translate(0px, 0px);
+        opacity: 1;
+      }
+    }
+  }
 }
 
 body.news {

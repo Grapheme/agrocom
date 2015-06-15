@@ -121,6 +121,12 @@ foreach ($news as $n => $new)
                     <a href="{{ URL::route('page', ['slug' => 'news', 'page' => $p+1]) }}" class="next">
                         {{ trans("interface.next_page") }}
                     </a>
+                    <center>
+                      <div class="preloader">
+                        <div class="ball"></div>
+                        <div class="ball1"></div>
+                      </div>
+                    </center>
                 </div>
             </div>
         @endif
