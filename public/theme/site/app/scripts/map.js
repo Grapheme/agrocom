@@ -4,6 +4,7 @@ function LoadGmaps() {
     var myOptions = {
         zoom: 16,
         center: myLatlng,
+				scrollwheel: false,
         disableDefaultUI: true,
         panControl: false,
         zoomControl: true,
@@ -22,14 +23,14 @@ function LoadGmaps() {
     var marker = new google.maps.Marker({
         position: myLatlng,
         map: map,
-        title:"344002, г. Ростов-на-Дону, ул. Красноармейская, 170"
+        title:"ООО «ГРУППА АГРОКОМ», 344002, г. Ростов-на-Дону, ул. Красноармейская, 170"
     });
-    /*var infowindow = new google.maps.InfoWindow({
-        content: "344002, г. Ростов-на-Дону, ул. Красноармейская, 170. <br>Приемная +7 (863) 250-58-14"
+    var infowindow = new google.maps.InfoWindow({
+        content: "ООО «ГРУППА АГРОКОМ»<br>344002, г. Ростов-на-Дону, ул. Красноармейская, 170. <br>Приемная +7 (863) 250-58-14"
         });
     google.maps.event.addListener(marker, "click", function() {
         infowindow.open(map, marker);
-    });*/
+    });
   }
 }
 
