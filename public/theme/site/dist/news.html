@@ -52,6 +52,39 @@
           в&nbsp;<nobr>Ростове-на-Дону</nobr> в&nbsp;2004 году.
         </p>
       </div>
+      <div class="news-filter">
+        <form action="" method="GET" name="date-filter">
+          <div class="title">Архив новостей</div>
+          <select name="month" id="month" for="date-filter">
+            <option value="01">Январь</option>
+            <option value="02">Февраль</option>
+            <option value="03">Март</option>
+            <option value="04">Апрель</option>
+            <option value="05">Май</option>
+            <option value="06">Июнь</option>
+            <option value="07">Июль</option>
+            <option value="08">Август</option>
+            <option value="09">Сентябрь</option>
+            <option value="10">Октябрь</option>
+            <option value="11">Ноябрь</option>
+            <option value="12">Декабрь</option>
+          </select>
+          <select name="year" id="year" for="date-filter">
+            <option value="2015">2015</option>
+            <option value="2014">2014</option>
+            <option value="2013">2013</option>
+            <option value="2012">2012</option>
+            <option value="2011">2011</option>
+            <option value="2010">2010</option>
+            <option value="2009">2009</option>
+            <option value="2008">2008</option>
+            <option value="2007">2007</option>
+            <option value="2006">2006</option>
+            <option value="2005">2005</option>
+          </select>
+          <button type="submit" for="date-filter">Показать</button>
+        </form>
+      </div>
       <div class="news-list inf-scroll">
         <div class="unit">
           <div class="date">11.12.2014</div>
@@ -78,7 +111,14 @@
             </div><a href="" class="more">Подробнее</a>
           </div>
         </div>
-        <div class="page-nav"><a href="news-page2.html" class="next">Следующая страница //ссылка на следующую страницу, будет загружена в бесконечный скролл автоматически</a></div>
+        <div class="page-nav"><a href="news-page2.html" class="next">Следующая страница //ссылка на следующую страницу, будет загружена в бесконечный скролл автоматически</a>
+          <center> 
+            <div class="preloader">
+              <div class="ball"></div>
+              <div class="ball1"></div>
+            </div>
+          </center>
+        </div>
       </div>
     </div>
     <footer>
