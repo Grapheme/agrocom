@@ -56,7 +56,7 @@ $publications = DicLib::loadImages($publications, ['image']);
 
     </div>
 
-    @if (false)
+    @if (1)
         <div class="news-sidebar">
             <form action="?" method="GET" name="date-filter">
                 <h3>Архив публикаций</h3>
