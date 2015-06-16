@@ -5,9 +5,11 @@
 ?>
 
 <header>
-    <div class="holder"><a href="{{ URL::route('mainpage', ['lang' => Config::get('app.locale')]) }}" class="logo">
+    <div class="holder">
+        <a href="{{ URL::route('mainpage', ['lang' => Config::get('app.locale')]) }}" class="logo">
             {{ trans("interface.logo.top-mini") }}
-            <!--img(src="/images/logo.svg")--></a>
+            <!--img(src="/images/logo.svg")-->
+        </a>
 
         @include(Helper::layout('header_navi'))
 
