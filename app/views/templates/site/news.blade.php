@@ -59,29 +59,30 @@ foreach ($news as $n => $new)
                 {{ $page->block('intro') }}
             </p>
         </div>
-        <div class="news-filter">
-          <form action="?" method="GET" name="date-filter">
-              <div class="title">Архив новостей</div>
-              <select name="month" id="month" for="date-filter">
-                  @foreach ($monthes as $m => $month)
-                      <?
-                      $current_month = Input::get('month') ?: date('m');
-                      ?>
-                      <option value="{{ $m }}"{{ $m == $current_month ? ' selected="selected"' : '' }}>{{ $month }}</option>
-                  @endforeach
-              </select>
-              <select name="year" id="year" for="date-filter">
-                  @foreach ($years as $year)
-                      <?
-                      $current_year = Input::get('year') ?: date('Y');
-                      ?>
-                      <option value="{{ $year }}"{{ $year == $current_year ? ' selected="selected"' : '' }}>{{ $year }}</option>
-                  @endforeach
-              </select>
 
-              <button type="submit" for="date-filter">Показать</button>
-          </form>
-		    </div>
+        <div class="news-filter">
+            <form action="?" method="GET" name="date-filter">
+                <div class="title">Архив новостей</div>
+                <select name="month" id="month" for="date-filter">
+                    @foreach ($monthes as $m => $month)
+                        <?
+                        $current_month = Input::get('month') ?: date('m');
+                        ?>
+                        <option value="{{ $m }}"{{ $m == $current_month ? ' selected="selected"' : '' }}>{{ $month }}</option>
+                    @endforeach
+                </select> <select name="year" id="year" for="date-filter">
+                    @foreach ($years as $year)
+                        <?
+                        $current_year = Input::get('year') ?: date('Y');
+                        ?>
+                        <option value="{{ $year }}"{{ $year == $current_year ? ' selected="selected"' : '' }}>{{ $year }}</option>
+                    @endforeach
+                </select>
+
+                <button type="submit" for="date-filter">Показать</button>
+            </form>
+        </div>
+
         @if (isset($news) && is_object($news) && $news->count())
             <div class="news-list inf-scroll">
                 @foreach ($news as $new)

@@ -56,10 +56,16 @@ $publications = DicLib::loadImages($publications, ['image']);
 
     </div>
 
-    @if (1)
-        <div class="news-sidebar">
+    <div class="content">
+        <div class="page-desc">
+            <p>
+                {{ $page->block('intro') }}
+            </p>
+        </div>
+
+        <div class="news-filter">
             <form action="?" method="GET" name="date-filter">
-                <h3>Архив публикаций</h3>
+                <div class="title">Архив новостей</div>
                 <select name="month" id="month" for="date-filter">
                     @foreach ($monthes as $m => $month)
                         <?
@@ -67,9 +73,7 @@ $publications = DicLib::loadImages($publications, ['image']);
                         ?>
                         <option value="{{ $m }}"{{ $m == $current_month ? ' selected="selected"' : '' }}>{{ $month }}</option>
                     @endforeach
-                </select>
-
-                <select name="year" id="year" for="date-filter">
+                </select> <select name="year" id="year" for="date-filter">
                     @foreach ($years as $year)
                         <?
                         $current_year = Input::get('year') ?: date('Y');
@@ -81,14 +85,7 @@ $publications = DicLib::loadImages($publications, ['image']);
                 <button type="submit" for="date-filter">Показать</button>
             </form>
         </div>
-    @endif
 
-    <div class="content">
-        <div class="page-desc">
-            <p>
-                {{ $page->block('intro') }}
-            </p>
-        </div>
         @if (isset($publications) && is_object($publications) && $publications->count())
             <div class="news-list inf-scroll">
                 @foreach ($publications as $press)
