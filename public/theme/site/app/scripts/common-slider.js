@@ -52,7 +52,11 @@ $(document).ready(function() {
               visibility: 'visible'
             });
           }
-          $numbers.text((newIndex+1)+'/'+(_count+1))
+          if (newIndex+_count>0) {
+            $numbers.text((newIndex+1)+'/'+(_count+1))
+          } else {
+            $numbers.text('');
+          }
         }
 
       }
