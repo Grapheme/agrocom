@@ -298,6 +298,9 @@ body.press {
 }
 
 body.news-detail {
+  h1 {
+    margin-bottom: 10px;
+  }
   .date {
     margin-bottom: 10px;
   }
@@ -307,7 +310,7 @@ body.news-detail {
         p {
           break-inside: avoid-column;
           margin-top: 0;
-          margin-bottom: 32px;
+          margin-bottom: 22px;
         }
       }
   }
