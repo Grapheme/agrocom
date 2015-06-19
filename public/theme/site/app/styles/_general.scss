@@ -92,6 +92,15 @@
   margin: 0 auto;
   color: #2c2c2c;
   margin-bottom: 70px;
+  a {
+    color: #1eb3c2;
+    border-bottom: 1px solid lighten(#1eb3c2, 20%);
+    text-decoration: none;
+    &:hover {
+      text-decoration: none;
+      border-bottom: none;
+    }
+  }
   h1 {
     font-family: 'Foros-Medium';
     font-size: 52px;

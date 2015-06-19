@@ -52,10 +52,12 @@ $(document).ready(function() {
               visibility: 'visible'
             });
           }
-          if (newIndex+_count>0) {
-            $numbers.text((newIndex+1)+'/'+(_count+1))
+          
+          $numbers.text((newIndex+1)+'/'+(_count+1));
+          if (_count > 0) {
+            $(this).prev('.common-slider-controls').show();
           } else {
-            $numbers.text('');
+            $(this).prev('.common-slider-controls').hide();
           }
         }
 
