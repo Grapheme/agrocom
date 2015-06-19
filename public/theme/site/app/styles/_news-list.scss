@@ -265,3 +265,11 @@ body.press {
   -webkit-font-smoothing:antialiased;
   font-weight: normal !important;
 }
+
+body.news-detail {
+  .content {
+    p {
+      column-count: 2;
+    }
+  }
+}

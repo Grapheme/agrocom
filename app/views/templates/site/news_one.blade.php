@@ -11,7 +11,7 @@ $page_title = $new->news_name;
 ?>
 
 
-@section('body_class') news @stop
+@section('body_class') news news-detail @stop
 
 
 @section('content')
