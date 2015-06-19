@@ -54,6 +54,7 @@ $(document).ready(function() {
           }
           
           $numbers.text((newIndex+1)+'/'+(_count+1));
+          console.log(_count);
           if (_count > 0) {
             $(this).prev('.common-slider-controls').show();
           } else {
