@@ -267,7 +267,17 @@ body.press {
 }
 
 body.news-detail {
+  .date {
+    margin-bottom: 10px;
+  }
   .content {
-
+      .text-col-2 {
+        column-count: 2;
+        p {
+          break-inside: avoid-column;
+          margin-top: 0;
+          margin-bottom: 32px;
+        }
+      }
   }
 }
