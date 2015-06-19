@@ -47,8 +47,9 @@ $page_title = $new->news_name;
         @endif
 
         <br/>
-
-        {{ $new->content }}
+        <div class="text-col-2">
+          {{ $new->content }}
+        </div>
 
     </div>
 

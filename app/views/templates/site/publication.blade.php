@@ -42,9 +42,9 @@ $page_title = $press->press_name;
         @endif
 
         <br/>
-
-        {{ $press->content }}
-
+        <div class="text-col-2">
+          {{ $press->content }}
+        </div>
     </div>
 
 @stop

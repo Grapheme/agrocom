@@ -31,10 +31,11 @@ $(document).ready(function() {
     $_this.wrap('<div class="new" />');
   });*/
   
+  /*
   $('body.news-detail .content p').map(function() {
     if (!$(this).prev().is('p')) {
         return $(this).nextUntil(':not(p)').andSelf();
     }
   }).wrap("<div class='text-col-2' />");
-  
+  */
 })
