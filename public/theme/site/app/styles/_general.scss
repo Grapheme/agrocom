@@ -75,10 +75,18 @@
         text-decoration: none;
         padding: 6px 16px;
         border: 1px solid transparent;
-        margin-right: 15px;
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: 16px;
+        //margin-right: 31px;
+        &:hover {
+          border-bottom: 1px solid;
+        }
         &.active {
           border: 2px solid white;
           color: white;
+          margin-right: 15px;
+          padding: 6px 16px;
         }
         h1 {
           margin: 0;
@@ -240,7 +248,7 @@
   aside {
     float: left;
     width: 400px;
-    background: #e5e5e5;
+    //background: #e5e5e5;
     padding-bottom: 180px;
     ul {
       padding: 0;
@@ -263,8 +271,9 @@
             text-decoration: underline;
           }
           &.active {
-            background: #606060;
+            //background: #606060;
             color: white;
+            color: #1eb3c2;
             font-family: 'Foros-Medium';
             font-size: 30px;
             padding-top: 5px;
