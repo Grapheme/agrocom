@@ -66,7 +66,7 @@ $publications = DicLib::loadImages($publications, ['image']);
         <div class="news-filter" data-month="{{ Config::get('site.monthes.' . Config::get('app.locale') . '.' . date('m')) }}" data-year="{{ date('Y') }}">
             <form action="?" method="GET" name="date-filter">
                 <div class="title">
-                    {{ trans("interface.oublications_archive") }}
+                    {{ trans("interface.publications_archive") }}
                 </div>
                 <select name="month" id="month" for="date-filter">
                     @foreach ($monthes as $m => $month)
