@@ -10,7 +10,7 @@ $(document).ready(function() {
         $.ajax({
           url: next_url,
           success: function(raw){
-            $nav.fadeOut(300, function(){
+            $nav.slideUp(300, function(){
               $(this).remove();
             })
             var data = $(raw).find('.inf-scroll > *');

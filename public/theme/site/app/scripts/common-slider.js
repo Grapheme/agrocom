@@ -8,6 +8,7 @@ $(document).ready(function() {
         var $next = $(this).prev('.common-slider-controls').find('.next');
         var $prev = $(this).prev('.common-slider-controls').find('.prev');
         var $numbers = $(this).prev('.common-slider-controls').find('.numbers');
+        var $controls = $(this).prev('.common-slider-controls');
         
         var _count = $(this).find('>li').size()-1;
         var $slider = $(this).bxSlider({
@@ -52,7 +53,14 @@ $(document).ready(function() {
               visibility: 'visible'
             });
           }
-          $numbers.text((newIndex+1)+'/'+(_count+1))
+          
+          $numbers.text((newIndex+1)+'/'+(_count+1));
+          console.log(_count);
+          if (_count > 0) {
+            $controls.show();
+          } else {
+            $controls.hide();
+          }
         }
 
       }

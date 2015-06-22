@@ -11,7 +11,7 @@ $page_title = $new->news_name;
 ?>
 
 
-@section('body_class') news @stop
+@section('body_class') news news-detail @stop
 
 
 @section('content')
@@ -47,8 +47,9 @@ $page_title = $new->news_name;
         @endif
 
         <br/>
-
-        {{ $new->content }}
+        <div class="text-col-2">
+          {{ $new->content }}
+        </div>
 
     </div>
 
