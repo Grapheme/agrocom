@@ -60,9 +60,11 @@ foreach ($news as $n => $new)
             </p>
         </div>
 
-        <div class="news-filter">
+        <div class="news-filter" data-month="{{ Config::get('site.monthes.' . Config::get('app.locale') . '.' . date('m')) }}" data-year="{{ date('Y') }}">
             <form action="?" method="GET" name="date-filter">
-                <div class="title">Архив новостей</div>
+                <div class="title">
+                    {{ trans("interface.news_archive") }}
+                </div>
                 <select name="month" id="month" for="date-filter">
                     @foreach ($monthes as $m => $month)
                         <?
@@ -129,6 +131,10 @@ foreach ($news as $n => $new)
                       </div>
                     </center>
                 </div>
+            </div>
+        @else
+            <div class="no-publications">
+                {{ trans("interface.no_publications") }}
             </div>
         @endif
     </div>
