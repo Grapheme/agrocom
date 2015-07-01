@@ -10,6 +10,7 @@ if (isset($page) && is_object($page))
     $seo = $page->seo;
 
 $records = Dic::valuesBySlug('open_info', null, ['fields']);
+$records = DicLib::loadUploads($records, ['link_to_file']);
 if (Input::get('debug') == 1) {
     Helper::tad($records);
 }
