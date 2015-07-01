@@ -58,6 +58,9 @@ if (Input::get('debug') == 1) {
                                     <br>
                                     @if (isset($record->link_to_file) && is_object($record->link_to_file) && $record->link_to_file->path)
                                         <a href="{{ $record->link_to_file->path }}" class="more" style="margin: 0;" target="_blank">Загрузить</a>
+                                        @if ($record->fileinfo)
+                                            ({{ $record->fileinfo }})
+                                        @endif
                                     @endif
                                 </div>
                             </div>
