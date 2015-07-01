@@ -43,7 +43,7 @@ return array(
                 'title' => 'Формат, размер файла',
                 'type' => 'text',
                 'others' => [
-                    'placeholder' => 'Например: .doc, 100кб'
+                    'placeholder' => 'Например: .doc, 100 кб'
                 ],
             ),
         );
