@@ -20,10 +20,12 @@ return array(
                     return $value ? date('d.m.Y', strtotime($value)) : date('d.m.Y');
                 },
             ),
+            /*
             'description' => array(
                 'title' => 'Описание',
                 'type' => 'textarea',
             ),
+            #*/
             'link_to_file' => array(
                 'title' => 'Поле для загрузки файла',
                 'type' => 'upload',
@@ -40,6 +42,9 @@ return array(
             'fileinfo' => array(
                 'title' => 'Формат, размер файла',
                 'type' => 'text',
+                'others' => [
+                    'placeholder' => 'Например: .doc, 100кб'
+                ],
             ),
         );
     },
