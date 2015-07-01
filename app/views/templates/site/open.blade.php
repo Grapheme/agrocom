@@ -14,7 +14,7 @@ $records = Dic::valuesBySlug('open_info', function($query) {
 }, ['fields']);
 $records = DicLib::loadUploads($records, ['link_to_file']);
 if (Input::get('debug') == 1) {
-    Helper::tad($records);
+    #Helper::tad($records);
 }
 ?>
 
