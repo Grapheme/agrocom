@@ -39,7 +39,13 @@ if (Input::get('debug') == 1) {
             </h1>
 --}}
 
-            @if (Input::get('debug') == 1)
+            @if (count($page->blocks))
+                @foreach ($page->blocks as $block)
+                    {{ $page->block($block->slug) }}
+                @endforeach
+            @endif
+
+            @if (Input::get('debug') == 1 || true)
 
                 <div class="news-list inf-scroll on-screen">
 
@@ -68,15 +74,6 @@ if (Input::get('debug') == 1) {
                         @endforeach
                     @endif
                 </div>
-            @endif
-
-            @if (count($page->blocks))
-                @foreach ($page->blocks as $block)
-                    @if (0)
-                        <h2>{{ $page->block($block->slug, 'name') }}</h2>
-                    @endif
-                    {{ $page->block($block->slug) }}
-                @endforeach
             @endif
 
         </div>
