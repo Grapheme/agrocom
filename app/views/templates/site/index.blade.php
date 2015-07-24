@@ -147,7 +147,7 @@ $projects_count = count($projects);
         
         <!--
         <div class="tender">
-            <p class="head-title on-screen">
+            <p class="tender-title">
                 <a href="#">
                     Тендеры
                 </a>
@@ -167,7 +167,7 @@ $projects_count = count($projects);
             </div>
         </div>
         -->
-        
+
         <div class="ivan-link">
             <div class="logo">
                 {{ trans("interface.ivan-logo") }}

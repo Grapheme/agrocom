@@ -650,6 +650,17 @@ ul.business-list {
 .tender {
   width: 720px;
   overflow: hidden;
+  margin: 0 auto;
+
+  .tender-title {
+    a {
+      font-family: 'Foros-Medium';
+      font-size: 29px;
+      color: #2c2c2c;
+      margin-top: 42px;
+      text-decoration: none;
+    }
+  }
 
   .tender-left {
     float: left;
@@ -671,7 +682,7 @@ ul.business-list {
 
     .tender-header {
       margin: 0 0 35px 0;
-      color: #1eb3c2;
+      color: #000;
       font-size: 27px;
       font-family: 'Foros-Medium';
     }
@@ -681,13 +692,13 @@ ul.business-list {
       font-family: 'Foros-Medium';
     }
 
-    .tender-doc {
+    .tender-doc a {
       font-size: 14px;
       font-family: 'Foros-Medium';
       color: #1eb3c2;
       border-bottom: 1px solid #1eb3c2;
       text-decoration: none;
-      
+      font-size: 15px;
     }
   }
 }
