@@ -167,6 +167,7 @@ $projects_count = count($projects);
             </div>
         </div>
         -->
+        
         <div class="ivan-link">
             <div class="logo">
                 {{ trans("interface.ivan-logo") }}
