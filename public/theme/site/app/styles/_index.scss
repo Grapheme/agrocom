@@ -646,3 +646,47 @@ ul.business-list {
     }
   }
 }
+
+.tender {
+  width: 720px;
+  overflow: hidden;
+
+  .tender-left {
+    float: left;
+    width: 130px;
+
+    .dead-line {
+      font-size: 14px;
+    }
+
+    .dead-line-date {
+      color: #1eb3c2;
+      font-size: 18px;
+    }
+  }
+
+  .tender-right {
+    float: right;
+    width: 560px;
+
+    .tender-header {
+      margin: 0 0 35px 0;
+      color: #1eb3c2;
+      font-size: 27px;
+      font-family: 'Foros-Medium';
+    }
+
+    .tender-text {
+      font-size: 14px;
+      font-family: 'Foros-Medium';
+    }
+
+    .tender-doc {
+      font-size: 14px;
+      font-family: 'Foros-Medium';
+      color: #1eb3c2;
+      border-bottom: 1px solid #1eb3c2;
+      text-decoration: none;
+    }
+  }
+}
