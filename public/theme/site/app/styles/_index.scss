@@ -647,18 +647,20 @@ ul.business-list {
   }
 }
 
-.tender {
+.tenders {
   width: 720px;
   overflow: hidden;
   margin: 0 auto;
 
   .tender-title {
+
     a {
       font-family: 'Foros-Medium';
       font-size: 29px;
       color: #2c2c2c;
       margin-top: 42px;
       text-decoration: none;
+      display: block;
     }
   }
 

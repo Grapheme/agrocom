@@ -145,28 +145,32 @@ $projects_count = count($projects);
         </div>
     @endif
         
-        <!--
-        <div class="tender">
+    <!--
+        <div class="tenders">
             <p class="tender-title">
                 <a href="#">
                     Тендеры
                 </a>
             </p>
-            <div class="tender-left">
-                <p class="dead-line">Заявки<br>
-                принимаются до:</p>
-                <span class="dead-line-date">31.01.2012</span>
-            </div>
+            <div class="tender fotorama">
+                <div class="tender-item">
+                    <div class="tender-left">
+                        <p class="dead-line">Заявки<br>
+                        принимаются до:</p>
+                        <span class="dead-line-date">31.01.2012</span>
+                    </div>
 
-            <div class="tender-right">
-                <h3 class="tender-header">Test</h3>
-                <p class="tender-text">Test</p>
-                <p class="tender-doc"><a href="#">Test</a> (doc, 93 кб)</p>
-                <p class="tender-doc"><a href="#">Test</a> (xls, 93 кб)</p>
-                <p class="tender-doc">Test <a href="#">TОТС-тендер</a></p>
+                    <div class="tender-right">
+                        <h3 class="tender-header">Test</h3>
+                        <p class="tender-text">Test</p>
+                        <p class="tender-doc"><a href="#">Test</a> (doc, 93 кб)</p>
+                        <p class="tender-doc"><a href="#">Test</a> (xls, 93 кб)</p>
+                        <p class="tender-doc">Test <a href="#">TОТС-тендер</a></p>
+                    </div>
+                </div>
             </div>
         </div>
-        -->
+    -->
 
         <div class="ivan-link">
             <div class="logo">

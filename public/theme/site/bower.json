@@ -8,6 +8,7 @@
     "bxSlider": "~4.2.3",
     "sass-mediaqueries": "~1.5.1",
     "jquery-validate": "~1.13.1",
-    "jquery-ui": "~1.11.4"
+    "jquery-ui": "~1.11.4",
+    "fotorama": "~4.6.4"
   }
 }
