@@ -153,6 +153,7 @@ $projects_count = count($projects);
                 </a>
             </p>
             <div class="tender fotorama">
+
                 <div class="tender-item">
                     <div class="tender-left">
                         <p class="dead-line">Заявки<br>
@@ -168,6 +169,39 @@ $projects_count = count($projects);
                         <p class="tender-doc">Test <a href="#">TОТС-тендер</a></p>
                     </div>
                 </div>
+
+                <div class="tender-item">
+                    <div class="tender-left">
+                        <p class="dead-line">Заявки<br>
+                        принимаются до:</p>
+                        <span class="dead-line-date">31.01.2012</span>
+                    </div>
+
+                    <div class="tender-right">
+                        <h3 class="tender-header">Test</h3>
+                        <p class="tender-text">Test</p>
+                        <p class="tender-doc"><a href="#">Test</a> (doc, 93 кб)</p>
+                        <p class="tender-doc"><a href="#">Test</a> (xls, 93 кб)</p>
+                        <p class="tender-doc">Test <a href="#">TОТС-тендер</a></p>
+                    </div>
+                </div>
+
+                <div class="tender-item">
+                    <div class="tender-left">
+                        <p class="dead-line">Заявки<br>
+                        принимаются до:</p>
+                        <span class="dead-line-date">31.01.2012</span>
+                    </div>
+
+                    <div class="tender-right">
+                        <h3 class="tender-header">Test</h3>
+                        <p class="tender-text">Test</p>
+                        <p class="tender-doc"><a href="#">Test</a> (doc, 93 кб)</p>
+                        <p class="tender-doc"><a href="#">Test</a> (xls, 93 кб)</p>
+                        <p class="tender-doc">Test <a href="#">TОТС-тендер</a></p>
+                    </div>
+                </div>
+                
             </div>
         </div>
     -->
