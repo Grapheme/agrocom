@@ -155,13 +155,13 @@ $tenders = DicLib::loadUploads($tenders, ['upload1', 'upload2', 'upload3']);
     @endif
 
 
-    <div class="tenders">
-        <p class="tender-title">
-            <a href="{{ URL::route('page', pageslug('tenders')) }}">
-                Тендеры
-            </a>
-        </p>
-        @if (count($tenders))
+    @if (count($tenders))
+        <div class="tenders">
+            <p class="tender-title">
+                <a href="{{ URL::route('page', pageslug('tenders')) }}">
+                    Тендеры
+                </a>
+            </p>
             <div class="tender fotorama" data-width="720" data-height="215" data-autoplay="true" data-click="false" data-swipe="false">
 
                 @foreach($tenders as $tender)
@@ -201,8 +201,8 @@ $tenders = DicLib::loadUploads($tenders, ['upload1', 'upload2', 'upload3']);
                 @endforeach
 
             </div>
-        @endif
-    </div>
+        </div>
+    @endif
 
     <div class="ivan-link">
         <div class="logo">
