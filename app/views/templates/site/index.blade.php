@@ -152,7 +152,7 @@ $projects_count = count($projects);
                     Тендеры
                 </a>
             </p>
-            <div class="tender fotorama">
+            <div class="tender fotorama" data-width="720" data-autoplay="true" data-click="false" data-swipe="false">
 
                 <div class="tender-item">
                     <div class="tender-left">
@@ -201,7 +201,7 @@ $projects_count = count($projects);
                         <p class="tender-doc">Test <a href="#">TОТС-тендер</a></p>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     -->

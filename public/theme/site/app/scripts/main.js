@@ -47,6 +47,8 @@ $(document).ready(function() {
   });
 
   $(function () {
-    $('.fotorama').fotorama();
+    $('.fotorama').fotorama({
+      nav: false,
+    });
   });
 });
