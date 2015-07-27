@@ -45,6 +45,7 @@ if (Input::get('debug') == 1) {
                 @endforeach
             @endif
 
+
             @if (Input::get('debug') == 1 || true)
 
                 <div class="news-list inf-scroll on-screen">
