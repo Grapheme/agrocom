@@ -651,6 +651,10 @@ ul.business-list {
   box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.24);
 }
 
+.fotorama__nav--dots {
+  display: none !important;
+}
+
 .tenders {
   width: 720px;
   overflow: hidden;
@@ -674,6 +678,8 @@ ul.business-list {
 
     .dead-line {
       font-size: 14px;
+      margin-top: 0;
+      line-height: 14px;
     }
 
     .dead-line-date {
