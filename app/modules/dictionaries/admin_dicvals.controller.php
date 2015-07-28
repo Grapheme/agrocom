@@ -231,7 +231,21 @@ class AdminDicvalsController extends BaseController {
         #Helper::dd($dic_settings);
 
         ## Sortable settings
-        $sortable = ($dic->sortable && $dic->pagination == 0 && $dic->sort_by == NULL) ? true : false;
+        $sortable = ($dic->sortable && $dic->pagination == 0 && $dic->sort_by == null) ? true : false;
+
+        ## Disable sortable without needable filter options
+        if ($sortable && isset($dic_settings['disable_ordering_without_filter']) && $dic_settings['disable_ordering_without_filter']) {
+            $dic_settings['disable_ordering_without_filter'] = (array)$dic_settings['disable_ordering_without_filter'];
+            #Helper::ta($dic_settings['disable_ordering_without_filter']);
+            if (count($dic_settings['disable_ordering_without_filter'])) {
+                foreach ($dic_settings['disable_ordering_without_filter'] as $condition) {
+                    if (!Input::get('filter.fields.' . $condition)) {
+                        $sortable = false;
+                        break;
+                    }
+                }
+            }
+        }
 
         if (isset($dic_settings['sortable']) && is_callable($dic_settings['sortable']))
             $sortable = $dic_settings['sortable']($dic, $elements);
@@ -268,6 +282,7 @@ class AdminDicvalsController extends BaseController {
 
         $total_elements = DicVal::where('dic_id', $dic->id)->where('version_of', '=', NULL)->count();
 
+        $this->callHook('before_index_view_create_edit', $dic, $elements);
         $this->callHook('before_index_view', $dic, $elements);
 
 
@@ -302,6 +317,7 @@ class AdminDicvalsController extends BaseController {
 
         $this->checkDicUrl($dic, $dic_id);
         $this->callHook('before_all', $dic);
+        $this->callHook('before_index_view_create_edit', $dic);
         $this->callHook('before_create_edit', $dic);
         $this->callHook('before_create', $dic);
 
@@ -310,7 +326,7 @@ class AdminDicvalsController extends BaseController {
 
         $total_elements = DicVal::where('dic_id', $dic->id)->where('version_of', '=', NULL)->count();
 
-        $element = new Dictionary;
+        $element = new DicVal();
 
         return View::make($this->module['tpl'].'edit', compact('element', 'dic', 'dic_id', 'locales', 'dic_settings', 'total_elements'));
 	}
@@ -339,6 +355,7 @@ class AdminDicvalsController extends BaseController {
         $element = $element->first();
 
         $this->callHook('before_all', $dic);
+        $this->callHook('before_index_view_create_edit', $dic, null, $element);
         $this->callHook('before_create_edit', $dic, $element);
         $this->callHook('before_create', $dic, $element);
 
@@ -400,9 +417,12 @@ class AdminDicvalsController extends BaseController {
         $versions = Config::get('dic/' . $dic->slug . '.versions');
 
         $input = Input::all();
+        #dd($input);
         $locales = Input::get('locales');
         $fields = Helper::withdraw($input, 'fields'); #Input::get('fields');
-        $fields_i18n = Input::get('fields_i18n');
+        #$fields_i18n = Input::get('fields_i18n');
+        $fields_i18n = $input['fields_i18n'];
+        #dd($fields_i18n);
         $seo = Input::get('seo');
 
         /*
@@ -465,6 +485,7 @@ class AdminDicvalsController extends BaseController {
         #return Response::json($json_request,200);
         #dd(Input::all());
         #Helper::dd(Input::all());
+        #Helper::dd($input);
 
         $json_request = array('status' => FALSE, 'responseText' => '', 'responseErrorText' => '', 'redirect' => FALSE);
 		$validator = Validator::make($input, array());
@@ -606,6 +627,8 @@ class AdminDicvalsController extends BaseController {
                      */
                     foreach ($fields_i18n as $locale_sign => $values) {
 
+                        #dd($values);
+
                         #Helper::d($field_name . ' => ' . @$values[$field_name]);
                         #var_dump(@$values[$field_name]);
 
@@ -614,6 +637,9 @@ class AdminDicvalsController extends BaseController {
 
                         $value = @$values[$field_name];
                         #Helper::d($field_name . ' => ' . $value);
+
+                        #Helper::d($field_name);
+                        #Helper::d($value);
 
                         ## If handler of field is defined
                         if (is_callable($handler = @$element_fields_i18n[$field_name]['handler'])) {
@@ -697,16 +723,17 @@ class AdminDicvalsController extends BaseController {
                 $redirect_url = NULL;
                 if (@$dic_settings['new_element_redirect'] == 'list') {
 
-                    $redirect_url = URL::route(is_numeric($dic_id) ? 'dicval.index' : 'entity.index', array('dic_id' => $dic_id)) . (Request::getQueryString() ? '?' . Request::getQueryString() : '');
+                    #$redirect_url = URL::route(is_numeric($dic_id) ? 'dicval.index' : 'entity.index', array('dic_id' => $dic_id)) . (Request::getQueryString() ? '?' . Request::getQueryString() : '');
+                    $redirect_url = Input::get('redirect');
 
                 } elseif (@is_array($dic_settings['new_element_redirect']) && isset($dic_settings['new_element_redirect']['route_name'])) {
 
-                    $redirect_url = URL::route($dic_settings['new_element_redirect']['route_name'], (array)@$dic_settings['new_element_redirect']['route_params']) . (@$dic_settings['new_element_redirect']['add_query_string'] && Request::getQueryString() ? '?' . Request::getQueryString() : '');
+                    $redirect_url = URL::route($dic_settings['new_element_redirect']['route_name'], (array)@$dic_settings['new_element_redirect']['route_params']) . (@$dic_settings['new_element_redirect']['add_query_string'] && Input::get('query_string') ? Input::get('query_string') : '');
 
                 #} elseif (@$dic_settings['new_element_redirect'] == 'new' || !@$dic_settings['new_element_redirect']) {
                 } else {
 
-                    $redirect_url = URL::route(is_numeric($dic_id) ? 'dicval.edit' : 'entity.edit', array('dic_id' => $dic_id, 'id' => $element->id)) . (Request::getQueryString() ? '?' . Request::getQueryString() : '');
+                    $redirect_url = URL::route(is_numeric($dic_id) ? 'dicval.edit' : 'entity.edit', array('dic_id' => $dic_id, 'id' => $element->id)) . (Input::get('query_string') ? Input::get('query_string') : '');
 
                 }
             }

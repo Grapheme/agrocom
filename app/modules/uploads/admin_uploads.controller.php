@@ -81,7 +81,7 @@ class AdminUploadsController extends BaseController {
             ## Processing results closure
             function($params) use ($mod_tpl, $class) {
 
-                #Helper::d($params);
+                #Helper::dd($params);
 
                 $file = isset($params['file']) ? $params['file'] : false;
                 $upload_id = isset($params['upload_id']) ? $params['upload_id'] : false;
