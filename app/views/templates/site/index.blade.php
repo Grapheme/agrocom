@@ -156,50 +156,52 @@ $tenders = DicLib::loadUploads($tenders, ['upload1', 'upload2', 'upload3']);
 
 
     @if (count($tenders))
-        <div class="tenders">
-            <p class="tender-title">
-                <a href="{{ URL::route('page', pageslug('tenders')) }}">
-                    Тендеры
-                </a>
-            </p>
-            <div class="tender fotorama" data-width="720" data-height="215" data-autoplay="true" data-click="false" data-swipe="false">
+        <div class="tenders-holder">
+            <div class="tenders">
+                <p class="tender-title">
+                    <a href="{{ URL::route('page', pageslug('tenders')) }}">
+                        Тендеры
+                    </a>
+                </p>
+                <div class="tender fotorama" data-width="720" data-height="280" data-autoplay="true" data-click="false" data-swipe="false">
 
-                @foreach($tenders as $tender)
+                    @foreach($tenders as $tender)
 
-                    <div class="tender-item">
-                        <div class="tender-left">
-                            <p class="dead-line">Заявки<br> принимаются до:</p>
-                            <span class="dead-line-date">{{ Carbon::createFromFormat('Y-m-d', $tender->published_at)->format('d.m.Y') }}</span>
+                        <div class="tender-item">
+                            <div class="tender-left">
+                                <p class="dead-line">Заявки<br> принимаются до:</p>
+                                <span class="dead-line-date">{{ Carbon::createFromFormat('Y-m-d', $tender->published_at)->format('d.m.Y') }}</span>
+                            </div>
+
+                            <div class="tender-right">
+                                <h3 class="tender-header">{{ $tender->name }}</h3>
+
+                                <p class="tender-text">{{ $tender->description }}</p>
+
+                                <?
+                                $fields = ['upload1', 'upload2', 'upload3'];
+                                ?>
+                                @foreach ($fields as $field)
+                                    @if (is_object($tender->$field))
+                                        <?
+                                        $temp = explode('.', $tender->$field->original_name);
+                                        $format = last($temp);
+                                        ?>
+                                        <p class="tender-doc">
+                                            <a href="{{ $tender->$field->path }}" download="{{ $tender->$field->original_name }}">{{ $tender->$field->original_name }}</a>
+                                            ({{ $format }}, {{ ceil(($tender->$field->filesize)/1024) }} кб)
+                                        </p>
+                                    @endif
+                                @endforeach
+                                <p class="tender-doc">
+                                    <a href="{{ $tender->link }}">{{ $tender->type }}</a>
+                                </p>
+                            </div>
                         </div>
 
-                        <div class="tender-right">
-                            <h3 class="tender-header">{{ $tender->name }}</h3>
+                    @endforeach
 
-                            <p class="tender-text">{{ $tender->description }}</p>
-
-                            <?
-                            $fields = ['upload1', 'upload2', 'upload3'];
-                            ?>
-                            @foreach ($fields as $field)
-                                @if (is_object($tender->$field))
-                                    <?
-                                    $temp = explode('.', $tender->$field->original_name);
-                                    $format = last($temp);
-                                    ?>
-                                    <p class="tender-doc">
-                                        <a href="{{ $tender->$field->path }}" download="{{ $tender->$field->original_name }}">{{ $tender->$field->original_name }}</a>
-                                        ({{ $format }}, {{ ceil(($tender->$field->filesize)/1024) }} кб)
-                                    </p>
-                                @endif
-                            @endforeach
-                            <p class="tender-doc">
-                                <a href="{{ $tender->link }}">{{ $tender->type }}</a>
-                            </p>
-                        </div>
-                    </div>
-
-                @endforeach
-
+                </div>
             </div>
         </div>
     @endif
