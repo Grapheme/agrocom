@@ -162,7 +162,7 @@ $tenders = DicLib::loadUploads($tenders, ['upload1', 'upload2', 'upload3']);
                     Тендеры
                 </a>
             </p>
-            <div class="tender fotorama" data-width="720" data-height="215" data-autoplay="true" data-click="false" data-swipe="false">
+            <div class="tender fotorama" data-width="720" data-autoplay="true" data-click="false" data-swipe="false">
 
                 @foreach($tenders as $tender)
 
