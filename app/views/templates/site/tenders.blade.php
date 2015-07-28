@@ -84,24 +84,28 @@ $tenders = DicLib::loadUploads($tenders, ['upload1', 'upload2', 'upload3']);
 
                             <p class="tender-text">{{ $tender->description }}</p>
 
-                            <?
-                            $fields = ['upload1', 'upload2', 'upload3'];
-                            ?>
-                            @foreach ($fields as $field)
-                                @if (is_object($tender->$field))
-                                    <?
-                                    $temp = explode('.', $tender->$field->original_name);
-                                    $format = last($temp);
-                                    ?>
-                                    <p class="tender-doc">
-                                        <a href="{{ $tender->$field->path }}" download="{{ $tender->$field->original_name }}">{{ $tender->$field->original_name }}</a>
-                                        ({{ $format }}, {{ ceil(($tender->$field->filesize)/1024) }} кб)
-                                    </p>
-                                @endif
-                            @endforeach
-                            <p class="tender-doc">
-                                <a href="{{ $tender->link }}">{{ $tender->type }}</a>
-                            </p>
+                            <a href="{{ URL::route('page', pageslug('tenders')) }}"></a>
+
+                            @if (false)
+                                <?
+                                $fields = ['upload1', 'upload2', 'upload3'];
+                                ?>
+                                @foreach ($fields as $field)
+                                    @if (is_object($tender->$field))
+                                        <?
+                                        $temp = explode('.', $tender->$field->original_name);
+                                        $format = last($temp);
+                                        ?>
+                                        <p class="tender-doc">
+                                            <a href="{{ $tender->$field->path }}" download="{{ $tender->$field->original_name }}">{{ $tender->$field->original_name }}</a>
+                                            ({{ $format }}, {{ ceil(($tender->$field->filesize)/1024) }} кб)
+                                        </p>
+                                    @endif
+                                @endforeach
+                                <p class="tender-doc">
+                                    <a href="{{ $tender->link }}">{{ $tender->type }}</a>
+                                </p>
+                            @endif
                         </div>
                     </div>
 
