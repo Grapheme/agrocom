@@ -660,9 +660,9 @@ ul.business-list {
   overflow: hidden;
   margin: 0 auto;
 
-  &.fotorama {
+  .fotorama__html {
     .tender-item {
-      margin-top: 0;
+      margin-top: 0 !important;
     }
   }
 
