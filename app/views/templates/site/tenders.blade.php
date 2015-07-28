@@ -61,13 +61,11 @@ $tenders = DicLib::loadUploads($tenders, ['upload1', 'upload2', 'upload3']);
 
 @section('content')
 
+    <div class="sub-header loaded">
+        <h1>Тендеры</h1>
+    </div>
 
     <div class="tenders">
-        <p class="tender-title">
-            <a href="#">
-                Тендеры
-            </a>
-        </p>
         @if (count($tenders))
             {{--<div class="tender fotorama" data-width="720" data-height="215" data-autoplay="true" data-click="false" data-swipe="false">--}}
 
