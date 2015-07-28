@@ -197,7 +197,7 @@ $tenders = DicLib::loadUploads($tenders, ['upload1', 'upload2', 'upload3']);
                                         @endif
                                     @endforeach
                                     <p class="tender-doc">
-                                        <a href="{{ $tender->link }}">{{ $tender->type }}</a>
+                                        Подача заявок — на электронной торговой площадке <a href="{{ $tender->link }}">{{ $tender->type }}</a>
                                     </p>
                                 @endif
                             </div>

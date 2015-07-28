@@ -660,6 +660,12 @@ ul.business-list {
   overflow: hidden;
   margin: 0 auto;
 
+  &.fotorama {
+    .tender-item {
+      margin-top: 0;
+    }
+  }
+
   .tender-title {
 
     a {
@@ -672,45 +678,50 @@ ul.business-list {
     }
   }
 
-  .tender-left {
-    float: left;
-    width: 130px;
+  .tender-item {
+    overflow: hidden;
+    margin-top: 50px;
 
-    .dead-line {
-      font-size: 14px;
-      margin-top: 0;
-      line-height: 14px;
+      .tender-left {
+      float: left;
+      width: 130px;
+
+      .dead-line {
+        font-size: 14px;
+        margin-top: 0;
+        line-height: 14px;
+      }
+
+      .dead-line-date {
+        color: #1eb3c2;
+        font-size: 18px;
+      }
     }
 
-    .dead-line-date {
-      color: #1eb3c2;
-      font-size: 18px;
-    }
-  }
+    .tender-right {
+      float: right;
+      width: 560px;
 
-  .tender-right {
-    float: right;
-    width: 560px;
+      .tender-header {
+        margin: 0 0 35px 0;
+        color: #000;
+        font-size: 27px;
+        font-family: 'Foros-Medium';
+      }
 
-    .tender-header {
-      margin: 0 0 35px 0;
-      color: #000;
-      font-size: 27px;
-      font-family: 'Foros-Medium';
-    }
+      .tender-text {
+        font-size: 14px;
+        font-family: 'Foros-Medium';
+      }
 
-    .tender-text {
-      font-size: 14px;
-      font-family: 'Foros-Medium';
-    }
-
-    .tender-doc a {
-      font-size: 14px;
-      font-family: 'Foros-Medium';
-      color: #1eb3c2;
-      border-bottom: 1px solid #1eb3c2;
-      text-decoration: none;
-      font-size: 15px;
+      .tender-doc a {
+        font-size: 14px;
+        font-family: 'Foros-Medium';
+        color: #1eb3c2;
+        border-bottom: 1px solid #1eb3c2;
+        text-decoration: none;
+        font-size: 15px;
+      }
     }
   }
 }
