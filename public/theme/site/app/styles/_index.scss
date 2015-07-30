@@ -649,6 +649,20 @@ ul.business-list {
 
 .tenders-holder {
   box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.24);
+  background-color: #F6F6F6;
+  
+  .tenders {
+    width: 960px;
+
+    .tender.fotorama {
+      width:960px;
+
+      .tender-right {
+        width: 800px;
+      }
+    }
+  }
+
 }
 
 .fotorama__nav--dots {
