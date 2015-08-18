@@ -767,22 +767,22 @@ ul.business-list {
 
       &:before {
         content: ' ';
+        -webkit-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        transform: rotate(90deg);
         display: block;
         background: url("../images/daco-sigment.png");
         width: 32px;
         height: 34px;
         position: absolute;
-        -webkit-transform: rotate(270deg);
-        -ms-transform: rotate(270deg);
-        transform: rotate(270deg);
         top: -20px;
         left: -32px;
       }
 
       &:after {
-        -webkit-transform: rotate(90deg);
-        -ms-transform: rotate(90deg);
-        transform: rotate(90deg);
+        -webkit-transform: rotate(270deg);
+        -ms-transform: rotate(270deg);
+        transform: rotate(270deg);
         right: -20px;
         bottom: -32px;
         content: ' ';
