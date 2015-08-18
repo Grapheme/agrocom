@@ -762,34 +762,36 @@ ul.business-list {
     h2 {
       font-size: 22px;
       margin: 0 0 20px 0;
-    }
-
-    &:before {
-      content: ' ';
       display: block;
-      background: url("../images/daco-sigment.png");
-      width: 32px;
-      height: 34px;
-      position: absolute;
-      -webkit-transform: rotate(270deg);
-      -ms-transform: rotate(270deg);
-      transform: rotate(270deg);
-      bottom: 1px;
-      left: 1px;
-    }
+      position: relative;
 
-    &:after {
-      -webkit-transform: rotate(90deg);
-      -ms-transform: rotate(90deg);
-      transform: rotate(90deg);
-      right: 1px;
-      top: 1px;
-      content: ' ';
-      display: block;
-      background: url("../images/daco-sigment.png");
-      width: 32px;
-      height: 34px;
-      position: absolute;
+      &:before {
+        content: ' ';
+        display: block;
+        background: url("../images/daco-sigment.png");
+        width: 32px;
+        height: 34px;
+        position: absolute;
+        -webkit-transform: rotate(270deg);
+        -ms-transform: rotate(270deg);
+        transform: rotate(270deg);
+        top: -20px;
+        left: -32px;
+      }
+
+      &:after {
+        -webkit-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        transform: rotate(90deg);
+        right: -20px;
+        bottom: -32px;
+        content: ' ';
+        display: block;
+        background: url("../images/daco-sigment.png");
+        width: 32px;
+        height: 34px;
+        position: absolute;
+      }
     }
   }
 }
