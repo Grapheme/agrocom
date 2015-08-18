@@ -107,7 +107,14 @@ $tenders = DicLib::loadUploads($tenders, ['upload1', 'upload2', 'upload3']);
                 @endforeach
 
             {{--</div>--}}
+        
+        @else
+        <div class="no-tenders">
+            <h2>В настоящее время тендеры не проводятся.</h2>
+        </div>
+
         @endif
+
     </div>
 
 @stop

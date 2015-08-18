@@ -674,6 +674,15 @@ ul.business-list {
   overflow: hidden;
   margin: 0 auto;
 
+  .no-tenders {
+    min-height: 260px;
+
+    h2 {
+      margin-top: 130px;
+      text-align: center;
+    }
+  }
+
   .fotorama__html {
     .tender-item {
       margin-top: 0 !important;
