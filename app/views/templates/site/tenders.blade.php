@@ -115,5 +115,6 @@ $tenders = DicLib::loadUploads($tenders, ['upload1', 'upload2', 'upload3']);
 @stop
 
 
+
 @section('scripts')
 @stop
