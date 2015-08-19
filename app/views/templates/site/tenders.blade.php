@@ -61,15 +61,13 @@ $tenders = DicLib::loadUploads($tenders, ['upload1', 'upload2', 'upload3']);
 
 @section('content')
 
+    <div class="sub-header loaded">
+        <h1>Тендеры</h1>
+    </div>
 
     <div class="tenders">
-        <p class="tender-title">
-            <a href="#">
-                Тендеры
-            </a>
-        </p>
         @if (count($tenders))
-            {{--<div class="tender fotorama" data-width="720" data-height="215" data-autoplay="true" data-click="false" data-swipe="false">--}}
+            {{--<div class="tender fotorama" data-autoplay="true" data-click="false" data-swipe="false">--}}
 
                 @foreach($tenders as $tender)
 
@@ -101,7 +99,7 @@ $tenders = DicLib::loadUploads($tenders, ['upload1', 'upload2', 'upload3']);
                                 @endif
                             @endforeach
                             <p class="tender-doc">
-                                <a href="{{ $tender->link }}">{{ $tender->type }}</a>
+                                Подача заявок — на электронной торговой площадке  <a href="{{ $tender->link }}">{{ $tender->type }}</a>
                             </p>
                         </div>
                     </div>
@@ -109,7 +107,14 @@ $tenders = DicLib::loadUploads($tenders, ['upload1', 'upload2', 'upload3']);
                 @endforeach
 
             {{--</div>--}}
+        
+        @else
+        <div class="no-tenders">
+            <h2>В настоящее время тендеры не проводятся.</h2>
+        </div>
+
         @endif
+
     </div>
 
 @stop
