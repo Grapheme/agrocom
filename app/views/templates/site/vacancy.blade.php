@@ -16,7 +16,7 @@ $page_title = $vacancy->name;
 
 @section('content')
 
-    <div class="center vacansies">
+    <div class="center vacansy">
 
         <h1>{{ $vacancy->name }}</h1>
 
