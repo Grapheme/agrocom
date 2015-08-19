@@ -795,3 +795,46 @@ ul.business-list {
     }
   }
 }
+
+.vacansies {
+  width: 720px;
+  overflow: hidden;
+  margin: 0 auto;
+
+  a {
+    margin-bottom: 17px;
+  }
+}
+
+.vacansies {
+  width: 720px;
+  overflow: hidden;
+  margin: 0 auto;
+
+  .vacansy-title {
+    font-size: 16px;
+    text-transform: uppercase;
+  }
+
+
+  ul {
+    padding: 0;
+    list-style: none;
+
+    li {
+      position: relative;
+
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 5px;
+        height: 5px;
+        border-radius: 51%;
+        background: #c3c3c3;
+        top: 7px;
+        left: -15px;
+      }
+    }
+  }
+}
