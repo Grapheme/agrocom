@@ -20,7 +20,23 @@ $vacancies = Dic::valuesBySlug('vacancies', function ($query) {
 
 @section('content')
 
-    Vacancies are here
+    <div class="center vacansies">
+
+        <h1>Вакансии ООО «ГРУППА АГРОКОМ»</h1>
+
+        @if (isset($vacancies) && is_object($vacancies) && $vacancies->count())
+            @foreach ($vacancies as $vacancy)
+                <a href="{{ URL::route('app.vacancy', [$vacancy->id]) }}">{{ $vacancy->name }}</a><br/>
+            @endforeach
+        @else
+            <!-- no vacancies -->
+        @endif
+
+        <!-- Это вакансии отдельных партнёров. Не думаю, что им отдельный контейнер нужен -->
+
+        {{ $page->block('other') }}
+
+    </div>
 
 @stop
 

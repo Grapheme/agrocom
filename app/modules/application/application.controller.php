@@ -22,6 +22,7 @@ class ApplicationController extends BaseController {
             Route::any('/projects/{slug}', array('as' => 'app.project', 'uses' => __CLASS__.'@getProject'));
             Route::any('/news/{slug}', array('as' => 'app.news_one', 'uses' => __CLASS__.'@getNewsOne'));
             Route::any('/publications/{slug}', array('as' => 'app.publication', 'uses' => __CLASS__.'@getPublication'));
+            Route::any('/vacancies/{id}', array('as' => 'app.vacancy', 'uses' => __CLASS__.'@getVacancy'));
         });
 
 
@@ -98,6 +99,21 @@ class ApplicationController extends BaseController {
         #Helper::tad($press);
 
         return View::make(Helper::layout('publication'), compact('press', 'slug'));
+    }
+
+
+    public function getVacancy($lang, $id) {
+
+        $vacancy = Dic::valueBySlugAndId('vacancies', $id, ['fields', 'textfields', 'seo']);
+        if (!is_object($vacancy))
+            App::abort(404);
+
+        #Helper::tad($vacancy);
+
+        #$vacancy = DicLib::loadImages($vacancy, ['image']);
+        #Helper::tad($vacancy);
+
+        return View::make(Helper::layout('vacancy'), compact('vacancy', 'id'));
     }
 
 
