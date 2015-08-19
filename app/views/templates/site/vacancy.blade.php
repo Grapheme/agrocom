@@ -22,7 +22,7 @@ $page_title = $vacancy->name;
 
         {{ $vacancy->description }}
 
-        <a class="mail-button" href="mailto:{{ Config::get('app.settings.main.vacancy_address') }}?subject={{ urlencode('Отклик на вакансию ' . $vacancy->name) }}">Откликнуться</a>
+        <a class="mail-button" href="mailto:{{ Config::get('app.settings.main.vacancy_address') }}?subject={{ ('Отклик на вакансию ' . $vacancy->name) }}">Откликнуться</a>
 
     </div>
 
