@@ -800,22 +800,49 @@ ul.business-list {
   width: 720px;
   overflow: hidden;
   margin: 0 auto;
+  margin-bottom: 50px;
 
   a {
-    margin-bottom: 17px;
+    display: block;
   }
+
+  h1 {
+    font-family: 'Foros-Medium';
+    font-size: 52px;
+    font-weight: 400;
+    margin: 54px 0;
+  }
+
 }
 
-.vacansies {
+.vacansy {
   width: 720px;
-  overflow: hidden;
   margin: 0 auto;
+  margin-bottom: 50px;
 
-  .vacansy-title {
+  p {
     font-size: 16px;
     text-transform: uppercase;
   }
 
+  a {
+    display: block;
+    width: 145px;
+    height: 47px;
+    text-align: center;
+    font-size: 16px;
+    color: #fff;
+    text-decoration: none;
+    line-height: 47px;
+    background-color: #1eb3c2;
+  }
+  
+  h1 {
+    font-family: 'Foros-Medium';
+    font-size: 52px;
+    font-weight: 400;
+    margin: 54px 0;
+  }
 
   ul {
     padding: 0;
