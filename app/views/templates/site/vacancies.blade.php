@@ -19,6 +19,9 @@ $vacancies = Dic::valuesBySlug('vacancies', function ($query) {
 
 
 @section('content')
+    <div class="sub-header">
+        <h1>Вакансии</h1>
+    </div>
 
     <div class="center vacansies">
 

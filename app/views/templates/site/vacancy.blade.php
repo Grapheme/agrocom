@@ -16,6 +16,10 @@ $page_title = $vacancy->name;
 
 @section('content')
 
+	<div class="sub-header">
+        <h1>Вакансии</h1>
+    </div>
+
     <div class="center vacansy">
 
         <h1>{{ $vacancy->name }}</h1>
