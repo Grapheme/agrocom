@@ -104,7 +104,7 @@ $(document).ready(function() {
       console.log(event, ui)
       monthEnabler();
     },
-    create: function() {
+    open: function() {
       monthEnabler();
     }
   });
