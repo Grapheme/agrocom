@@ -47,7 +47,7 @@ if (!$business_all) {
         </div>
         <div class="contacts">
             {{ nl2br(trans("interface.company.phones")) }}<br>
-            <a style="margin-top: 5px;display: inline-block;" href="https://ru-ru.facebook.com/people/%D0%93%D1%80%D1%83%D0%BF%D0%BF%D0%B0-%D0%90%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%BC/100002853534059" target="_blank">Facebook</a>
+            страница на <a style="margin-top: 5px;display: inline-block;" href="https://ru-ru.facebook.com/people/%D0%93%D1%80%D1%83%D0%BF%D0%BF%D0%B0-%D0%90%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%BC/100002853534059" target="_blank">Facebook</a>
         </div>
         <div class="grepheme">
             Сделано в <a href="http://grapheme.ru/" target="_blank">ГРАФЕМА</a>
