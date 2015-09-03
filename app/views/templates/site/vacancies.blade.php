@@ -22,23 +22,24 @@ $vacancies = Dic::valuesBySlug('vacancies', function ($query) {
     <div class="sub-header">
         <h1>Вакансии</h1>
     </div>
+    <div class="content">
+      <div class="center vacansies">
 
-    <div class="center vacansies">
+          <h1>Вакансии ООО «ГРУППА АГРОКОМ»</h1>
 
-        <h1>Вакансии ООО «ГРУППА АГРОКОМ»</h1>
+          @if (isset($vacancies) && is_object($vacancies) && $vacancies->count())
+              @foreach ($vacancies as $vacancy)
+                  <a href="{{ URL::route('app.vacancy', [$vacancy->id]) }}">{{ $vacancy->name }}</a><br/>
+              @endforeach
+          @else
+              <!-- no vacancies -->
+          @endif
 
-        @if (isset($vacancies) && is_object($vacancies) && $vacancies->count())
-            @foreach ($vacancies as $vacancy)
-                <a href="{{ URL::route('app.vacancy', [$vacancy->id]) }}">{{ $vacancy->name }}</a><br/>
-            @endforeach
-        @else
-            <!-- no vacancies -->
-        @endif
+          <!-- Это вакансии отдельных партнёров. Не думаю, что им отдельный контейнер нужен -->
 
-        <!-- Это вакансии отдельных партнёров. Не думаю, что им отдельный контейнер нужен -->
+          {{ $page->block('other') }}
 
-        {{ $page->block('other') }}
-
+      </div>
     </div>
 
 @stop

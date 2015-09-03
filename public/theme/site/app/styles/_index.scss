@@ -798,17 +798,17 @@ ul.business-list {
 
 .vacansies {
   width: 720px;
-  overflow: hidden;
+  //overflow: hidden;
   margin: 0 auto;
   margin-bottom: 50px;
-
   a {
-    display: block;
+    display: inline-block;
+    margin-bottom: 10px;
   }
 
   h1 {
     font-family: 'Foros-Medium';
-    font-size: 52px;
+    font-size: 40px !important;
     font-weight: 400;
     margin: 54px 0;
   }

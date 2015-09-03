@@ -83,7 +83,33 @@ $(document).ready(function() {
   });
   
   $(window).scroll();
-  $( "#year, #month" ).selectmenu();
+  
+  function monthEnabler() {
+    var yaer = $('.news-filter').attr('data-year');
+    var month = $('.news-filter').attr('data-month');
+    if ($('.news-filter select#year').val() == yaer){
+      $('.news-filter select#month option:contains("'+month+'")')
+        .nextAll().attr('disabled','disabled');
+      if (!$('.news-filter select#month').val()) {
+        //$('.news-filter select#month').val(01);
+      }
+    } else {
+      $('.news-filter select#month option').removeAttr('disabled','disabled');
+    }
+    $( "#year, #month" ).selectmenu( "refresh" );
+  }
+    
+  $( "#year, #month" ).selectmenu({
+    change: function( event, ui ) {
+      console.log(event, ui)
+      monthEnabler();
+    },
+    open: function() {
+      monthEnabler();
+    }
+  });
+  
+  //monthEnabler();
   
   var _svg = '<?xml version="1.0" encoding="utf-8"?> <!-- Generator: Adobe Illustrator 18.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0) --> <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"> <svg version="1.1" id="play" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 61.8 61.8" enable-background="new 0 0 61.8 61.8" xml:space="preserve"> <path id="opacity" opacity="0.4" fill="#FFFFFF" d="M30.9,7c13.2,0,23.9,10.7,23.9,23.9S44.1,54.8,30.9,54.8S7,44.1,7,30.9 S17.7,7,30.9,7 M30.9,0C13.8,0,0,13.8,0,30.9s13.8,30.9,30.9,30.9C48,61.8,61.8,48,61.8,30.9S48,0,30.9,0L30.9,0z"/> <polygon id="_x3E_" fill="#FFFFFF" points="24.5,21.2 41.3,30.9 24.5,40.6 "/> <g id="round_x5F_1"> <path fill="#FFFFFF" d="M0,30.9h7C7,17.8,17.6,7.2,30.6,7V0C13.7,0.2,0,13.9,0,30.9z"/> <path fill="#FFFFFF" d="M54.8,30.9c0,13.2-10.7,23.9-23.9,23.9c0,0,0,0,0,0v7c0,0,0,0,0,0C48,61.8,61.8,48,61.8,30.9H54.8z"/> </g> <g id="round_x5F_2"> <path fill="#FFFFFF" d="M0,30.9h7C7,17.8,17.6,7.2,30.6,7V0C13.7,0.2,0,13.9,0,30.9z"/> <path fill="#FFFFFF" d="M54.8,30.9c0,13.2-10.7,23.9-23.9,23.9c0,0,0,0,0,0v7c0,0,0,0,0,0C48,61.8,61.8,48,61.8,30.9H54.8z"/> </g> </svg>';
   
