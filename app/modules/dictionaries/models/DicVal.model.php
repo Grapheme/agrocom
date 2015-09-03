@@ -61,12 +61,18 @@ class DicVal extends BaseModel {
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function related_dicvals() {
+    public function related_dicvals($dicval_parent_field = null) {
 
-        return $this
+        $return = $this
             ->belongsToMany('DicVal', 'dictionary_values_rel', 'dicval_parent_id', 'dicval_child_id')
             ->withPivot('dicval_parent_dic_id', 'dicval_child_dic_id', 'dicval_parent_field')
             ;
+
+        if ($dicval_parent_field !== null) {
+            $return = $return->where('dicval_parent_field', $dicval_parent_field);
+        }
+
+        return $return;
     }
 
 
@@ -339,12 +345,30 @@ class DicVal extends BaseModel {
 
         $tbl_dicval = (new DicVal())->getTable();
         $tbl_dic_field_val = (new DicFieldVal())->getTable();
-        $rand_tbl_alias = md5(time() . rand(999999, 9999999));
-        $query
-            ->join($tbl_dic_field_val . ' AS ' . $rand_tbl_alias, $rand_tbl_alias . '.dicval_id', '=', $tbl_dicval . '.id')
+        #$rand_tbl_alias = md5(time() . rand(999999, 9999999));
+
+        ## For cache
+        $num = (int)Config::get('temp.rand_tbl_alias');
+        $rand_tbl_alias = 'rand_tbl_alias_' . (++$num);
+        Config::set('temp.rand_tbl_alias', $num);
+
+        $query->join($tbl_dic_field_val . ' AS ' . $rand_tbl_alias, $rand_tbl_alias . '.dicval_id', '=', $tbl_dicval . '.id')
             ->where($rand_tbl_alias . '.key', '=', $key)
-            ->where($rand_tbl_alias . '.value', $condition, $value)
+            #->where($rand_tbl_alias . '.value', $condition, $value)
         ;
+
+        if (is_array($value) && count($value)) {
+
+            if ($condition == '=' || $condition == 'IN')
+                $query->whereIn($rand_tbl_alias . '.value', $value);
+            elseif ($condition == '!=' || $condition == '<>')
+                $query->whereNotIn($rand_tbl_alias . '.value', $value);
+
+        } else {
+
+            $query->where($rand_tbl_alias . '.value', $condition, $value);
+        }
+
             /*
             ## Multilanguage
             ->where($rand_tbl_alias . '.language', '=', Config::get('app.locale'))
@@ -377,7 +401,12 @@ class DicVal extends BaseModel {
 
         $tbl_dicval = (new DicVal())->getTable();
         $tbl_dic_field_val = (new DicFieldVal())->getTable();
-        $rand_tbl_alias = md5(time() . rand(999999, 9999999));
+        #$rand_tbl_alias = md5(time() . rand(999999, 9999999));
+
+        ## For cache
+        $num = (int)Config::get('temp.rand_tbl_alias');
+        $rand_tbl_alias = 'rand_tbl_alias_' . (++$num);
+        Config::set('temp.rand_tbl_alias', $num);
 
         /*
         $query->leftJoin($tbl_dic_field_val . ' AS ' . $rand_tbl_alias, $rand_tbl_alias . '.dicval_id', '=', $tbl_dicval . '.id')
@@ -473,7 +502,13 @@ class DicVal extends BaseModel {
 
         $tbl_dicval = (new DicVal())->getTable();
         $tbl_dic_field_val = (new DicFieldVal())->getTable();
-        $rand_tbl_alias = md5(time() . rand(999999, 9999999));
+        #$rand_tbl_alias = md5(time() . rand(999999, 9999999));
+
+        ## For cache
+        $num = (int)Config::get('temp.rand_tbl_alias');
+        $rand_tbl_alias = 'rand_tbl_alias_' . (++$num);
+        Config::set('temp.rand_tbl_alias', $num);
+
         $query
             ->addSelect(DB::raw('`' . $rand_tbl_alias . '`.`value` AS ' . $as_alias))
 
@@ -531,7 +566,13 @@ class DicVal extends BaseModel {
 
         $tbl_dicval = (new DicVal())->getTable();
         $tbl_dicvalrel = (new DicValRel())->getTable();
-        $rand_tbl_alias = md5(time() . rand(999999, 9999999));
+        #$rand_tbl_alias = md5(time() . rand(999999, 9999999));
+
+        ## For cache
+        $num = (int)Config::get('temp.rand_tbl_alias');
+        $rand_tbl_alias = 'rand_tbl_alias_' . (++$num);
+        Config::set('temp.rand_tbl_alias', $num);
+
         $query
             ->join($tbl_dicvalrel . ' AS ' . $rand_tbl_alias, function ($join) use ($rand_tbl_alias, $tbl_dicval, $tbl_dicvalrel, $field1, $field2, $value, $condition) {
 
@@ -587,31 +628,51 @@ class DicVal extends BaseModel {
             if (count($this->allfields)) {
                 $temp = [];
                 foreach ($this->allfields as $field) {
+                    ##
+                    ## RIGHT BEHAVIOR!!
+                    ## Check specified language: i18n or normal field
+                    ##
+                    if ($field->language) {
+                        if (!isset($temp[$field->language])) {
+                            $temp[$field->language] = [];
+                        }
+                        $temp[$field->language][$field->key] = $field->value;
+                    } else {
+                        $this->{$field->key} = $field->value;
+                    }
+
+                    /*
                     $lang = $field->language ? $field->language : Config::get('app.locale');
                     if (!isset($temp[$lang])) {
                         $temp[$lang] = [];
                     }
                     $temp[$lang][$field->key] = $field->value;
+                    */
                 }
                 unset($this->allfields);
                 $this->allfields = $temp;
             }
         }
-
         #Helper::tad($this);
 
+        ## Extract fields
         if (isset($this->fields) && is_object($this->fields)) {
+
+            #Helper::tad($this->fields);
 
             ## Extract fields (with NULL language or language = default locale)
             if (count($this->fields))
                 foreach ($this->fields as $field) {
-                    $this->{$field->key} = $field->value;
+                    try {
+                        $this->{$field->key} = $field->value;
+                    } catch(ErrorException $e) {
+                        ##
+                    }
                 }
             if ($unset)
                 unset($this->fields);
 
         }
-
         #Helper::tad($this);
 
         ## Extract all text fields (without language & all i18n)
@@ -620,18 +681,34 @@ class DicVal extends BaseModel {
             if (count($this->alltextfields)) {
                 $temp = [];
                 foreach ($this->alltextfields as $field) {
-                    if (!isset($temp[$field->language])) {
-                        $temp[$field->language] = [];
+                    ##
+                    ## RIGHT BEHAVIOR!!
+                    ## Check specified language: i18n or normal field
+                    ##
+                    if ($field->language) {
+                        if (!isset($temp[$field->language])) {
+                            $temp[$field->language] = [];
+                        }
+                        $temp[$field->language][$field->key] = $field->value;
+                    } else {
+                        $this->{$field->key} = $field->value;
                     }
-                    $temp[$field->language][$field->key] = $field->value;
+
+                    /*
+                    $lang = $field->language ? $field->language : Config::get('app.locale');
+                    if (!isset($temp[$lang])) {
+                        $temp[$lang] = [];
+                    }
+                    $temp[$lang][$field->key] = $field->value;
+                    */
                 }
                 unset($this->alltextfields);
                 $this->alltextfields = $temp;
             }
         }
-
         #Helper::ta($this);
 
+        ## Extract text fields
         if (isset($this->textfields) && @is_object($this->textfields)) {
 
             ## Extract text fields (with NULL language or language = default locale)
@@ -815,6 +892,15 @@ class DicVal extends BaseModel {
                     'name' => 'ololo',
                 ),
             ),
+            'related_dicvals' => array(
+                [
+                    #'dicval_parent_id' => 1,
+                    'dicval_child_id' => 2,
+                    'dicval_parent_dic_id' => 3,
+                    'dicval_child_dic_id' => 4,
+                    'dicval_parent_field' => 'cuisine_ids',
+                ],
+            ),
         ));
      */
     /**
@@ -966,11 +1052,49 @@ class DicVal extends BaseModel {
             $dicval->relations['metas'] = $metas;
         }
 
+        ## CREATE RELATED DICVALS
+        if (isset($array['related_dicvals']) && is_array($array['related_dicvals']) && count($array['related_dicvals'])) {
+
+            $temp = new Collection();
+
+            foreach ($array['related_dicvals'] as $dicval_parent_filed => $related_dicvals) {
+
+                if (!@is_array($related_dicvals) || !@count($related_dicvals))
+                    continue;
+
+                #Helper::d($related_dicvals);
+
+                foreach ($related_dicvals as $related_dicval) {
+
+                    $dicval_rel = new DicValRel();
+                    $dicval_rel->dicval_parent_id     = $dicval->id;
+                    $dicval_rel->dicval_child_id      = @$related_dicval['dicval_child_id'];
+                    $dicval_rel->dicval_parent_dic_id = @$related_dicval['dicval_parent_dic_id'];
+                    $dicval_rel->dicval_child_dic_id  = @$related_dicval['dicval_child_dic_id'];
+                    $dicval_rel->dicval_parent_field  = $dicval_parent_filed;
+                    $dicval_rel->save();
+
+                    $temp[] = $dicval_rel;
+                }
+            }
+
+            $dicval->relations['related_dicvals'] = $temp;
+        }
+
         ## RETURN EXTRACTED DICVAL
         return $dicval;
     }
 
 
+    /**
+     * !!! NEED TO ADD RELATED_DICVALS SUPPORT !!!
+     *
+     * @param $dic_slug
+     * @param $dicval_id
+     * @param $array
+     *
+     * @return bool|\Illuminate\Support\Collection|null|static
+     */
     public static function refresh($dic_slug, $dicval_id, $array) {
 
         #Helper::d($dic_slug);
@@ -1176,6 +1300,24 @@ class DicVal extends BaseModel {
         return $dicval;
     }
 
+    public function update_textfield($key, $value, $lang = NULL) {
+
+        if (!$this->id)
+            return false;
+
+        $dicval = DicTextFieldVal::firstOrNew(array(
+            'dicval_id' => $this->id,
+            'language' => $lang,
+            'key' => $key,
+        ));
+        $dicval->value = $value;
+        $dicval->save();
+
+        $this->$key = $value;
+
+        return $dicval;
+    }
+
 
     public function remove_field($key, $lang = NULL) {
 
@@ -1224,6 +1366,15 @@ class DicVal extends BaseModel {
     public function upload($field) {
         if (is_object($this) && isset($this->$field) && is_object($this->$field) && $this->$field->path != '') {
             return $this->$field->path;
+        } else {
+            return NULL;
+        }
+    }
+
+    public function field($field) {
+        $locale = Config::get('app.locale');
+        if (is_object($this) && isset($this->allfields) && isset($this->allfields[$locale][$field]) && $this->allfields[$locale][$field] != '') {
+            return $this->allfields[$locale][$field];
         } else {
             return NULL;
         }
