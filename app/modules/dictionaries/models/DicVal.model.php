@@ -369,12 +369,13 @@ class DicVal extends BaseModel {
             $query->where($rand_tbl_alias . '.value', $condition, $value);
         }
 
+        $query->addSelect(DB::raw('`' . $rand_tbl_alias . '`.`value` AS ' . $key));
+
             /*
             ## Multilanguage
             ->where($rand_tbl_alias . '.language', '=', Config::get('app.locale'))
             ->orWhere($rand_tbl_alias . '.language', '=', NULL)
             */
-
         if ($multilingual) {
             $query
                 ->where(function ($query) use ($rand_tbl_alias) {
