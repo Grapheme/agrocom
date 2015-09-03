@@ -29,13 +29,14 @@ $publications = Dic::valuesBySlug('publications', function($query) use ($year, $
         $query->filter_by_field('published_at', '<=', $filter_exp_2);
     }
 
+    $query->filter_by_field('press_name', '!=', '', true);
     $query->order_by_field('published_at', 'DESC');
 
 }, ['fields', 'textfields'], 1, 1, 1, $limit);
 
-foreach ($publications as $pub => $publication)
-    if ($publication->press_name == '')
-        unset($publications[$pub]);
+#foreach ($publications as $pub => $publication)
+#    if ($publication->press_name == '')
+#        unset($publications[$pub]);
 
 #Helper::smartQueries(1);
 

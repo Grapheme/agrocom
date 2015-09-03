@@ -42,9 +42,11 @@ $news = Dic::valuesBySlug('news', function($query) use ($limit, $p, $year, $mont
 #die;
 
 $news = DicLib::loadGallery($news, ['gallery']);
-foreach ($news as $n => $new)
-    if ($new->news_name == '')
-        unset($news[$n]);
+
+#foreach ($news as $n => $new)
+#    if ($new->news_name == '')
+#        unset($news[$n]);
+
 #dd($news);
 #Helper::tad($news);
 ?>
