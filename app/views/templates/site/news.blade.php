@@ -30,7 +30,7 @@ $news = Dic::valuesBySlug('news', function($query) use ($limit, $p, $year, $mont
     }
 
     $query->filter_by_field('news_name', '!=', '', true);
-    #$query->order_by_field('published_at', 'DESC');
+    $query->order_by_field('published_at', 'DESC');
 
 }, ['fields', 'textfields'], 1, 1, 0, $limit);
 #echo '<!--';
