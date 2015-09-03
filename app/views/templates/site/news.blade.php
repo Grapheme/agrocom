@@ -34,6 +34,7 @@ $news = Dic::valuesBySlug('news', function($query) use ($limit, $p, $year, $mont
 
 }, ['fields', 'textfields'], 1, 1, 0, $limit);
 echo '<!--'; Helper::ta($news); echo '-->';
+echo '<!--'; Helper::smartQueries(1); echo '-->';
 
 $news = DicLib::loadGallery($news, ['gallery']);
 foreach ($news as $n => $new)
