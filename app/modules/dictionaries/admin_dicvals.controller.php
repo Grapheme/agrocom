@@ -421,7 +421,7 @@ class AdminDicvalsController extends BaseController {
         $locales = Input::get('locales');
         $fields = Helper::withdraw($input, 'fields'); #Input::get('fields');
         #$fields_i18n = Input::get('fields_i18n');
-        $fields_i18n = $input['fields_i18n'];
+        $fields_i18n = @$input['fields_i18n'];
         #dd($fields_i18n);
         $seo = Input::get('seo');
 
